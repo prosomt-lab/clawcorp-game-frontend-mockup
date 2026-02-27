@@ -670,6 +670,47 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-bubble.show{opacity:1;transform:scale(1) translate(0,-50%)}
 .pv-bubble::after{content:'';position:absolute;top:50%;right:-7px;transform:translateY(-50%);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid var(--red)}
 
+/* ===== EDIT MODE ===== */
+.pv-edit-btn{display:inline-block;padding:8px 16px;border:2px solid #ffa726;background:transparent;color:#ffa726;font-family:var(--f-d);font-size:9px;letter-spacing:2px;border-radius:8px;cursor:pointer;transition:all .2s;text-transform:uppercase;margin-top:8px;margin-right:8px}
+.pv-edit-btn:hover{background:#ffa726;color:#111;box-shadow:0 0 15px rgba(255,167,38,0.3)}
+.pv-save-btn{display:inline-block;padding:8px 16px;border:2px solid #43a047;background:#43a047;color:#fff;font-family:var(--f-d);font-size:9px;letter-spacing:2px;border-radius:8px;cursor:pointer;transition:all .2s;text-transform:uppercase;margin-top:8px;margin-right:8px}
+.pv-save-btn:hover{box-shadow:0 0 15px rgba(67,160,71,0.4);transform:translateY(-1px)}
+.pv-cancel-btn{display:inline-block;padding:8px 16px;border:2px solid #666;background:transparent;color:#888;font-family:var(--f-d);font-size:9px;letter-spacing:2px;border-radius:8px;cursor:pointer;transition:all .2s;text-transform:uppercase;margin-top:8px}
+.pv-cancel-btn:hover{border-color:#ef4444;color:#ef4444}
+
+.edit-field{background:var(--bg3);border:1.5px solid var(--border);border-radius:6px;color:var(--t1);font-family:var(--f-m);font-size:13px;padding:6px 8px;width:100%;box-sizing:border-box;transition:border-color .2s,box-shadow .2s;outline:none;margin-bottom:6px}
+.edit-field:focus{border-color:var(--red);box-shadow:0 0 10px rgba(124,77,255,0.2)}
+.edit-field.modified{border-color:#ffa726;box-shadow:0 0 8px rgba(255,167,38,0.15)}
+.edit-textarea{resize:vertical;min-height:50px;font-size:12px;line-height:1.4}
+.edit-label{display:block;font-family:var(--f-d);font-size:7px;color:#666;letter-spacing:1px;margin-bottom:3px;margin-top:8px;text-transform:uppercase}
+.edit-row{display:flex;gap:8px;align-items:flex-start}
+.edit-row > div{flex:1}
+.edit-color{width:36px;height:36px;border:2px solid var(--border);border-radius:6px;cursor:pointer;padding:0;background:none;vertical-align:middle}
+.edit-color::-webkit-color-swatch-wrapper{padding:0}
+.edit-color::-webkit-color-swatch{border:none;border-radius:4px}
+.edit-select{appearance:none;-webkit-appearance:none;background:var(--bg3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 8px center;padding-right:24px}
+
+/* Stats sliders */
+.stat-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);width:32px;text-align:right}
+.stat-slider{-webkit-appearance:none;appearance:none;flex:1;height:6px;border-radius:3px;background:var(--bg3);outline:none;transition:background .2s}
+.stat-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--red);cursor:pointer;border:2px solid #fff;box-shadow:0 0 6px rgba(124,77,255,0.4)}
+.stat-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--red);cursor:pointer;border:2px solid #fff}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);width:12px;text-align:center}
+
+/* Toast */
+.edit-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:#43a047;color:#fff;font-family:var(--f-d);font-size:10px;letter-spacing:2px;padding:12px 28px;border-radius:10px;box-shadow:0 4px 20px rgba(67,160,71,0.4);z-index:9999;opacity:0;transition:all .4s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none}
+.edit-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Reset button */
+.reset-all-btn{display:inline-block;padding:6px 14px;border:1.5px solid #ef4444;background:transparent;color:#ef4444;font-family:var(--f-d);font-size:7px;letter-spacing:1.5px;border-radius:6px;cursor:pointer;transition:all .2s;text-transform:uppercase;margin-left:12px}
+.reset-all-btn:hover{background:#ef4444;color:#fff;box-shadow:0 0 12px rgba(239,68,68,0.3)}
+
+/* Edit mode transition */
+.pv-body.editing .pv-desc,.pv-body.editing .pv-info,.pv-body.editing .pv-stats,.pv-body.editing .pv-meta{display:none}
+.edit-form{animation:editIn .3s ease}
+@keyframes editIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
 </style>
 </head>
 <body>
@@ -850,9 +891,10 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 
   <div class="cs-bottom">
     <div class="cs-info">▸ HOVER TO PREVIEW — CLICK TO LOCK IN</div>
-    <div class="cs-count">ROSTER: <em>20</em>/20 AGENTS ONLINE</div>
+    <div class="cs-count">ROSTER: <em>20</em>/20 AGENTS ONLINE <button class="reset-all-btn" onclick="resetAllAgents()">RESET ALL</button></div>
   </div>
 </section>
+<div class="edit-toast" id="editToast">SAVED!</div>
 
 <!-- TASKS BOARD -->
 <section id="pipeline" class="sec">
@@ -2114,6 +2156,7 @@ const agents = [
 
 const csGrid = document.getElementById("csGrid");
 const csPreview = document.getElementById("csPreview");
+loadSavedAgents();
 
 agents.forEach((a,i) => {
   const cell = document.createElement("div");
@@ -2148,46 +2191,201 @@ function csSelectAgent(i, cell) {
   csShowPreview(i);
 }
 
-function csShowPreview(i) {
-  const a = agents[i];
-  const statsLines = a.stats.split(" ");
-  let statsHtml = "";
-  statsLines.forEach(s => {
-    const parts = s.split(":");
-    if (parts.length < 2) return;
-    const label = parts[0];
-    const bars = parts[1];
-    const filled = (bars.match(/■/g)||[]).length;
-    const empty = (bars.match(/□/g)||[]).length;
-    statsHtml += '<div>' + label + ': <span class="bar">' + '■'.repeat(filled) + '</span><span class="bar-off">' + '□'.repeat(empty) + '</span></div>';
-  });
+// --- localStorage persistence ---
+let currentEditIdx = -1;
+const STORAGE_KEY = 'clawcorp-agents';
 
-  csPreview.innerHTML = `
-    <div class="pv-header">
-      <div class="pv-bg" style="background:${a.bg}"></div>
-      <span class="pv-icon">${a.icon}</span>
-      <div class="pv-av-wrap">
-        <div class="pv-bubble" id="pvBubble">${a.bubble || ''}</div>
-        <img src="${a.img}" alt="${a.name}" onclick="toggleBubble()" style="cursor:pointer">
-      </div>
-      <div class="pv-name" style="text-shadow:0 0 20px ${a.bg}66">${a.name}</div>
-      <div class="pv-role">${a.role}</div>
-    </div>
-    <div class="pv-body">
-      <div class="pv-desc">${a.desc}</div>
-      <div class="pv-stats-title">◆ AGENT INFO</div>
-      <div class="pv-info">${a.info || ''}</div>
-      <div class="pv-meta">
-        <div class="pv-meta-item"><span class="pv-meta-label">MODEL</span> <span class="pv-meta-val">${a.model || 'N/A'}</span></div>
-        <div class="pv-meta-item"><span class="pv-meta-label">EFFORT</span> <span class="pv-meta-val effort-${(a.effort||'').toLowerCase()}">${a.effort || 'N/A'}</span></div>
-      </div>
-      <div class="pv-stats-title" style="margin-top:12px">◆ COMBAT STATS</div>
-      <div class="pv-stats">${statsHtml}</div>
-      <button class="pv-deploy" onclick="csDeploy('${a.name}')">▶ DEPLOY ${a.name.toUpperCase()}</button>
-    </div>
-  `;
+function loadSavedAgents() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    const parsed = JSON.parse(saved);
+    parsed.forEach((s, i) => {
+      if (i >= agents.length) return;
+      const fields = ['name','role','bg','icon','desc','stats','model','effort','info','bubble'];
+      fields.forEach(f => { if (s[f] !== undefined) agents[i][f] = s[f]; });
+    });
+  } catch(e) { console.warn('Failed to load saved agents:', e); }
 }
 
+function saveAgents() {
+  const toSave = agents.map(a => {
+    const copy = {};
+    ['name','role','bg','icon','desc','stats','model','effort','info','bubble'].forEach(f => copy[f] = a[f]);
+    return copy;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+}
+
+function resetAllAgents() {
+  if (!confirm('Reset all agents to defaults?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('editToast');
+  t.textContent = msg || 'SAVED!';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+
+// --- Stats parser/builder ---
+function parseStats(statsStr) {
+  const result = {};
+  statsStr.split(' ').forEach(s => {
+    const parts = s.split(':');
+    if (parts.length < 2) return;
+    result[parts[0]] = (parts[1].match(/\u25A0/g)||[]).length;
+  });
+  return result;
+}
+
+function buildStats(obj) {
+  return Object.entries(obj).map(function(e) {
+    return e[0] + ':' + '\u25A0'.repeat(e[1]) + '\u25A1'.repeat(5 - e[1]);
+  }).join(' ');
+}
+
+function renderStatsHtml(statsStr) {
+  let html = "";
+  statsStr.split(" ").forEach(s => {
+    const parts = s.split(":");
+    if (parts.length < 2) return;
+    const filled = (parts[1].match(/\u25A0/g)||[]).length;
+    const empty = (parts[1].match(/\u25A1/g)||[]).length;
+    html += '<div>' + parts[0] + ': <span class="bar">' + '\u25A0'.repeat(filled) + '</span><span class="bar-off">' + '\u25A1'.repeat(empty) + '</span></div>';
+  });
+  return html;
+}
+
+// --- Preview (view mode) ---
+function csShowPreview(i) {
+  currentEditIdx = i;
+  const a = agents[i];
+  const statsHtml = renderStatsHtml(a.stats);
+  const esc = str => (str||'').replace(/'/g, "\\'");
+
+  csPreview.innerHTML =
+    '<div class="pv-header">' +
+      '<div class="pv-bg" style="background:' + a.bg + '"></div>' +
+      '<span class="pv-icon">' + a.icon + '</span>' +
+      '<div class="pv-av-wrap">' +
+        '<div class="pv-bubble" id="pvBubble">' + (a.bubble||'') + '</div>' +
+        '<img src="' + a.img + '" alt="' + a.name + '" onclick="toggleBubble()" style="cursor:pointer">' +
+      '</div>' +
+      '<div class="pv-name" style="text-shadow:0 0 20px ' + a.bg + '66">' + a.name + '</div>' +
+      '<div class="pv-role">' + a.role + '</div>' +
+    '</div>' +
+    '<div class="pv-body">' +
+      '<div class="pv-desc">' + a.desc + '</div>' +
+      '<div class="pv-stats-title">\u25C6 AGENT INFO</div>' +
+      '<div class="pv-info">' + (a.info||'') + '</div>' +
+      '<div class="pv-meta">' +
+        '<div class="pv-meta-item"><span class="pv-meta-label">MODEL</span> <span class="pv-meta-val">' + (a.model||'N/A') + '</span></div>' +
+        '<div class="pv-meta-item"><span class="pv-meta-label">EFFORT</span> <span class="pv-meta-val effort-' + (a.effort||'').toLowerCase() + '">' + (a.effort||'N/A') + '</span></div>' +
+      '</div>' +
+      '<div class="pv-stats-title" style="margin-top:12px">\u25C6 COMBAT STATS</div>' +
+      '<div class="pv-stats">' + statsHtml + '</div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+        '<button class="pv-deploy" onclick="csDeploy(\'' + esc(a.name) + '\')" style="flex:1">\u25B6 DEPLOY ' + a.name.toUpperCase() + '</button>' +
+        '<button class="pv-edit-btn" onclick="csEditAgent(' + i + ')">\u270E EDIT</button>' +
+      '</div>' +
+    '</div>';
+}
+
+// --- Edit mode ---
+function csEditAgent(i) {
+  const a = agents[i];
+  const stats = parseStats(a.stats);
+  const statKeys = Object.keys(stats);
+  const esc = str => (str||'').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+  let slidersHtml = statKeys.map(k =>
+    '<div class="stat-row">' +
+      '<span class="stat-label">' + k + '</span>' +
+      '<input type="range" class="stat-slider" min="0" max="5" value="' + stats[k] + '" data-stat="' + k + '" oninput="this.nextElementSibling.textContent=this.value">' +
+      '<span class="stat-val">' + stats[k] + '</span>' +
+    '</div>'
+  ).join('');
+
+  const models = ['Claude Opus 4','Claude Sonnet 4','Grok 3','GPT-4o','Gemini 2.5'];
+  let modelOpts = models.map(m => '<option' + (a.model===m?' selected':'') + '>' + m + '</option>').join('');
+  if (!models.includes(a.model)) modelOpts += '<option selected>' + (a.model||'N/A') + '</option>';
+
+  const efforts = ['MAX','HIGH','MEDIUM','LOW'];
+  let effortOpts = efforts.map(e => '<option' + (a.effort===e?' selected':'') + '>' + e + '</option>').join('');
+
+  csPreview.innerHTML =
+    '<div class="pv-header">' +
+      '<div class="pv-bg" style="background:' + a.bg + '"></div>' +
+      '<span class="pv-icon" id="editIconPreview">' + a.icon + '</span>' +
+      '<div class="pv-av-wrap"><img src="' + a.img + '" alt="' + a.name + '"></div>' +
+      '<div class="pv-name" style="text-shadow:0 0 20px ' + a.bg + '66" id="editNamePreview">' + a.name + '</div>' +
+      '<div class="pv-role" id="editRolePreview">' + a.role + '</div>' +
+    '</div>' +
+    '<div class="pv-body editing">' +
+      '<div class="edit-form">' +
+        '<div class="edit-row">' +
+          '<div><label class="edit-label">NAME</label>' +
+          '<input class="edit-field" id="edName" value="' + esc(a.name) + '" oninput="document.getElementById(\'editNamePreview\').textContent=this.value"></div>' +
+          '<div><label class="edit-label">ROLE</label>' +
+          '<input class="edit-field" id="edRole" value="' + esc(a.role) + '" oninput="document.getElementById(\'editRolePreview\').textContent=this.value"></div>' +
+        '</div>' +
+        '<div class="edit-row">' +
+          '<div><label class="edit-label">ICON</label>' +
+          '<input class="edit-field" id="edIcon" value="' + a.icon + '" style="width:50px;text-align:center;font-size:20px" oninput="document.getElementById(\'editIconPreview\').textContent=this.value"></div>' +
+          '<div><label class="edit-label">BG COLOR</label>' +
+          '<input type="color" class="edit-color" id="edBg" value="' + a.bg + '" oninput="document.querySelector(\'.pv-bg\').style.background=this.value"></div>' +
+          '<div style="flex:2"><label class="edit-label">MODEL</label>' +
+          '<select class="edit-field edit-select" id="edModel">' + modelOpts + '</select></div>' +
+        '</div>' +
+        '<div class="edit-row"><div>' +
+          '<label class="edit-label">EFFORT</label>' +
+          '<select class="edit-field edit-select" id="edEffort">' + effortOpts + '</select>' +
+        '</div></div>' +
+        '<label class="edit-label">DESCRIPTION</label>' +
+        '<textarea class="edit-field edit-textarea" id="edDesc" rows="2">' + esc(a.desc) + '</textarea>' +
+        '<label class="edit-label">INFO</label>' +
+        '<input class="edit-field" id="edInfo" value="' + esc(a.info) + '">' +
+        '<label class="edit-label">SPEECH BUBBLE</label>' +
+        '<input class="edit-field" id="edBubble" value="' + esc(a.bubble) + '">' +
+        '<label class="edit-label" style="margin-top:12px">COMBAT STATS</label>' +
+        slidersHtml +
+        '<div style="margin-top:14px;display:flex;gap:8px">' +
+          '<button class="pv-save-btn" onclick="csSaveAgent(' + i + ')">\u2714 SAVE</button>' +
+          '<button class="pv-cancel-btn" onclick="csShowPreview(' + i + ')">\u2716 CANCEL</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+}
+
+// --- Save edited agent ---
+function csSaveAgent(i) {
+  const a = agents[i];
+  a.name = document.getElementById('edName').value.trim() || a.name;
+  a.role = document.getElementById('edRole').value.trim() || a.role;
+  a.icon = document.getElementById('edIcon').value.trim() || a.icon;
+  a.bg = document.getElementById('edBg').value || a.bg;
+  a.model = document.getElementById('edModel').value;
+  a.effort = document.getElementById('edEffort').value;
+  a.desc = document.getElementById('edDesc').value.trim() || a.desc;
+  a.info = document.getElementById('edInfo').value.trim();
+  a.bubble = document.getElementById('edBubble').value.trim();
+
+  const sliders = document.querySelectorAll('.stat-slider');
+  const statsObj = {};
+  sliders.forEach(s => { statsObj[s.dataset.stat] = parseInt(s.value); });
+  a.stats = buildStats(statsObj);
+
+  const cell = csGrid.children[i];
+  if (cell) cell.querySelector('.cname').textContent = a.name;
+
+  saveAgents();
+  csShowPreview(i);
+  showToast('SAVED!');
+}
 // Bubble toggle on avatar click
 function toggleBubble() {
   const bubble = document.getElementById("pvBubble");
