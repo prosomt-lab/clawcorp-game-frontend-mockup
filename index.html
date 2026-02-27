@@ -599,7 +599,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-name{font-family:var(--f-d);font-size:22px;letter-spacing:2px;margin-top:8px;position:relative;z-index:1}
 .pv-role{font-family:'Orbitron',sans-serif;font-size:10px;color:var(--red);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1;margin-top:2px}
 .pv-body{padding:16px;overflow:hidden;max-width:100%;box-sizing:border-box}
-.preview-box .pv-stats-title,.preview-box .pv-stats,.preview-box .pv-xp-wrap,.preview-box .pv-budget-wrap,.preview-box .pv-desc,.preview-box .pv-info,.preview-box .pv-deploy,.preview-box .pv-agent-mode{margin-left:16px;margin-right:16px;box-sizing:border-box}
+.preview-box .pv-stats-title,.preview-box .pv-stats,.preview-box .pv-xp-wrap,.preview-box .pv-budget-wrap,.preview-box .pv-desc,.preview-box .pv-info,.preview-box .pv-deploy,.preview-box .pv-agent-mode{box-sizing:border-box}
 .pv-desc{font-size:14px;color:#8890a8;line-height:1.6;margin-bottom:16px;font-family:var(--f-b)}
 .pv-stats-title{font-family:var(--f-d);font-size:8px;color:#555;margin-bottom:8px;letter-spacing:1px}
 .pv-stats{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);line-height:2;letter-spacing:1px;overflow:hidden;max-width:100%}
@@ -2596,7 +2596,6 @@ function csShowPreview(i) {
     '<div class="pv-body">' +
       modelHtml +
       effortHtml +
-      '</div>' +
 
       '<div class="pv-stats-title">\u25C6 STATS</div>' +
       '<div class="pv-stats">' + statsHtml + '</div>' +
@@ -2609,7 +2608,7 @@ function csShowPreview(i) {
 
       '<div class="pv-stats-title">\u25C6 TOKEN BUDGET</div>' +
       '<div class="pv-budget-wrap">' +
-        '<div style="display:flex;align-items:center">' +
+        '<div style="display:flex;align-items:center;max-width:100%;overflow:hidden">' +
           '<input type="range" class="pv-budget-slider" min="0" max="100" value="' + st.tokenBudget + '" oninput="agentState[\'' + esc(a.name) + '\'].tokenBudget=parseInt(this.value);this.nextElementSibling.textContent=this.value+\'%\'">' +
           '<span class="pv-budget-val">' + st.tokenBudget + '%</span>' +
         '</div>' +
