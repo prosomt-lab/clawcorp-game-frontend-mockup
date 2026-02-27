@@ -713,7 +713,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 
 /* ===== MODEL SELECTOR in preview ===== */
 .pv-model-select{display:flex;gap:6px;margin:10px 0;justify-content:center;flex-wrap:wrap}
-.model-btn{padding:6px 14px;border:2px solid var(--border);background:var(--bg3);color:var(--t2);font-family:var(--f-d);font-size:8px;letter-spacing:1.5px;border-radius:6px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.model-btn{padding:6px 12px;border:2px solid var(--border);background:var(--bg3);color:var(--t2);font-family:var(--f-d);font-size:9px;letter-spacing:1.5px;border-radius:6px;cursor:pointer;transition:all .2s;text-transform:uppercase}
 .model-btn:hover{border-color:var(--red);color:var(--t1)}
 .model-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 10px rgba(124,77,255,0.25)}
 .model-btn.recommended{border-color:var(--gold);box-shadow:0 0 8px rgba(245,158,11,0.2)}
@@ -975,7 +975,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 
   <div class="cs-bottom">
     <div class="cs-info">▸ HOVER TO PREVIEW — CLICK TO LOCK IN</div>
-    <div class="cs-count">ROSTER: <em>20</em>/20 AGENTS ONLINE</div>
+    <div class="cs-count" id="csCounter">ROSTER: <em>20</em>/20 AGENTS ONLINE</div>
   </div>
 </section>
 
@@ -2361,6 +2361,9 @@ function setTier(tier) {
   });
   // Re-render grid
   renderGrid();
+  var activeCount = agents.filter(function(a){return isAgentActive(a.name);}).length;
+  var ctr = document.getElementById('csCounter');
+  if(ctr) ctr.innerHTML = 'ROSTER: <em>' + activeCount + '</em>/' + agents.length + ' AGENTS ONLINE';
   // Re-render preview if one is selected
   if (csActiveCell) {
     const idx = Array.from(csGrid.children).indexOf(csActiveCell);
@@ -2502,12 +2505,11 @@ function csShowPreview(i) {
       '<span class="pv-status ' + statusClass + '">' + statusLabel + '</span>' +
     '</div>' +
     '<div class="pv-body">' +
-      '<div class="pv-desc">' + a.desc + '</div>' +
-
-      '<div class="pv-stats-title">\u25C6 SELECT MODEL</div>' +
+      '<div class="pv-stats-title">\u25C6 MODEL</div>' +
       modelHtml +
+      effortHtml +
 
-      '<div class="pv-stats-title">\u25C6 COMBAT STATS</div>' +
+      '<div class="pv-stats-title">\u25C6 STATS</div>' +
       '<div class="pv-stats">' + statsHtml + '</div>' +
 
       '<div class="pv-stats-title">\u25C6 PROGRESSION</div>' +
@@ -2525,11 +2527,9 @@ function csShowPreview(i) {
       '</div>' +
 
       '<div class="pv-stats-title">\u25C6 AGENT INFO</div>' +
+      '<div class="pv-desc" style="margin-bottom:8px">' + a.desc + '</div>' +
       '<div class="pv-info">' + (a.info||'') + '</div>' +
-      '<div class="pv-meta">' +
-        '<div class="pv-meta-item"><span class="pv-meta-label">MODEL</span> <span class="pv-meta-val">' + st.model + '</span></div>' +
-        '<div class="pv-meta-item"><span class="pv-meta-label">EFFORT</span> <span class="pv-meta-val effort-' + (st.effort||'medium') + '">' + (st.effort||'medium').toUpperCase() + '</span></div>' +
-      '</div>' +
+      '' +
 
       // Agent mode (Custom mode only)
       (currentMode === 'custom' ?
