@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLAWCORP — Architecture</title>
+<meta name="theme-color" content="#ff2d2d">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo+Black&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0c;--bg2:#111116;--bg3:#18181f;--bg4:#1f1f2a;
+  --border:rgba(255,255,255,0.05);--bh:rgba(255,255,255,0.1);
+  --red:#ff2d2d;--red-g:rgba(255,45,45,0.25);--red-dim:rgba(255,45,45,0.06);
+  --gold:#ffd700;--cyan:#00e5ff;--green:#00ff88;
+  --t1:#f5f5f7;--t2:#9a9ab0;--t3:#555568;
+  --f-d:'Archivo Black',sans-serif;--f-b:'DM Sans',sans-serif;
+  --f-m:'Space Mono',monospace;--f-c:'Fira Code',monospace;
+}
+body{background:var(--bg);color:var(--t1);font-family:var(--f-b);line-height:1.6;overflow-x:hidden}
+.c{max-width:1100px;margin:0 auto;padding:0 28px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;background:rgba(10,10,12,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+nav .c{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:40px;height:40px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px var(--red-g)}
+.logo-txt{font-family:var(--f-d);font-size:22px;letter-spacing:1px;color:var(--t1)}
+.logo-txt span{color:var(--red)}
+.nav-r{display:flex;align-items:center;gap:20px}
+.nav-a{color:var(--t2);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-a:hover{color:var(--t1)}
+.nav-a.active{color:var(--red)}
+
+/* HERO */
+.page-hero{padding:140px 0 60px;text-align:center}
+.page-hero h1{font-family:var(--f-d);font-size:clamp(32px,5vw,56px);line-height:1.1;margin-bottom:16px}
+.page-hero h1 span{color:var(--red)}
+.page-hero p{color:var(--t2);font-size:18px;max-width:600px;margin:0 auto}
+
+/* SECTIONS */
+.sec{padding:80px 0}
+.sec-l{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-family:var(--f-m);background:var(--red-dim);color:var(--red);border:1px solid rgba(255,45,45,0.12);margin-bottom:20px}
+.sec-t{font-family:var(--f-d);font-size:clamp(24px,3.5vw,42px);line-height:1.15;margin-bottom:16px}
+.sec-s{color:var(--t2);font-size:15px;line-height:1.7;max-width:660px;margin-bottom:40px}
+
+/* TREE */
+.tree{position:relative;padding:40px 0}
+.tree-level{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:12px;position:relative}
+.tree-node{background:var(--bg3);border:2px solid var(--border);border-radius:12px;padding:14px 20px;text-align:center;min-width:140px;position:relative;transition:all .3s}
+.tree-node:hover{border-color:var(--red);box-shadow:0 0 24px var(--red-g);transform:translateY(-2px)}
+.tree-node .icon{font-size:24px;margin-bottom:6px}
+.tree-node .name{font-family:var(--f-d);font-size:13px;letter-spacing:0.5px}
+.tree-node .role{font-family:var(--f-m);font-size:9px;letter-spacing:1.5px;color:var(--t2);margin-top:4px;text-transform:uppercase}
+.tree-node.km{border-color:var(--gold);background:rgba(255,215,0,0.04)}
+.tree-node.km:hover{box-shadow:0 0 24px rgba(255,215,0,0.15)}
+.tree-node.tour{border-color:var(--red);background:var(--red-dim)}
+.tree-node.arch{border-color:var(--cyan);background:rgba(0,229,255,0.04)}
+.tree-node.arch:hover{box-shadow:0 0 24px rgba(0,229,255,0.15)}
+.tree-node.worker{border-color:rgba(249,115,22,0.3);background:rgba(249,115,22,0.04)}
+.tree-node.worker:hover{box-shadow:0 0 24px rgba(249,115,22,0.15)}
+.tree-node.qa{border-color:rgba(0,255,136,0.3);background:rgba(0,255,136,0.04)}
+.tree-node.qa:hover{box-shadow:0 0 24px rgba(0,255,136,0.15)}
+.tree-node.side{border-color:rgba(168,85,247,0.3);background:rgba(168,85,247,0.04)}
+.tree-node.side:hover{box-shadow:0 0 24px rgba(168,85,247,0.15)}
+.tree-node.infra{border-color:rgba(156,163,175,0.3);background:rgba(156,163,175,0.04)}
+
+.tree-connector{display:flex;justify-content:center;padding:8px 0}
+.tree-line{width:3px;height:32px;background:linear-gradient(to bottom,var(--red),rgba(255,45,45,0.2));border-radius:2px}
+.tree-branch{display:flex;justify-content:center;align-items:flex-start;gap:0;position:relative;padding:0 0 8px}
+.tree-branch::before{content:'';position:absolute;top:0;height:3px;background:var(--border);left:25%;right:25%;border-radius:2px}
+
+.lane-label{font-family:var(--f-m);font-size:10px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;text-align:center;margin:32px 0 16px;display:flex;align-items:center;gap:12px;justify-content:center}
+.lane-label::before,.lane-label::after{content:'';flex:1;max-width:100px;height:1px;background:var(--border)}
+
+/* PIPELINE FLOW */
+.flow{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;margin-top:40px}
+.flow-step{display:flex;align-items:flex-start;gap:20px;padding:20px 0;border-bottom:1px solid var(--border);position:relative}
+.flow-step:last-child{border-bottom:none}
+.flow-num{font-family:var(--f-d);font-size:28px;color:var(--red);min-width:48px;line-height:1}
+.flow-body h3{font-family:var(--f-d);font-size:15px;margin-bottom:6px;letter-spacing:0.3px}
+.flow-body p{color:var(--t2);font-size:13px;line-height:1.6}
+.flow-poke{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-family:var(--f-c);font-size:11px;background:rgba(255,45,45,0.08);color:var(--red);border:1px solid rgba(255,45,45,0.15);margin:4px 2px}
+.flow-auto{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-family:var(--f-c);font-size:11px;background:rgba(0,255,136,0.06);color:var(--green);border:1px solid rgba(0,255,136,0.12);margin:4px 2px}
+.flow-arrow{display:flex;justify-content:center;padding:4px 0}
+.flow-arrow::after{content:'';width:3px;height:20px;background:linear-gradient(to bottom,var(--border),transparent);border-radius:2px}
+
+/* GLUE SECTION */
+.glue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:32px}
+.glue-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color .3s}
+.glue-card:hover{border-color:var(--bh)}
+.glue-card h3{font-family:var(--f-d);font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.glue-card p{color:var(--t2);font-size:13px;line-height:1.6}
+.glue-card .tag{font-family:var(--f-m);font-size:9px;letter-spacing:1.5px;padding:3px 8px;border-radius:4px;text-transform:uppercase}
+.tag-zero{background:rgba(0,255,136,0.08);color:var(--green);border:1px solid rgba(0,255,136,0.12)}
+.tag-future{background:rgba(168,85,247,0.08);color:#a855f7;border:1px solid rgba(168,85,247,0.12)}
+
+/* CODE BLOCK */
+.code-block{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;margin:20px 0;overflow-x:auto}
+.code-block pre{font-family:var(--f-c);font-size:12px;line-height:1.8;color:var(--t2)}
+.code-block .cm{color:var(--t3)}
+.code-block .fn{color:var(--cyan)}
+.code-block .str{color:var(--green)}
+.code-block .kw{color:var(--red)}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center}
+footer p{color:var(--t3);font-size:12px;font-family:var(--f-m)}
+footer a{color:var(--red);text-decoration:none}
+
+@media(max-width:768px){
+  .c{padding:0 16px}
+  .tree-level{gap:12px}
+  .tree-node{min-width:100px;padding:10px 14px}
+  .tree-node .name{font-size:11px}
+  .flow-step{flex-direction:column;gap:8px}
+  .flow-num{font-size:22px}
+  .glue-grid{grid-template-columns:1fr}
+  .nav-r{gap:10px}
+  .nav-a{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="c">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🦀</div>
+      <span class="logo-txt">CLAW<span>CORP</span></span>
+    </a>
+    <div class="nav-r">
+      <a href="index.html" class="nav-a">Home</a>
+      <a href="architecture.html" class="nav-a active">Architecture</a>
+      <a href="index.html#agents" class="nav-a">Agents</a>
+      <a href="index.html#pricing" class="nav-a">Pricing</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="c">
+    <h1>The <span>Hierarchy</span></h1>
+    <p>One human. One mastermind. 20 AI agents. Zero wasted tokens.</p>
+  </div>
+</div>
+
+<!-- FAMILY TREE -->
+<section class="sec">
+  <div class="c">
+    <span class="sec-l">Chain of Command</span>
+    <h2 class="sec-t">Who reports to who.</h2>
+    <p class="sec-s">The Keymaster gives the GO. Tour de Controle runs the operation. The Architecte runs the code. Everyone else executes.</p>
+
+    <div class="tree">
+      <!-- KEYMASTER -->
+      <div class="tree-level">
+        <div class="tree-node km">
+          <div class="icon">👑</div>
+          <div class="name">KEYMASTER</div>
+          <div class="role">Human. Gives the GO.</div>
+        </div>
+      </div>
+
+      <div class="tree-connector"><div class="tree-line"></div></div>
+
+      <!-- TOUR -->
+      <div class="tree-level">
+        <div class="tree-node tour">
+          <div class="icon">🛰</div>
+          <div class="name">TOUR DE CONTROLE</div>
+          <div class="role">Mastermind. Operations.</div>
+        </div>
+      </div>
+
+      <div class="tree-connector"><div class="tree-line"></div></div>
+
+      <!-- TWO BRANCHES -->
+      <div class="lane-label">Pipeline &amp; Off-Pipeline</div>
+
+      <div class="tree-level" style="gap:80px">
+        <!-- PIPELINE BRANCH -->
+        <div style="text-align:center">
+          <div class="tree-node arch">
+            <div class="icon">🧠</div>
+            <div class="name">ARCHITECTE</div>
+            <div class="role">Code flow. Branches. Merges.</div>
+          </div>
+
+          <div class="tree-connector"><div class="tree-line" style="background:linear-gradient(to bottom,var(--cyan),rgba(0,229,255,0.2))"></div></div>
+
+          <div class="lane-label">Coders</div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <div class="tree-node worker">
+              <div class="icon">🔨</div>
+              <div class="name">FORGE</div>
+              <div class="role">Full-stack</div>
+            </div>
+            <div class="tree-node worker">
+              <div class="icon">⚙️</div>
+              <div class="name">BACKBONE</div>
+              <div class="role">Backend</div>
+            </div>
+            <div class="tree-node worker">
+              <div class="icon">🎨</div>
+              <div class="name">PIXEL</div>
+              <div class="role">Frontend</div>
+            </div>
+            <div class="tree-node worker">
+              <div class="icon">🔁</div>
+              <div class="name">ECHO</div>
+              <div class="role">AI Trainer</div>
+            </div>
+          </div>
+
+          <div class="tree-connector"><div class="tree-line" style="background:linear-gradient(to bottom,#f97316,rgba(249,115,22,0.2))"></div></div>
+
+          <div class="lane-label">QA Gate</div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <div class="tree-node qa">
+              <div class="icon">🔍</div>
+              <div class="name">WATCHDOG</div>
+              <div class="role">Tests. Pre &amp; post merge.</div>
+            </div>
+            <div class="tree-node qa">
+              <div class="icon">👁</div>
+              <div class="name">EYE</div>
+              <div class="role">Visual QA</div>
+            </div>
+            <div class="tree-node km" style="min-width:120px">
+              <div class="icon">👑</div>
+              <div class="name">KEYMASTER</div>
+              <div class="role">Drops in any terminal</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OFF-PIPELINE BRANCH -->
+        <div style="text-align:center">
+          <div class="lane-label">Infra Quests</div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+            <div class="tree-node infra">
+              <div class="icon">🛰</div>
+              <div class="name">TOUR</div>
+              <div class="role">Scripts. Orchestration.</div>
+            </div>
+            <div class="tree-node infra">
+              <div class="icon">📡</div>
+              <div class="name">OUTPOST</div>
+              <div class="role">Remote ops. Deploy.</div>
+            </div>
+            <div class="tree-node infra">
+              <div class="icon">📋</div>
+              <div class="name">MANAGER</div>
+              <div class="role">Audit. Surveillance.</div>
+            </div>
+          </div>
+
+          <div class="lane-label">Side Characters</div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <div class="tree-node side">
+              <div class="icon">💰</div>
+              <div class="name">BO$$</div>
+              <div class="role">Business</div>
+            </div>
+            <div class="tree-node side">
+              <div class="icon">🤖</div>
+              <div class="name">GROK</div>
+              <div class="role">Research</div>
+            </div>
+            <div class="tree-node side">
+              <div class="icon">⚖️</div>
+              <div class="name">AVOCAT</div>
+              <div class="role">Legal</div>
+            </div>
+            <div class="tree-node side">
+              <div class="icon">📊</div>
+              <div class="name">ANALYST</div>
+              <div class="role">Data</div>
+            </div>
+            <div class="tree-node side">
+              <div class="icon">🎯</div>
+              <div class="name">OPPORTUNIST</div>
+              <div class="role">Trend scanner</div>
+            </div>
+            <div class="tree-node side">
+              <div class="icon">🌙</div>
+              <div class="name">MOTHERCLAW</div>
+              <div class="role">Nocturne. Own branch.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPRINT PIPELINE -->
+<section class="sec" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="c">
+    <span class="sec-l">Sprint Pipeline</span>
+    <h2 class="sec-t">From GO to <span style="color:var(--green)">SHIPPED</span>.</h2>
+    <p class="sec-s">Every sprint follows this exact flow. The POKE system chains each step automatically. Zero manual coordination after the Keymaster says GO.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-body">
+          <h3>Keymaster says GO</h3>
+          <p>Sprint scope is defined. Architecte receives the green light.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-body">
+          <h3>Architecte dispatches</h3>
+          <p>Arch decomposes the sprint into tasks and POKEs each worker terminal.</p>
+          <div style="margin-top:8px">
+            <span class="flow-poke">POKE &rarr; Forge</span>
+            <span class="flow-poke">POKE &rarr; Backbone</span>
+            <span class="flow-poke">POKE &rarr; Pixel</span>
+            <span class="flow-poke">POKE &rarr; Echo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-body">
+          <h3>Workers code in parallel</h3>
+          <p>Each worker codes on their own branch. Forge, Backbone, Pixel, Echo &mdash; all running simultaneously in separate VSCode terminals. The Keymaster can drop into any terminal at any time to check progress.</p>
+          <div class="code-block">
+            <pre><span class="cm"># Each worker = 1 branch = 1 terminal</span>
+<span class="fn">Forge</span>    &rarr; branch <span class="str">forge</span>
+<span class="fn">Backbone</span> &rarr; branch <span class="str">backbone</span>
+<span class="fn">Pixel</span>    &rarr; branch <span class="str">pixel</span>
+<span class="fn">Echo</span>     &rarr; branch <span class="str">echo</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-body">
+          <h3>Last worker done &rarr; Watchdog wakes up</h3>
+          <p>The audit hook detects the last <code>git push</code>. Watchdog is automatically POKEd to start pre-merge testing on every branch.</p>
+          <div style="margin-top:8px">
+            <span class="flow-auto">AUTO &bull; hook detects last push</span>
+            <span class="flow-poke">POKE &rarr; Watchdog</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-body">
+          <h3>Watchdog pre-merge QA</h3>
+          <p>Tests each branch individually. If a branch fails: Watchdog POKEs the worker who broke it. They fix, push, Watchdog re-tests. Loop until green.</p>
+          <div style="margin-top:8px">
+            <span class="flow-auto">PASS &rarr; POKE Architecte</span>
+            <span class="flow-poke">FAIL &rarr; POKE worker fautif</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">06</div>
+        <div class="flow-body">
+          <h3>Architecte merges into dev</h3>
+          <p>All branches green. Arch merges everything into <code>dev</code>, launches localhost, then fans out QA POKEs:</p>
+          <div style="margin-top:8px">
+            <span class="flow-poke">POKE &rarr; Watchdog (re-test dev)</span>
+            <span class="flow-poke">POKE &rarr; Eye (visual QA)</span>
+            <span class="flow-poke">POKE &rarr; Manager (audit)</span>
+            <span class="flow-poke">POKE &rarr; Keymaster (ready for review)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">07</div>
+        <div class="flow-body">
+          <h3>Post-merge QA (parallel)</h3>
+          <p>Watchdog, Eye, Manager, and Keymaster all review the merged <code>dev</code> branch simultaneously. Meanwhile, the Architecte starts prepping the next sprint.</p>
+          <div style="margin-top:8px">
+            <span class="flow-auto">Arch preps next sprint during QA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">08</div>
+        <div class="flow-body">
+          <h3>Keymaster decides</h3>
+          <p>QA complete. The Keymaster gives the final call:</p>
+          <div style="margin-top:8px">
+            <span class="flow-auto">GO main &rarr; ship to production</span>
+            <span class="flow-auto">GO next sprint &rarr; Arch dispatches again</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POKE SYSTEM -->
+<section class="sec">
+  <div class="c">
+    <span class="sec-l">The POKE System</span>
+    <h2 class="sec-t">A file drops. A terminal <span style="color:var(--red)">wakes up</span>.</h2>
+    <p class="sec-s">POKE is how agents communicate. No API calls. No server. Just a markdown file written to a worker's directory. When the worker boots, it reads its POKE and executes.</p>
+
+    <div class="code-block">
+      <pre><span class="cm"># Architecte POKEs Forge to build a WebSocket handler</span>
+
+<span class="fn">write-poke.ps1</span> <span class="kw">-Agent</span> <span class="str">"forge"</span> <span class="kw">-Orders</span> <span class="str">"Implement WebSocket handler for real-time updates. Branch: forge. ETA: 15min."</span> <span class="kw">-From</span> <span class="str">"architecte"</span>
+
+<span class="cm"># This creates:</span>
+<span class="cm">#   workers/forge/POKE.md</span>
+<span class="cm">#</span>
+<span class="cm"># Contents:</span>
+<span class="cm">#   **FROM:** architecte</span>
+<span class="cm">#   **PRIORITY:** P1</span>
+<span class="cm">#   **ORDERS:** Implement WebSocket handler for real-time updates.</span>
+<span class="cm">#</span>
+<span class="cm"># When Forge boots, it reads POKE.md, executes, then archives it.</span></pre>
+    </div>
+
+    <div class="glue-grid">
+      <div class="glue-card">
+        <h3>📄 POKE = a file</h3>
+        <p>A markdown file dropped into a worker's directory. Contains orders, priority, and sender. The worker reads it on boot and executes. Then archives it. That's it.</p>
+      </div>
+      <div class="glue-card">
+        <h3>🪝 HOOK = an interceptor</h3>
+        <p>Every time a worker runs a command, edits a file, or pushes code, a hook fires. Invisible. The audit hook logs everything. Pattern-matches for drift. Triggers POKEs automatically.</p>
+      </div>
+      <div class="glue-card">
+        <h3>💬 SLACK = the radio</h3>
+        <p>Each agent has its own Slack bot identity. They post status, ask questions, report blocks. The Keymaster sees everything on mobile. Every message has a sender tag &mdash; you always know who's talking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZERO-COST GLUE -->
+<section class="sec" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="c">
+    <span class="sec-l">Zero-Cost Glue</span>
+    <h2 class="sec-t">PowerShell scripts. <span style="color:var(--green)">$0/month</span>.</h2>
+    <p class="sec-s">The entire orchestration layer runs on PowerShell scripts inside existing VSCode terminals. No servers. No containers. No subscriptions. Just files and shell commands.</p>
+
+    <div class="glue-grid">
+      <div class="glue-card">
+        <h3><span class="tag tag-zero">$0</span> write-poke.ps1</h3>
+        <p>Writes a POKE.md file into any worker's directory. The receiving worker reads it on boot and executes the orders. One script replaces an entire task dispatch system.</p>
+      </div>
+      <div class="glue-card">
+        <h3><span class="tag tag-zero">$0</span> archive-poke.ps1</h3>
+        <p>After a POKE is executed, this script moves it to the archive. Clean directory, audit trail preserved. Zero manual cleanup.</p>
+      </div>
+      <div class="glue-card">
+        <h3><span class="tag tag-zero">$0</span> slack-post.ps1</h3>
+        <p>Posts to any Slack channel as any bot identity. DPAPI-encrypted credentials. Each agent has its own bot persona. The Keymaster always knows who's talking.</p>
+      </div>
+      <div class="glue-card">
+        <h3><span class="tag tag-zero">$0</span> audit hook</h3>
+        <p>Intercepts every action from every worker. Bash commands, file edits, git pushes &mdash; all logged. Detects when the last worker finishes and auto-POKEs Watchdog. The invisible backbone of the pipeline.</p>
+      </div>
+      <div class="glue-card">
+        <h3><span class="tag tag-future">FUTURE</span> Smart audit</h3>
+        <p>Pattern-match worker behavior in real-time. Detect drift, off-topic work, infinite loops. Auto-POKE the Architecte with an alert. The Manager role becomes optional &mdash; replaced by 20 lines of script logic.</p>
+      </div>
+      <div class="glue-card">
+        <h3><span class="tag tag-zero">$0</span> Slack identity</h3>
+        <p>When the Architecte speaks on Slack, you see exactly which clone it is. <code>[ARCH:clone-1]</code> vs <code>[ARCH:ghost]</code> vs <code>[ARCH:terminal-3]</code>. Full transparency. No ambiguity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANAGER EVOLUTION -->
+<section class="sec">
+  <div class="c">
+    <span class="sec-l">The Manager Question</span>
+    <h2 class="sec-t">Today: an agent. Tomorrow: <span style="color:var(--gold)">a script</span>.</h2>
+    <p class="sec-s">The Manager agent currently monitors all workers during sprints. It reads audit logs, watches for drift, and alerts the Architecte. But everything it does can be automated.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px">
+      <div class="glue-card">
+        <h3>Today</h3>
+        <p style="margin-bottom:12px">Manager = an AI agent that:</p>
+        <p>&bull; Reads audit hook logs<br>
+           &bull; Detects off-topic work<br>
+           &bull; Alerts Arch via Slack<br>
+           &bull; Consults Keymaster when unsure<br>
+           &bull; Costs tokens per session</p>
+      </div>
+      <div class="glue-card" style="border-color:rgba(255,215,0,0.2)">
+        <h3>Tomorrow</h3>
+        <p style="margin-bottom:12px">Manager = 20 lines of PowerShell that:</p>
+        <p>&bull; Same audit hook, smarter patterns<br>
+           &bull; Auto-POKE Arch on drift detection<br>
+           &bull; Arch decides: stop, discuss, relaunch, or escalate to Keymaster<br>
+           &bull; Zero tokens. Zero agent. Pure script.<br>
+           &bull; Manager agent freed for side quests only</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="c">
+    <p>CLAWCORP &mdash; <a href="index.html">Back to Home</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
