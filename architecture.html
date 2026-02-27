@@ -134,6 +134,7 @@ footer a{color:var(--red);text-decoration:none}
     <div class="nav-r">
       <a href="index.html" class="nav-a">Home</a>
       <a href="architecture.html" class="nav-a active">Architecture</a>
+      <a href="how-it-works.html" class="nav-a">How It Works</a>
       <a href="index.html#agents" class="nav-a">Agents</a>
       <a href="index.html#pricing" class="nav-a">Pricing</a>
     </div>
@@ -332,13 +333,13 @@ footer a{color:var(--red);text-decoration:none}
         <div class="flow-num">03</div>
         <div class="flow-body">
           <h3>Workers code in parallel</h3>
-          <p>Each worker codes on their own branch. Forge, Backbone, Pixel, Echo &mdash; all running simultaneously in separate VSCode terminals. The Keymaster can drop into any terminal at any time to check progress.</p>
+          <p>Each worker codes on their own branch. Workers update their tasks in the board with status changes and solution notes &mdash; what they built, which files they touched. The Keymaster can drop into any terminal at any time.</p>
           <div class="code-block">
-            <pre><span class="cm"># Each worker = 1 branch = 1 terminal</span>
-<span class="fn">Forge</span>    &rarr; branch <span class="str">forge</span>
-<span class="fn">Backbone</span> &rarr; branch <span class="str">backbone</span>
-<span class="fn">Pixel</span>    &rarr; branch <span class="str">pixel</span>
-<span class="fn">Echo</span>     &rarr; branch <span class="str">echo</span></pre>
+            <pre><span class="cm"># Each worker = 1 branch = 1 terminal = 1 board task</span>
+<span class="fn">Forge</span>    &rarr; branch <span class="str">forge</span>    &rarr; board: <span class="str">InProgress &rarr; Done + comment</span>
+<span class="fn">Backbone</span> &rarr; branch <span class="str">backbone</span> &rarr; board: <span class="str">InProgress &rarr; Done + comment</span>
+<span class="fn">Pixel</span>    &rarr; branch <span class="str">pixel</span>    &rarr; board: <span class="str">InProgress &rarr; Done + comment</span>
+<span class="fn">Echo</span>     &rarr; branch <span class="str">echo</span>     &rarr; board: <span class="str">InProgress &rarr; Done + comment</span></pre>
           </div>
         </div>
       </div>
@@ -371,7 +372,18 @@ footer a{color:var(--red);text-decoration:none}
         <div class="flow-num">06</div>
         <div class="flow-body">
           <h3>Architecte merges into dev</h3>
-          <p>All branches green. Arch merges everything into <code>dev</code>, launches localhost, then fans out QA POKEs:</p>
+          <p>All branches green. Arch reads each task's board comments to spot file overlaps, then merges everything into <code>dev</code> and launches localhost.</p>
+          <div style="margin-top:8px">
+            <span class="flow-auto">Read board comments &rarr; detect overlaps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">07</div>
+        <div class="flow-body">
+          <h3>Arch fans out QA POKEs</h3>
+          <p>Dev merged and localhost running. Arch POKEs all QA actors in parallel:</p>
           <div style="margin-top:8px">
             <span class="flow-poke">POKE &rarr; Watchdog (re-test dev)</span>
             <span class="flow-poke">POKE &rarr; Eye (visual QA)</span>
@@ -382,7 +394,7 @@ footer a{color:var(--red);text-decoration:none}
       </div>
 
       <div class="flow-step">
-        <div class="flow-num">07</div>
+        <div class="flow-num">08</div>
         <div class="flow-body">
           <h3>Post-merge QA (parallel)</h3>
           <p>Watchdog, Eye, Manager, and Keymaster all review the merged <code>dev</code> branch simultaneously. Meanwhile, the Architecte starts prepping the next sprint.</p>
@@ -393,10 +405,22 @@ footer a{color:var(--red);text-decoration:none}
       </div>
 
       <div class="flow-step">
-        <div class="flow-num">08</div>
+        <div class="flow-num">09</div>
+        <div class="flow-body">
+          <h3>QA confirmed &rarr; Workers sync</h3>
+          <p>Keymaster or Eye confirms QA. Architecte auto-POKEs all workers: pull dev, type "READY FOR NEXT SPEEDRUN" in their terminal.</p>
+          <div style="margin-top:8px">
+            <span class="flow-poke">POKE &rarr; All workers (pull dev)</span>
+            <span class="flow-auto">Workers type: READY FOR NEXT SPEEDRUN</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">10</div>
         <div class="flow-body">
           <h3>Keymaster decides</h3>
-          <p>QA complete. The Keymaster gives the final call:</p>
+          <p>All workers synced and ready. The Keymaster gives the final call:</p>
           <div style="margin-top:8px">
             <span class="flow-auto">GO main &rarr; ship to production</span>
             <span class="flow-auto">GO next sprint &rarr; Arch dispatches again</span>
