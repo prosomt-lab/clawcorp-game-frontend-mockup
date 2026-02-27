@@ -670,6 +670,81 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-bubble.show{opacity:1;transform:scale(1) translate(0,-50%)}
 .pv-bubble::after{content:'';position:absolute;top:50%;right:-7px;transform:translateY(-50%);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid var(--red)}
 
+/* ===== TIER SELECTOR ===== */
+.tier-bar{display:flex;gap:6px;justify-content:center;max-width:1300px;margin:0 auto 6px;padding:0 16px;align-items:center;flex-wrap:wrap}
+.tier-btn{padding:8px 18px;border:2px solid var(--border);background:var(--bg2);color:var(--t2);font-family:var(--f-d);font-size:9px;letter-spacing:2px;border-radius:8px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.tier-btn:hover{border-color:var(--red);color:var(--t1)}
+.tier-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 15px rgba(124,77,255,0.3)}
+.tier-btn.tier-free{--tc:#22c55e}.tier-btn.tier-free.active{background:#22c55e;border-color:#22c55e;box-shadow:0 0 15px rgba(34,197,94,0.3)}
+.tier-btn.tier-pro{--tc:#3b82f6}.tier-btn.tier-pro.active{background:#3b82f6;border-color:#3b82f6;box-shadow:0 0 15px rgba(59,130,246,0.3)}
+.tier-btn.tier-power{--tc:#f59e0b}.tier-btn.tier-power.active{background:#f59e0b;border-color:#f59e0b;color:#111;box-shadow:0 0 15px rgba(245,158,11,0.3)}
+.tier-btn.tier-max{--tc:#e91e63}.tier-btn.tier-max.active{background:#e91e63;border-color:#e91e63;box-shadow:0 0 15px rgba(233,30,99,0.3)}
+.tier-info{font-family:var(--f-m);font-size:12px;color:var(--t3);text-align:center;margin-bottom:10px}
+
+/* ===== CELL STATS (in grid) ===== */
+.cell-stats{font-family:'JetBrains Mono',monospace;font-size:8px;line-height:1.4;color:var(--t2);margin-top:4px;text-align:left;padding:0 2px}
+.cell-stats .bar{color:var(--red)}
+.cell-stats .bar-off{color:#222}
+[data-theme="light"] .cell-stats .bar-off{color:#e0d8f0}
+
+/* ===== XP BAR (in cell) ===== */
+.cell-xp{margin-top:4px;padding:0 2px}
+.xp-bar{height:4px;background:#1a1a3a;border-radius:2px;overflow:hidden;margin-bottom:2px}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--gold),#f59e0b);border-radius:2px;transition:width .5s ease}
+.xp-lv{font-family:var(--f-d);font-size:6px;color:var(--gold);letter-spacing:1px}
+[data-theme="light"] .xp-bar{background:#e5e0f0}
+[data-theme="light"] .xp-lv{color:#b45309}
+
+/* ===== DISABLED CELL ===== */
+.cell.disabled{opacity:.35;pointer-events:none;filter:grayscale(0.8)}
+.cell.disabled img{filter:grayscale(1)}
+.cell.disabled .cname{color:#444}
+.cell.disabled .cell-stats .bar{color:#444}
+
+/* ===== MODEL SELECTOR in preview ===== */
+.pv-model-select{display:flex;gap:6px;margin:10px 0;justify-content:center;flex-wrap:wrap}
+.model-btn{padding:6px 14px;border:2px solid var(--border);background:var(--bg3);color:var(--t2);font-family:var(--f-d);font-size:8px;letter-spacing:1.5px;border-radius:6px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.model-btn:hover{border-color:var(--red);color:var(--t1)}
+.model-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 10px rgba(124,77,255,0.25)}
+.model-btn.recommended::after{content:'\u2605';margin-left:4px;color:var(--gold);font-size:10px}
+.model-btn:disabled{opacity:.3;pointer-events:none}
+
+/* ===== PREVIEW STATS (larger) ===== */
+.pv-stats-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;transition:all .3s}
+.pv-stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);width:32px;text-align:right}
+.pv-stat-bar{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:2px;transition:all .3s}
+.pv-stat-bar .bar{color:var(--red)}
+.pv-stat-bar .bar-off{color:#222}
+.pv-stat-bar .bar-bonus{color:var(--gold)}
+.pv-stat-num{font-family:var(--f-d);font-size:12px;color:var(--t2);width:16px;text-align:center}
+.stat-change{animation:statFlash .4s ease}
+@keyframes statFlash{0%{text-shadow:0 0 12px var(--red)}100%{text-shadow:none}}
+
+/* ===== XP in preview ===== */
+.pv-xp-wrap{margin:12px 0}
+.pv-xp-bar{height:8px;background:#1a1a3a;border-radius:4px;overflow:hidden;margin-bottom:4px}
+.pv-xp-fill{height:100%;background:linear-gradient(90deg,var(--gold),#f59e0b);border-radius:4px;transition:width .6s ease}
+.pv-xp-text{display:flex;justify-content:space-between;font-family:var(--f-d);font-size:8px;color:var(--gold);letter-spacing:1px}
+[data-theme="light"] .pv-xp-bar{background:#e5e0f0}
+
+/* ===== TOKEN BUDGET in preview ===== */
+.pv-budget-wrap{margin:10px 0}
+.pv-budget-label{font-family:var(--f-d);font-size:7px;color:#555;letter-spacing:1px;margin-bottom:4px}
+.pv-budget-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:#1a1a3a;outline:none}
+.pv-budget-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid #fff;box-shadow:0 0 6px rgba(245,158,11,0.4)}
+.pv-budget-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-left:8px}
+
+/* ===== STATUS BADGE ===== */
+.pv-status{display:inline-block;padding:3px 8px;border-radius:4px;font-family:var(--f-d);font-size:7px;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.pv-status.active{background:#22c55e22;color:#22c55e;border:1px solid #22c55e44}
+.pv-status.idle{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
+.pv-status.sleeping{background:#64748b22;color:#64748b;border:1px solid #64748b44}
+
+/* ===== ADJUST CELL SIZE for stats ===== */
+.cell{padding:6px 4px 6px}
+.select-grid{grid-template-columns:repeat(5,1fr);gap:3px}
+@media(max-width:900px){.select-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:550px){.select-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -833,6 +908,13 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
     </div>
   </div>
 
+  <div class="tier-bar">
+    <button class="tier-btn tier-free" data-tier="free" onclick="setTier('free')">FREE</button>
+    <button class="tier-btn tier-pro" data-tier="pro" onclick="setTier('pro')">PRO $35</button>
+    <button class="tier-btn tier-power" data-tier="power" onclick="setTier('power')">POWER $120</button>
+    <button class="tier-btn tier-max active" data-tier="max" onclick="setTier('max')">MAX $250</button>
+  </div>
+  <div class="tier-info" id="tierInfo">$250/mo &bull; 20 agents &bull; Haiku/Sonnet/Opus</div>
   <div class="cs-main">
     <div class="roster">
       <div class="roster-title">◆ AGENT ROSTER — 20 UNITS AVAILABLE</div>
@@ -2115,18 +2197,238 @@ const agents = [
 const csGrid = document.getElementById("csGrid");
 const csPreview = document.getElementById("csPreview");
 
+// ============================================
+// CLAWCORP GAME PLAN - Step 1: Tier + Model + Dynamic Stats
+// ============================================
+
+// --- Base stats per agent (from GAME PLAN table) ---
+const BASE_STATS = {
+  "Tour":        {ATK:5, DEF:5, SPD:4},
+  "Architecte":  {ATK:3, DEF:4, SPD:3},
+  "Forge":       {ATK:5, DEF:3, SPD:4},
+  "Backbone":    {ATK:4, DEF:5, SPD:3},
+  "Pixel":       {ATK:3, DEF:2, SPD:5},
+  "Watchdog":    {ATK:4, DEF:4, SPD:4},
+  "Echo":        {ATK:2, DEF:5, SPD:5},
+  "Manager":     {ATK:2, DEF:5, SPD:4},
+  "MotherClaw":  {ATK:4, DEF:4, SPD:4},
+  "Outpost":     {ATK:3, DEF:4, SPD:5},
+  "Eye":         {ATK:4, DEF:5, SPD:4},
+  "Avocat":      {ATK:3, DEF:5, SPD:2}
+};
+
+// --- Model modifiers (from GAME PLAN) ---
+const MODEL_MOD = {
+  "Haiku":  {ATK:-1, DEF:0, SPD:1},
+  "Sonnet": {ATK:0,  DEF:0, SPD:0},
+  "Opus":   {ATK:1,  DEF:0, SPD:-1}
+};
+
+// --- XP Levels (from GAME PLAN) ---
+const LEVELS = [
+  {name:"Recruit",      xp:0},
+  {name:"Operative",    xp:100},
+  {name:"Specialist",   xp:300},
+  {name:"Veteran",      xp:600},
+  {name:"Elite",        xp:1000},
+  {name:"Commander",    xp:1500},
+  {name:"Legend",        xp:2500},
+  {name:"Mythic",       xp:4000},
+  {name:"Transcendent", xp:6000},
+  {name:"Omega",        xp:10000}
+];
+
+function getLevel(xp) {
+  let lv = 0;
+  for (let i = LEVELS.length - 1; i >= 0; i--) {
+    if (xp >= LEVELS[i].xp) { lv = i; break; }
+  }
+  return lv;
+}
+
+function getLevelName(lv) { return LEVELS[lv] ? LEVELS[lv].name : "Recruit"; }
+
+function getXPProgress(xp) {
+  const lv = getLevel(xp);
+  const cur = LEVELS[lv].xp;
+  const next = LEVELS[lv+1] ? LEVELS[lv+1].xp : LEVELS[lv].xp;
+  if (next === cur) return 100;
+  return Math.floor(((xp - cur) / (next - cur)) * 100);
+}
+
+// --- Tiers (from GAME PLAN) ---
+const TIERS = {
+  free:  {label:"FREE",  budget:"$0/mo",   maxAgents:3,  models:["Haiku"],
+          active:["Forge","Backbone","Pixel"],
+          recommended:{"Forge":"Haiku","Backbone":"Haiku","Pixel":"Haiku"}},
+  pro:   {label:"PRO",   budget:"$35/mo",  maxAgents:7,  models:["Haiku","Sonnet"],
+          active:["Tour","Architecte","Forge","Backbone","Pixel","Watchdog","Echo"],
+          recommended:{"Tour":"Sonnet","Architecte":"Sonnet","Forge":"Haiku","Backbone":"Haiku","Pixel":"Haiku","Watchdog":"Haiku","Echo":"Haiku"}},
+  power: {label:"POWER", budget:"$120/mo", maxAgents:14, models:["Haiku","Sonnet","Opus"],
+          active:["Tour","Architecte","Forge","Backbone","Pixel","Watchdog","Echo","Manager","MotherClaw","Outpost","Eye","Avocat","Grok","Sentinel"],
+          recommended:{"Tour":"Sonnet","Architecte":"Sonnet","Forge":"Sonnet","Backbone":"Sonnet","Pixel":"Haiku","Watchdog":"Haiku","Echo":"Haiku","Manager":"Haiku","MotherClaw":"Haiku","Outpost":"Haiku","Eye":"Haiku","Avocat":"Haiku","Grok":"Haiku","Sentinel":"Haiku"}},
+  max:   {label:"MAX",   budget:"$250/mo", maxAgents:20, models:["Haiku","Sonnet","Opus"],
+          active:null,
+          recommended:{"Tour":"Opus","Architecte":"Opus","Forge":"Sonnet","Backbone":"Sonnet","Pixel":"Sonnet","Watchdog":"Sonnet","MotherClaw":"Sonnet","Eye":"Sonnet","Echo":"Haiku","Manager":"Haiku","Outpost":"Haiku","Avocat":"Haiku"}}
+};
+
+let currentTier = "max";
+
+// --- Agent runtime state ---
+const agentState = {};
 agents.forEach((a,i) => {
-  const cell = document.createElement("div");
-  cell.className = "cell";
-  cell.innerHTML = `
-    ${newAgentNames.includes(a.name)?'<div class="new-badge">NEW</div>':''}
-    <img src="${a.img}" alt="${a.name}">
-    <div class="cname">${a.name}</div>
-  `;
-  cell.addEventListener("click", () => csSelectAgent(i, cell));
-  cell.addEventListener("mouseenter", () => csPreviewAgent(i));
-  csGrid.appendChild(cell);
+  const base = BASE_STATS[a.name] || {ATK:3, DEF:3, SPD:3};
+  agentState[a.name] = {
+    idx: i,
+    model: "Sonnet",
+    xp: Math.floor(Math.random() * 2000),
+    status: "active",
+    tokenBudget: 50,
+    baseStats: {...base}
+  };
 });
+
+function getComputedStats(agentName) {
+  const st = agentState[agentName];
+  if (!st) return {ATK:3, DEF:3, SPD:3};
+  const base = st.baseStats;
+  const mod = MODEL_MOD[st.model] || MODEL_MOD["Sonnet"];
+  const lv = getLevel(st.xp);
+  // Bonus: every 2 levels, +1 to highest stat (cap 6)
+  let bonus = Math.floor(lv / 2);
+  const stats = {
+    ATK: Math.max(0, Math.min(6, base.ATK + mod.ATK)),
+    DEF: Math.max(0, Math.min(6, base.DEF + mod.DEF)),
+    SPD: Math.max(0, Math.min(6, base.SPD + mod.SPD))
+  };
+  // Apply level bonus to highest stat
+  if (bonus > 0) {
+    const highest = Object.keys(stats).reduce((a,b) => stats[a] >= stats[b] ? a : b);
+    stats[highest] = Math.min(6, stats[highest] + bonus);
+  }
+  return stats;
+}
+
+function isAgentActive(name) {
+  const tier = TIERS[currentTier];
+  if (tier.active === null) return true;
+  return tier.active.includes(name);
+}
+
+function getAvailableModels() {
+  return TIERS[currentTier].models;
+}
+
+function getRecommendedModel(name) {
+  const tier = TIERS[currentTier];
+  return tier.recommended[name] || "Haiku";
+}
+
+// --- Stat bar HTML (max 6 blocks) ---
+function statBar(val, max) {
+  max = max || 6;
+  return '<span class="bar">' + '\u25A0'.repeat(val) + '</span><span class="bar-off">' + '\u25A1'.repeat(max - val) + '</span>';
+}
+
+// --- Apply tier change ---
+function setTier(tier) {
+  currentTier = tier;
+  // Update tier buttons
+  document.querySelectorAll('.tier-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tier === tier);
+  });
+  // Update tier info
+  const t = TIERS[tier];
+  document.getElementById('tierInfo').textContent = t.budget + ' \u2022 ' + t.maxAgents + ' agents \u2022 ' + t.models.join('/');
+  // Set recommended models
+  agents.forEach(a => {
+    if (agentState[a.name]) {
+      agentState[a.name].model = getRecommendedModel(a.name);
+    }
+  });
+  // Re-render grid
+  renderGrid();
+  // Re-render preview if one is selected
+  if (csActiveCell) {
+    const idx = Array.from(csGrid.children).indexOf(csActiveCell);
+    if (idx >= 0) csShowPreview(idx);
+  }
+}
+
+// --- Change model for an agent ---
+function setAgentModel(name, model) {
+  if (agentState[name]) {
+    agentState[name].model = model;
+    const idx = agentState[name].idx;
+    updateCellStats(idx);
+    csShowPreview(idx);
+  }
+}
+
+// --- Render single cell stats ---
+function updateCellStats(i) {
+  const a = agents[i];
+  const cell = csGrid.children[i];
+  if (!cell) return;
+  const active = isAgentActive(a.name);
+  const stats = getComputedStats(a.name);
+  const st = agentState[a.name];
+  const lv = getLevel(st.xp);
+  const xpPct = getXPProgress(st.xp);
+
+  cell.classList.toggle('disabled', !active);
+
+  const statsEl = cell.querySelector('.cell-stats');
+  if (statsEl) {
+    statsEl.innerHTML =
+      '<div>ATK ' + statBar(stats.ATK) + '</div>' +
+      '<div>DEF ' + statBar(stats.DEF) + '</div>' +
+      '<div>SPD ' + statBar(stats.SPD) + '</div>';
+  }
+  const xpEl = cell.querySelector('.cell-xp');
+  if (xpEl) {
+    xpEl.innerHTML =
+      '<div class="xp-bar"><div class="xp-fill" style="width:' + xpPct + '%"></div></div>' +
+      '<span class="xp-lv">Lv.' + lv + '</span>';
+  }
+}
+
+// --- Render full grid ---
+function renderGrid() {
+  csGrid.innerHTML = '';
+  agents.forEach((a,i) => {
+    const cell = document.createElement("div");
+    const active = isAgentActive(a.name);
+    cell.className = "cell" + (active ? "" : " disabled");
+    const stats = getComputedStats(a.name);
+    const st = agentState[a.name];
+    const lv = getLevel(st.xp);
+    const xpPct = getXPProgress(st.xp);
+    const lvName = getLevelName(lv);
+
+    cell.innerHTML =
+      (newAgentNames.includes(a.name) ? '<div class="new-badge">NEW</div>' : '') +
+      '<img src="' + a.img + '" alt="' + a.name + '">' +
+      '<div class="cname">' + a.name + '</div>' +
+      '<div class="cell-stats">' +
+        '<div>ATK ' + statBar(stats.ATK) + '</div>' +
+        '<div>DEF ' + statBar(stats.DEF) + '</div>' +
+        '<div>SPD ' + statBar(stats.SPD) + '</div>' +
+      '</div>' +
+      '<div class="cell-xp">' +
+        '<div class="xp-bar"><div class="xp-fill" style="width:' + xpPct + '%"></div></div>' +
+        '<span class="xp-lv">Lv.' + lv + ' ' + lvName + '</span>' +
+      '</div>';
+
+    if (active) {
+      cell.addEventListener("click", () => csSelectAgent(i, cell));
+      cell.addEventListener("mouseenter", () => csPreviewAgent(i));
+    }
+    csGrid.appendChild(cell);
+  });
+  csActiveCell = null;
+}
+renderGrid();
 
 let csActiveCell = null;
 
@@ -2150,44 +2452,84 @@ function csSelectAgent(i, cell) {
 
 function csShowPreview(i) {
   const a = agents[i];
-  const statsLines = a.stats.split(" ");
-  let statsHtml = "";
-  statsLines.forEach(s => {
-    const parts = s.split(":");
-    if (parts.length < 2) return;
-    const label = parts[0];
-    const bars = parts[1];
-    const filled = (bars.match(/■/g)||[]).length;
-    const empty = (bars.match(/□/g)||[]).length;
-    statsHtml += '<div>' + label + ': <span class="bar">' + '■'.repeat(filled) + '</span><span class="bar-off">' + '□'.repeat(empty) + '</span></div>';
+  const st = agentState[a.name];
+  const stats = getComputedStats(a.name);
+  const lv = getLevel(st.xp);
+  const lvName = getLevelName(lv);
+  const xpPct = getXPProgress(st.xp);
+  const nextLvXP = LEVELS[lv+1] ? LEVELS[lv+1].xp : LEVELS[lv].xp;
+  const models = getAvailableModels();
+  const rec = getRecommendedModel(a.name);
+  const esc = function(s) { return (s||'').replace(/'/g, "\\'"); };
+
+  // Model buttons
+  let modelHtml = '<div class="pv-model-select">';
+  models.forEach(function(m) {
+    const isActive = st.model === m;
+    const isRec = rec === m;
+    modelHtml += '<button class="model-btn' + (isActive?' active':'') + (isRec?' recommended':'') + '" onclick="setAgentModel(\'' + esc(a.name) + '\',\'' + m + '\')">' + m.toUpperCase() + '</button>';
+  });
+  modelHtml += '</div>';
+
+  // Stats bars with animation
+  let statsHtml = '';
+  ['ATK','DEF','SPD'].forEach(function(k) {
+    statsHtml += '<div class="pv-stats-row">' +
+      '<span class="pv-stat-label">' + k + '</span>' +
+      '<span class="pv-stat-bar">' + statBar(stats[k]) + '</span>' +
+      '<span class="pv-stat-num">' + stats[k] + '</span>' +
+    '</div>';
   });
 
-  csPreview.innerHTML = `
-    <div class="pv-header">
-      <div class="pv-bg" style="background:${a.bg}"></div>
-      <span class="pv-icon">${a.icon}</span>
-      <div class="pv-av-wrap">
-        <div class="pv-bubble" id="pvBubble">${a.bubble || ''}</div>
-        <img src="${a.img}" alt="${a.name}" onclick="toggleBubble()" style="cursor:pointer">
-      </div>
-      <div class="pv-name" style="text-shadow:0 0 20px ${a.bg}66">${a.name}</div>
-      <div class="pv-role">${a.role}</div>
-    </div>
-    <div class="pv-body">
-      <div class="pv-desc">${a.desc}</div>
-      <div class="pv-stats-title">◆ AGENT INFO</div>
-      <div class="pv-info">${a.info || ''}</div>
-      <div class="pv-meta">
-        <div class="pv-meta-item"><span class="pv-meta-label">MODEL</span> <span class="pv-meta-val">${a.model || 'N/A'}</span></div>
-        <div class="pv-meta-item"><span class="pv-meta-label">EFFORT</span> <span class="pv-meta-val effort-${(a.effort||'').toLowerCase()}">${a.effort || 'N/A'}</span></div>
-      </div>
-      <div class="pv-stats-title" style="margin-top:12px">◆ COMBAT STATS</div>
-      <div class="pv-stats">${statsHtml}</div>
-      <button class="pv-deploy" onclick="csDeploy('${a.name}')">▶ DEPLOY ${a.name.toUpperCase()}</button>
-    </div>
-  `;
-}
+  // Status
+  const statusClass = isAgentActive(a.name) ? 'active' : 'sleeping';
+  const statusLabel = isAgentActive(a.name) ? 'ACTIVE' : 'OFFLINE';
 
+  csPreview.innerHTML =
+    '<div class="pv-header">' +
+      '<div class="pv-bg" style="background:' + a.bg + '"></div>' +
+      '<span class="pv-icon">' + a.icon + '</span>' +
+      '<div class="pv-av-wrap">' +
+        '<div class="pv-bubble" id="pvBubble">' + (a.bubble||'') + '</div>' +
+        '<img src="' + a.img + '" alt="' + a.name + '" onclick="toggleBubble()" style="cursor:pointer">' +
+      '</div>' +
+      '<div class="pv-name" style="text-shadow:0 0 20px ' + a.bg + '66">' + a.name + '</div>' +
+      '<div class="pv-role">' + a.role + '</div>' +
+      '<span class="pv-status ' + statusClass + '">' + statusLabel + '</span>' +
+    '</div>' +
+    '<div class="pv-body">' +
+      '<div class="pv-desc">' + a.desc + '</div>' +
+
+      '<div class="pv-stats-title">\u25C6 SELECT MODEL</div>' +
+      modelHtml +
+
+      '<div class="pv-stats-title">\u25C6 COMBAT STATS</div>' +
+      '<div class="pv-stats">' + statsHtml + '</div>' +
+
+      '<div class="pv-stats-title">\u25C6 PROGRESSION</div>' +
+      '<div class="pv-xp-wrap">' +
+        '<div class="pv-xp-bar"><div class="pv-xp-fill" style="width:' + xpPct + '%"></div></div>' +
+        '<div class="pv-xp-text"><span>Lv.' + lv + ' ' + lvName + '</span><span>' + st.xp + ' / ' + nextLvXP + ' XP</span></div>' +
+      '</div>' +
+
+      '<div class="pv-stats-title">\u25C6 TOKEN BUDGET</div>' +
+      '<div class="pv-budget-wrap">' +
+        '<div style="display:flex;align-items:center">' +
+          '<input type="range" class="pv-budget-slider" min="0" max="100" value="' + st.tokenBudget + '" oninput="agentState[\'' + esc(a.name) + '\'].tokenBudget=parseInt(this.value);this.nextElementSibling.textContent=this.value+\'%\'">' +
+          '<span class="pv-budget-val">' + st.tokenBudget + '%</span>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="pv-stats-title">\u25C6 AGENT INFO</div>' +
+      '<div class="pv-info">' + (a.info||'') + '</div>' +
+      '<div class="pv-meta">' +
+        '<div class="pv-meta-item"><span class="pv-meta-label">MODEL</span> <span class="pv-meta-val">' + st.model + '</span></div>' +
+        '<div class="pv-meta-item"><span class="pv-meta-label">EFFORT</span> <span class="pv-meta-val effort-' + (a.effort||'').toLowerCase() + '">' + (a.effort||'N/A') + '</span></div>' +
+      '</div>' +
+
+      '<button class="pv-deploy" onclick="csDeploy(\'' + esc(a.name) + '\')">\u25B6 DEPLOY ' + a.name.toUpperCase() + '</button>' +
+    '</div>';
+}
 // Bubble toggle on avatar click
 function toggleBubble() {
   const bubble = document.getElementById("pvBubble");
