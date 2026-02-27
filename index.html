@@ -82,13 +82,11 @@
 [data-theme="light"] .custom-mode-btn{border-color:var(--red);color:var(--red)}
 [data-theme="light"] .mode-modal{background:#fff;border-color:rgba(109,40,217,0.15);box-shadow:0 24px 60px rgba(0,0,0,0.1)}
 [data-theme="light"] .mode-indicator{color:#6b7280}
-/* Light mode: softer background - lavender paper feel */
-[data-theme="light"] 
 /* Side-by-side chats */
 .hc-chats-row{display:flex;gap:12px;margin-top:48px}
 .hc-chats-row .hc-wrap{flex:1;min-width:0;max-height:400px;overflow:hidden}
 @media(max-width:900px){.hc-chats-row{flex-direction:column}}
-.hc-wrap{background:#fff;border-color:rgba(109,40,217,0.08)}
+[data-theme="light"] .hc-wrap{background:#fff;border-color:rgba(109,40,217,0.08)}
 [data-theme="light"] .hc-header{background:#f9f7ff}
 [data-theme="light"] .hiw-step{background:#fff;border-color:#e5e7eb}
 [data-theme="light"] .hiw-step:hover{border-color:var(--red)}
@@ -633,11 +631,11 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .cruise-btn,.hitl-btn{padding:12px 24px;border-radius:10px;font-family:var(--f-d);font-size:10px;letter-spacing:2px;cursor:pointer;transition:all .2s;border:2px solid;text-transform:uppercase}
 .cruise-btn{background:transparent;border-color:#e91e63;color:#e91e63}
 .cruise-btn:hover{background:#e91e63;color:#fff;box-shadow:0 0 20px rgba(233,30,99,0.3)}
-.cruise-btn.active{background:#e91e63;color:#fff;box-shadow:0 0 20px rgba(233,30,99,0.4);animation:cruisePulse 2s ease infinite}
+.cruise-btn.active{background:#4caf50;border-color:#4caf50;color:#fff;box-shadow:0 0 15px rgba(76,175,80,0.5)}
 @keyframes cruisePulse{0%,100%{box-shadow:0 0 20px rgba(233,30,99,0.4)}50%{box-shadow:0 0 40px rgba(233,30,99,0.7)}}
 .hitl-btn{background:transparent;border-color:#43a047;color:#43a047}
 .hitl-btn:hover{background:#43a047;color:#fff;box-shadow:0 0 20px rgba(67,160,71,0.3)}
-.hitl-btn.active{background:#43a047;color:#fff;box-shadow:0 0 20px rgba(67,160,71,0.4)}
+.hitl-btn.active{background:#4caf50;border-color:#4caf50;color:#fff;box-shadow:0 0 15px rgba(76,175,80,0.5)}
 .mode-indicator{font-family:var(--f-m);font-size:14px;color:#555;display:flex;align-items:center;gap:8px;margin-left:auto}
 .mode-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .mode-dot.cruise{background:#e91e63;animation:dotPulse 1s ease infinite}
@@ -663,6 +661,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-meta-item{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;text-align:center}
 .pv-meta-label{display:block;font-family:var(--f-d);font-size:6px;color:#555;letter-spacing:1px;margin-bottom:4px}
 .pv-meta-val{font-family:var(--f-m);font-size:16px;color:var(--t1)}
+.pv-meta-val.effort-low{color:#4caf50}
 .pv-meta-val.effort-max{color:#e91e63}
 .pv-meta-val.effort-high{color:var(--red)}
 .pv-meta-val.effort-medium{color:var(--gold)}
@@ -761,7 +760,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .hc-wrap.sl-style .sl-msgs{padding:12px;max-height:340px;overflow-y:auto}
 .pv-agent-mode{display:flex;gap:8px;margin:8px 0}
 .mode-agent-btn{flex:1;padding:8px;border:2px solid #e91e63;background:transparent;color:#e91e63;font-family:var(--f-d);font-size:8px;letter-spacing:1.5px;border-radius:6px;cursor:pointer;transition:all .2s;text-transform:uppercase}
-.mode-agent-btn.active{background:#e91e63;color:#fff;box-shadow:0 0 10px rgba(233,30,99,0.3)}
+.mode-agent-btn.active{background:#4caf50;color:#fff;border-color:#4caf50;box-shadow:0 0 10px rgba(76,175,80,0.4)}
 .mode-agent-btn.hitl-style{border-color:#43a047;color:#43a047}
 .mode-agent-btn.hitl-style.active{background:#43a047;color:#fff;box-shadow:0 0 10px rgba(67,160,71,0.3)}
 </style>
@@ -2223,6 +2222,12 @@ const MODEL_MOD = {
   "Sonnet": {ATK:0,  DEF:0, SPD:0},
   "Opus":   {ATK:1,  DEF:0, SPD:-1}
 };
+const EFFORT_MOD = {
+  "low":    {ATK:-1, DEF:1, SPD:1},
+  "medium": {ATK:0, DEF:0, SPD:0},
+  "high":   {ATK:1, DEF:-1, SPD:-1}
+};
+
 
 // --- XP Levels (from GAME PLAN) ---
 const LEVELS = [
@@ -2280,7 +2285,7 @@ agents.forEach((a,i) => {
   const base = BASE_STATS[a.name] || {ATK:3, DEF:3, SPD:3};
   agentState[a.name] = {
     idx: i,
-    model: "Sonnet",
+    model: "Sonnet", effort:"medium",
     xp: [0,150,400,80,250,180,50,30,350,60,200,120,0,0,20,10,500,40,90,0][i] || 0,
     status: "active",
     tokenBudget: 50,
@@ -2294,13 +2299,14 @@ function getComputedStats(agentName) {
   if (!st) return {ATK:3, DEF:3, SPD:3};
   const base = st.baseStats;
   const mod = MODEL_MOD[st.model] || MODEL_MOD["Sonnet"];
+  const em = EFFORT_MOD[st.effort || "medium"] || EFFORT_MOD["medium"];
   const lv = getLevel(st.xp);
   // Bonus: every 2 levels, +1 to highest stat (cap 6)
   let bonus = Math.floor(lv / 2);
   const stats = {
-    ATK: Math.max(0, Math.min(6, base.ATK + mod.ATK)),
-    DEF: Math.max(0, Math.min(6, base.DEF + mod.DEF)),
-    SPD: Math.max(0, Math.min(6, base.SPD + mod.SPD))
+    ATK: Math.max(0, Math.min(6, base.ATK + mod.ATK + em.ATK)),
+    DEF: Math.max(0, Math.min(6, base.DEF + mod.DEF + em.DEF)),
+    SPD: Math.max(0, Math.min(6, base.SPD + mod.SPD + em.SPD))
   };
   // Apply level bonus to highest stat
   if (bonus > 0) {
@@ -2357,11 +2363,23 @@ function setTier(tier) {
 }
 
 // --- Change model for an agent ---
+function setAgentEffort(name, effort) {
+  if (agentState[name]) {
+    agentState[name].effort = effort;
+    // Re-render preview
+    if (csActiveCell) {
+      var idx = Array.from(csGrid.children).indexOf(csActiveCell);
+      if (idx >= 0) csShowPreview(idx);
+    }
+  }
+}
+
 function setAgentModel(name, model) {
   if (agentState[name]) {
     agentState[name].model = model;
     const idx = agentState[name].idx;
     updateCellStats(idx);
+    if (agentState[name].model === "Haiku") agentState[name].effort = "medium";
     csShowPreview(idx);
   }
 }
@@ -2397,7 +2415,7 @@ function renderGrid() {
 }
 renderGrid();
 
-let csActiveCell = null;
+var csActiveCell = null;
 
 function csPreviewAgent(i) {
   if (csActiveCell) return;
@@ -2437,6 +2455,19 @@ function csShowPreview(i) {
     modelHtml += '<button class="model-btn' + (isActive?' active':'') + (isRec?' recommended':'') + '" onclick="setAgentModel(\'' + esc(a.name) + '\',\'' + m + '\')">' + m.toUpperCase() + '</button>';
   });
   modelHtml += '</div>';
+
+  // Effort selector (only for Sonnet/Opus)
+  var effortHtml = "";
+  if (st.model !== "Haiku") {
+    effortHtml = '<div class="pv-stats-title">\u25C6 EFFORT LEVEL</div>';
+    effortHtml += '<div class="pv-model-select">';
+    ["low","medium","high"].forEach(function(e) {
+      var isActive = (st.effort || "medium") === e;
+      effortHtml += '<button class="model-btn' + (isActive?' active':'') + '" onclick="setAgentEffort(\'' + esc(a.name) + '\',\'' + e + '\')"' + '>' + e.toUpperCase() + '</button>';
+    });
+    effortHtml += '</div>';
+  }
+
 
   // Stats bars with animation
   let statsHtml = '';
@@ -2491,10 +2522,10 @@ function csShowPreview(i) {
       '<div class="pv-info">' + (a.info||'') + '</div>' +
       '<div class="pv-meta">' +
         '<div class="pv-meta-item"><span class="pv-meta-label">MODEL</span> <span class="pv-meta-val">' + st.model + '</span></div>' +
-        '<div class="pv-meta-item"><span class="pv-meta-label">EFFORT</span> <span class="pv-meta-val effort-' + (a.effort||'').toLowerCase() + '">' + (a.effort||'N/A') + '</span></div>' +
+        '<div class="pv-meta-item"><span class="pv-meta-label">EFFORT</span> <span class="pv-meta-val effort-' + (st.effort||'medium') + '">' + (st.effort||'medium').toUpperCase() + '</span></div>' +
       '</div>' +
 
-      // Per-agent mode (Custom mode only)
+      // Agent mode (Custom mode only)
       (currentMode === 'custom' ?
         '<div class="pv-stats-title">\u25C6 AGENT MODE</div>' +
         '<div style="display:flex;gap:8px;margin-bottom:12px">' +

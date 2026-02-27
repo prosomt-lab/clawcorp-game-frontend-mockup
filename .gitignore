@@ -1,0 +1,6 @@
+node_modules/
+screenshots/
+*.pyc
+__pycache__/
+.claude/
+package-lock.json
