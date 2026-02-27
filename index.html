@@ -682,13 +682,13 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .tier-info{font-family:var(--f-m);font-size:12px;color:var(--t3);text-align:center;margin-bottom:10px}
 
 /* ===== CELL STATS (in grid) ===== */
-.cell-stats{font-family:'JetBrains Mono',monospace;font-size:8px;line-height:1.4;color:var(--t2);margin-top:4px;text-align:left;padding:0 2px}
-.cell-stats .bar{color:var(--red)}
-.cell-stats .bar-off{color:#222}
-[data-theme="light"] .cell-stats .bar-off{color:#e0d8f0}
+.cell-lv{font-family:var(--f-d);font-size:7px;color:var(--gold);letter-spacing:1px;margin-top:2px}
+
+
+
 
 /* ===== XP BAR (in cell) ===== */
-.cell-xp{margin-top:4px;padding:0 2px}
+
 .xp-bar{height:4px;background:#1a1a3a;border-radius:2px;overflow:hidden;margin-bottom:2px}
 .xp-fill{height:100%;background:linear-gradient(90deg,var(--gold),#f59e0b);border-radius:2px;transition:width .5s ease}
 .xp-lv{font-family:var(--f-d);font-size:6px;color:var(--gold);letter-spacing:1px}
@@ -699,7 +699,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .cell.disabled{opacity:.35;pointer-events:none;filter:grayscale(0.8)}
 .cell.disabled img{filter:grayscale(1)}
 .cell.disabled .cname{color:#444}
-.cell.disabled .cell-stats .bar{color:#444}
+
 
 /* ===== MODEL SELECTOR in preview ===== */
 .pv-model-select{display:flex;gap:6px;margin:10px 0;justify-content:center;flex-wrap:wrap}
@@ -741,7 +741,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-status.sleeping{background:#64748b22;color:#64748b;border:1px solid #64748b44}
 
 /* ===== ADJUST CELL SIZE for stats ===== */
-.cell{padding:6px 4px 6px}
+
 .select-grid{grid-template-columns:repeat(5,1fr);gap:3px}
 @media(max-width:900px){.select-grid{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:550px){.select-grid{grid-template-columns:repeat(2,1fr)}}
@@ -2366,33 +2366,7 @@ function setAgentModel(name, model) {
 }
 
 // --- Render single cell stats ---
-function updateCellStats(i) {
-  const a = agents[i];
-  const cell = csGrid.children[i];
-  if (!cell) return;
-  const active = isAgentActive(a.name);
-  const stats = getComputedStats(a.name);
-  const st = agentState[a.name];
-  const lv = getLevel(st.xp);
-  const xpPct = getXPProgress(st.xp);
-
-  cell.classList.toggle('disabled', !active);
-
-  const statsEl = cell.querySelector('.cell-stats');
-  if (statsEl) {
-    statsEl.innerHTML =
-      '<div>ATK ' + statBar(stats.ATK) + '</div>' +
-      '<div>DEF ' + statBar(stats.DEF) + '</div>' +
-      '<div>SPD ' + statBar(stats.SPD) + '</div>';
-  }
-  const xpEl = cell.querySelector('.cell-xp');
-  if (xpEl) {
-    xpEl.innerHTML =
-      '<div class="xp-bar"><div class="xp-fill" style="width:' + xpPct + '%"></div></div>' +
-      '<span class="xp-lv">Lv.' + lv + '</span>';
-  }
-}
-
+function updateCellStats(i) {  const a = agents[i];  const cell = csGrid.children[i];  if (!cell) return;  cell.classList.toggle('disabled', !isAgentActive(a.name));  const lvEl = cell.querySelector('.cell-lv');  if (lvEl) lvEl.textContent = 'Lv.' + getLevel(agentState[a.name].xp);}
 // --- Render full grid ---
 function renderGrid() {
   csGrid.innerHTML = '';
@@ -2410,15 +2384,7 @@ function renderGrid() {
       (newAgentNames.includes(a.name) ? '<div class="new-badge">NEW</div>' : '') +
       '<img src="' + a.img + '" alt="' + a.name + '">' +
       '<div class="cname">' + a.name + '</div>' +
-      '<div class="cell-stats">' +
-        '<div>ATK ' + statBar(stats.ATK) + '</div>' +
-        '<div>DEF ' + statBar(stats.DEF) + '</div>' +
-        '<div>SPD ' + statBar(stats.SPD) + '</div>' +
-      '</div>' +
-      '<div class="cell-xp">' +
-        '<div class="xp-bar"><div class="xp-fill" style="width:' + xpPct + '%"></div></div>' +
-        '<span class="xp-lv">Lv.' + lv + ' ' + lvName + '</span>' +
-      '</div>';
+      '<div class="cell-lv">Lv.' + lv + '</div>';
 
     if (active) {
       cell.addEventListener("click", () => csSelectAgent(i, cell));
