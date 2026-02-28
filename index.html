@@ -84,7 +84,7 @@
 [data-theme="light"] .mode-indicator{color:#6b7280}
 /* Side-by-side chats */
 .hc-chats-row{display:flex;gap:12px;margin-top:48px}
-.hc-chats-row .hc-wrap{flex:1;min-width:0;max-height:400px;overflow:hidden}
+.hc-chats-row .hc-wrap{flex:1;min-width:0;max-height:400px;overflow-y:auto}
 @media(max-width:900px){.hc-chats-row{flex-direction:column}}
 [data-theme="light"] .hc-wrap{background:#fff;border-color:rgba(109,40,217,0.08)}
 [data-theme="light"] .hc-header{background:#f9f7ff}
@@ -610,7 +610,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-stats{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);line-height:1.4;letter-spacing:1px;overflow:hidden;max-width:100%}
 .pv-stats .bar{display:inline-block;color:var(--red)}
 .pv-stats .bar-off{color:#222}
-.pv-deploy{display:block;width:auto;padding:14px;border:3px solid var(--red);background:var(--red);color:#fff;font-family:var(--f-d);font-size:14px;letter-spacing:3px;border-radius:10px;cursor:pointer;transition:all .15s;margin-top:8px;margin-bottom:16px;box-shadow:0 4px 0 #4527a0,0 0 15px rgba(124,77,255,0.2);text-transform:uppercase;box-sizing:border-box}
+.pv-deploy{display:block;width:auto;padding:14px;border:3px solid var(--red);background:var(--red);color:#fff;font-family:var(--f-d);font-size:14px;letter-spacing:3px;border-radius:10px;cursor:pointer;transition:all .15s;margin-top:16px;margin-bottom:16px;box-shadow:0 4px 0 #4527a0,0 0 15px rgba(124,77,255,0.2);text-transform:uppercase;box-sizing:border-box}
 .pv-deploy:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4527a0,0 0 25px rgba(124,77,255,0.3)}
 .pv-deploy:active{transform:translateY(3px);box-shadow:none}
 .cs-bottom{max-width:1300px;margin:20px auto;padding:0 16px 10px;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center}
@@ -688,7 +688,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
   .preview .pv-budget-val{font-size:9px}
   .preview .pv-agent-mode{font-size:8px}
   .preview .mode-agent-btn{padding:4px 8px;font-size:8px}
-  .preview .pv-deploy{font-size:8px;padding:8px;letter-spacing:1px;border-width:2px;border-radius:6px;margin-top:6px;margin-bottom:8px;box-shadow:none}
+  .preview .pv-deploy{font-size:8px;padding:8px;letter-spacing:1px;border-width:2px;border-radius:6px;margin-top:12px;margin-bottom:8px;box-shadow:none}
   .mobile-close-btn{display:block !important;position:fixed;top:8px;right:8px;z-index:9999;background:var(--red);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;box-shadow:0 0 20px rgba(124,77,255,0.4)}
   .tier-bar{gap:4px}
   .tier-btn{padding:6px 10px;font-size:7px;letter-spacing:1px}
@@ -862,7 +862,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
       <a href="#pricing" class="nav-a">Pricing</a>
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" id="themeBtn">☀</button>
       <a href="#" class="btn btn-g" onclick="showComingSoon(this);return false">LOAD GAME</a>
-      <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">▶ PLAY NOW</a>
+      <a href="how-it-works.html" class="btn btn-r">▶ HOW IT WORKS</a>
     </div>
   </div>
 </nav>
@@ -880,8 +880,8 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
       <p class="hero-sub">20 AI agents that code, test, and ship for you. Clone your best agents to scale your team instantly.</p>
       <p style="font-family:var(--f-m);font-size:12px;color:var(--gold);letter-spacing:1px;margin:14px 0 0;text-transform:uppercase">NOT A SIMULATOR — DIRECT YOUR ENTERPRISE WITH AN IRON HAND</p>
       <div class="hero-acts">
-        <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">▶ START GAME &#x2192;</a>
-        <a href="#" class="btn btn-g" onclick="showComingSoon(this);return false">DEMO MODE &#x2192;</a>
+        <a href="how-it-works.html" class="btn btn-r">▶ HOW IT WORKS &#x2192;</a>
+        <a href="how-it-works.html" class="btn btn-g">LEARN MORE &#x2192;</a>
       </div>
       <div class="term-wrap">
         <div class="term">
