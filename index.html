@@ -649,15 +649,39 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
   .cell img{width:32px;height:32px;border-radius:6px;border-width:1.5px}
   .cell .cname{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60px}
   .cell-lv{font-size:6px}
-  .preview{display:none;position:fixed;inset:0;z-index:9998;margin:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);overflow-y:auto;border-radius:0;padding:16px}
+  .preview{display:none;position:fixed;inset:0;z-index:9998;margin:0;width:100%;height:100%;background:rgba(0,0,0,0.92);backdrop-filter:blur(6px);overflow-y:auto;border-radius:0;padding:10px}
   .preview.mobile-open{display:block}
-  .preview .pv-header{padding-top:12px}
-  .preview .pv-body{padding-bottom:80px}
-  .mobile-close-btn{display:block !important;position:fixed;top:12px;right:12px;z-index:9999;background:var(--red);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;box-shadow:0 0 20px rgba(124,77,255,0.4)}
+  .preview-box{border-width:2px;border-radius:10px;max-height:100%;overflow-y:auto}
+  .preview .pv-header{padding:10px 10px 6px}
+  .preview .pv-header img{width:64px;height:64px;border-radius:14px;border-width:2px}
+  .preview .pv-name{font-size:12px}
+  .preview .pv-role{font-size:9px}
+  .preview .pv-bubble{font-size:11px;padding:6px 12px;max-width:200px;margin:-8px auto 6px}
+  .preview .pv-body{padding:10px;padding-bottom:60px}
+  .preview .pv-select-row{margin:2px 0}
+  .preview .pv-select{font-size:8px;padding:3px 4px}
+  .preview .pv-select-label{font-size:6px}
+  .preview .pv-desc{font-size:10px;padding:6px 8px;margin:4px 0}
+  .preview .pv-info{font-size:9px;margin-bottom:6px}
+  .preview .pv-stats-title{font-size:7px;margin-bottom:4px}
+  .preview .pv-stat-label{font-size:9px;width:28px}
+  .preview .pv-stats-row{margin-bottom:2px;gap:4px}
+  .preview .pv-stats-legend{font-size:7px;margin-bottom:6px}
+  .preview .pv-xp-wrap{margin-bottom:6px}
+  .preview .pv-xp-bar{height:8px}
+  .preview .pv-xp-fill{height:8px}
+  .preview .pv-meta{gap:6px;margin-bottom:8px}
+  .preview .pv-meta-item{padding:4px 6px}
+  .preview .pv-meta-label{font-size:5px}
+  .preview .pv-meta-val{font-size:12px}
+  .preview .pv-budget-wrap{margin-bottom:6px}
+  .preview .pv-agent-mode{font-size:9px}
+  .preview .pv-deploy{font-size:9px}
+  .mobile-close-btn{display:block !important;position:fixed;top:8px;right:8px;z-index:9999;background:var(--red);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;box-shadow:0 0 20px rgba(124,77,255,0.4)}
   .tier-bar{gap:4px}
   .tier-btn{padding:6px 10px;font-size:7px;letter-spacing:1px}
   .cs-controls{gap:8px}
-  .cruise-btn,.hitl-btn{padding:8px 14px;font-size:8px}
+  .cruise-btn,.hitl-btn,.custom-mode-btn{padding:6px 12px;font-size:7px}
 }
 
 
