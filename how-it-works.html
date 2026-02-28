@@ -449,135 +449,130 @@ footer a{color:var(--purple);text-decoration:none}
 <section class="sec">
   <div class="c">
     <span class="sec-l reveal">02 &mdash; The Pipeline</span>
-    <h2 class="sec-t reveal">From <span style="color:var(--green)">GO</span> to deployed. <span style="color:var(--purple)">10 levels.</span></h2>
-    <p class="sec-s reveal">Every sprint follows the same flow. The human starts it. Agents handle everything in between. The human approves at the end. Levels 3&ndash;8 are fully autonomous.</p>
+    <h2 class="sec-t reveal">From <span style="color:var(--green)">GO</span> to deployed. <span style="color:var(--purple)">10 steps.</span></h2>
+    <p class="sec-s reveal">Every speedrun follows the same staging pipeline. The human starts it. Agents handle everything in between. Workers self-test with Chrome MCP. The Architect does final visual QA. The human approves at the end.</p>
 
     <div class="level-map">
 
-      <!-- LEVEL 01 -->
+      <!-- STEP 01 -->
       <div class="lvl reveal">
         <div class="lvl-num human">01</div>
         <div class="lvl-card">
           <div class="lvl-type boss">BOSS GATE</div>
-          <h3>&#128081; HUMAN SAYS GO</h3>
-          <p>"Add dark mode." One sentence is enough. The Keymaster defines scope and says the magic word.</p>
+          <h3>&#128081; KEYMASTER SAYS GO</h3>
+          <p>"Add dark mode." One sentence is enough. The Keymaster defines scope and greenlights the speedrun.</p>
         </div>
       </div>
 
-      <!-- LEVEL 02 -->
+      <!-- STEP 02 -->
       <div class="lvl reveal">
         <div class="lvl-num auto">02</div>
         <div class="lvl-card">
           <div class="lvl-type auto-type">AUTO</div>
-          <h3>&#129504; ARCHITECT DECOMPOSES</h3>
-          <p>Splits the request into isolated tasks, assigns each to the right worker via POKE.</p>
+          <h3>&#129504; ARCHITECT DECOMPOSES + CREATES STAGING</h3>
+          <p>Splits the request into isolated tasks, POKEs each worker, and creates the staging branch for this speedrun.</p>
         </div>
       </div>
 
-      <!-- LEVEL 03 -->
+      <!-- STEP 03 -->
       <div class="lvl reveal">
         <div class="lvl-num auto">03</div>
         <div class="lvl-card">
           <div class="lvl-type auto-type">AUTO &mdash; PARALLEL</div>
           <h3>&#9889; WORKERS CODE IN PARALLEL</h3>
-          <p>Each worker on their own branch. No conflicts. No waiting. No dependencies.</p>
+          <p>Each worker on their own branch. Self-testing with Chrome MCP. No conflicts. No waiting.</p>
           <div class="lvl-agents">
             <div class="lvl-agent"><span class="a-icon">&#128296;</span> FORGE</div>
             <div class="lvl-agent"><span class="a-icon">&#9881;</span> BACKBONE</div>
             <div class="lvl-agent"><span class="a-icon">&#127912;</span> PIXEL</div>
+            <div class="lvl-agent"><span class="a-icon">&#128270;</span> WATCHDOG</div>
             <div class="lvl-agent"><span class="a-icon">&#129504;</span> ECHO</div>
           </div>
         </div>
       </div>
 
-      <!-- LEVEL 04 -->
+      <!-- STEP 04 -->
       <div class="lvl reveal">
         <div class="lvl-num auto">04</div>
         <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO &mdash; HOOK</div>
-          <h3>&#128225; SYSTEM DETECTS COMPLETION</h3>
-          <p>Last push detected by the audit hook. QA triggered automatically. Zero human intervention.</p>
+          <div class="lvl-type auto-type">AUTO &mdash; SELF-MERGE</div>
+          <h3>&#128229; WORKER MERGES INTO STAGING</h3>
+          <p>When done, each worker merges their own branch into staging and posts MERGED in #staging. No gatekeeper needed.</p>
         </div>
       </div>
 
-      <!-- LEVEL 05 -->
+      <!-- STEP 05 -->
       <div class="lvl reveal">
         <div class="lvl-num qa">05</div>
         <div class="lvl-card">
           <div class="lvl-type qa-type">QA CHECKPOINT</div>
-          <h3>&#128270; QA TESTS EVERY BRANCH</h3>
-          <p>Watchdog runs tests on each branch individually before any merge happens.</p>
+          <h3>&#128270; WATCHDOG TESTS STAGING</h3>
+          <p>Watchdog runs the full test suite on the unified staging branch. All worker code together for the first time.</p>
           <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-            <span class="lvl-badge pass">&#10003; PASS &rarr; next level</span>
-            <span class="lvl-badge fail">&#8634; FAIL &rarr; worker fixes &rarr; re-test</span>
+            <span class="lvl-badge pass">&#10003; PASS &rarr; next step</span>
+            <span class="lvl-badge fail">&#8634; FAIL &rarr; worker fixes &rarr; re-merge &rarr; re-test</span>
           </div>
         </div>
       </div>
 
-      <!-- LEVEL 06 -->
+      <!-- STEP 06 -->
       <div class="lvl reveal">
-        <div class="lvl-num auto">06</div>
+        <div class="lvl-num qa">06</div>
+        <div class="lvl-card">
+          <div class="lvl-type qa-type">QA &mdash; VISUAL</div>
+          <h3>&#129504; ARCHITECT REVIEWS STAGING</h3>
+          <p>Architect reviews staging code and runs visual QA via Chrome MCP. Catches what automated tests miss.</p>
+        </div>
+      </div>
+
+      <!-- STEP 07 -->
+      <div class="lvl reveal">
+        <div class="lvl-num auto">07</div>
         <div class="lvl-card">
           <div class="lvl-type auto-type">AUTO &mdash; MERGE</div>
-          <h3>&#129504; ARCHITECT MERGES ALL</h3>
-          <p>All branches into one unified version. Conflicts resolved. Localhost launched for review.</p>
+          <h3>&#129504; ARCHITECT MERGES STAGING &rarr; DEV</h3>
+          <p>Staging approved. Architect merges the validated staging branch into dev.</p>
         </div>
       </div>
 
-      <!-- LEVEL 07 -->
-      <div class="lvl reveal">
-        <div class="lvl-num qa">07</div>
-        <div class="lvl-card">
-          <div class="lvl-type qa-type">QA &mdash; FULL TEAM</div>
-          <h3>&#128065; FULL QA ON MERGED CODE</h3>
-          <p>4 reviewers in parallel. Automated + visual + audit + human.</p>
-          <div class="lvl-agents">
-            <div class="lvl-agent"><span class="a-icon">&#128270;</span> WATCHDOG</div>
-            <div class="lvl-agent" style="border-color:rgba(0,255,136,0.25)"><span class="a-icon">&#128065;</span> <span style="color:var(--green)">EYE</span> <span style="font-size:5px;background:var(--green);color:#000;padding:1px 3px;border-radius:2px;margin-left:2px">AUTO</span></div>
-            <div class="lvl-agent"><span class="a-icon">&#128203;</span> MANAGER</div>
-            <div class="lvl-agent"><span class="a-icon">&#128081;</span> KEYMASTER</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- LEVEL 08 -->
+      <!-- STEP 08 -->
       <div class="lvl reveal">
         <div class="lvl-num auto">08</div>
         <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO &mdash; SYNC</div>
-          <h3>&#128259; ALL WORKERS SYNC UP</h3>
-          <p>Architect POKEs everyone: pull dev. All workers now on the same codebase.</p>
+          <div class="lvl-type auto-type">AUTO &mdash; NOTIFY</div>
+          <h3>&#128225; ARCHITECT POKES KEYMASTER</h3>
+          <p>Dev is ready. Architect notifies the Keymaster that staging has been merged and dev is up to date.</p>
         </div>
       </div>
 
-      <!-- LEVEL 09 -->
+      <!-- STEP 09 -->
       <div class="lvl reveal">
         <div class="lvl-num human">09</div>
         <div class="lvl-card">
           <div class="lvl-type boss">BOSS GATE</div>
-          <h3>&#128081; HUMAN REVIEWS</h3>
-          <p>Keymaster checks the live app, reads QA reports, decides the next move.</p>
-        </div>
-      </div>
-
-      <!-- LEVEL 10 -->
-      <div class="lvl reveal">
-        <div class="lvl-num human">10</div>
-        <div class="lvl-card">
-          <div class="lvl-type boss">FINAL BOSS</div>
-          <h3>&#127937; SHIP OR CHAIN</h3>
-          <p>The Keymaster chooses: deploy to production, or stack another sprint.</p>
+          <h3>&#128081; KEYMASTER REVIEWS</h3>
+          <p>Keymaster checks the live app on dev, reads reports, decides: ship to production or run another speedrun.</p>
           <div class="lvl-split">
             <div class="lvl-opt ship">
-              <div class="opt-label">&#128640; DEPLOY</div>
-              <div class="opt-desc">Push to production</div>
+              <div class="opt-label">&#128640; GO MAIN</div>
+              <div class="opt-desc">Ship to production</div>
             </div>
             <div class="lvl-or">or</div>
             <div class="lvl-opt chain">
-              <div class="opt-label">&#128257; NEXT SPRINT</div>
-              <div class="opt-desc">Stack another cycle</div>
+              <div class="opt-label">&#128257; GO NEXT</div>
+              <div class="opt-desc">Another speedrun</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- STEP 10 -->
+      <div class="lvl reveal">
+        <div class="lvl-num auto">10</div>
+        <div class="lvl-card">
+          <div class="lvl-type auto-type">AUTO &mdash; RESET</div>
+          <h3>&#128260; RESET STAGING</h3>
+          <p>Staging branch is reset for the next speedrun. Clean slate. Workers pull dev and stand by for the next GO.</p>
         </div>
       </div>
 
@@ -605,7 +600,7 @@ footer a{color:var(--purple);text-decoration:none}
       </div>
       <div class="glue-card reveal reveal-d3" style="border-color:rgba(0,255,136,0.25)">
         <h3>&#9889; Auto-Chaining</h3>
-        <p>POKEs chain automatically. Worker finishes &rarr; system detects it &rarr; QA gets notified &rarr; tests run &rarr; architect gets notified &rarr; merge happens. The entire pipeline runs without anyone pressing a button.</p>
+        <p>POKEs chain automatically. Worker finishes &rarr; merges into staging &rarr; Watchdog tests staging &rarr; Architect reviews + visual QA &rarr; merges staging into dev &rarr; Keymaster notified. The entire pipeline runs without anyone pressing a button.</p>
       </div>
       <div class="glue-card reveal reveal-d4" style="border-color:rgba(255,215,0,0.25)">
         <h3>&#128230; Full Audit Trail</h3>
