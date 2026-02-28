@@ -624,10 +624,10 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-body{padding:16px;overflow:hidden;max-width:100%;box-sizing:border-box}
 .preview-box .pv-stats-title,.preview-box .pv-stats,.preview-box .pv-xp-wrap,.preview-box .pv-budget-wrap,.preview-box .pv-desc,.preview-box .pv-info,.preview-box .pv-deploy,.preview-box .pv-agent-mode{box-sizing:border-box}
 .pv-desc{font-size:12px;color:var(--t2);line-height:1.5;margin:8px 0;padding:8px 10px;font-family:var(--f-m);background:var(--bg3);border-left:3px solid var(--red);border-radius:0 6px 6px 0}
-.pv-stats-title{font-family:var(--f-d);font-size:8px;color:#555;margin-bottom:4px;margin-top:6px;letter-spacing:1px}
+.pv-stats-title{font-family:var(--f-d);font-size:8px;color:#a0a0b8;margin-bottom:4px;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
 .pv-stats{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);line-height:1.4;letter-spacing:1px;overflow:hidden;max-width:100%}
 .pv-stats .bar{display:inline-block;color:var(--red)}
-.pv-stats .bar-off{color:#3a3a50}
+.pv-stats .bar-off{color:#4a4a68}
 .pv-deploy{display:block;width:auto;padding:14px;border:3px solid var(--red);background:var(--red);color:#fff;font-family:var(--f-d);font-size:14px;letter-spacing:3px;border-radius:10px;cursor:pointer;transition:all .15s;margin-top:16px;margin-bottom:16px;box-shadow:0 4px 0 #4527a0,0 0 15px rgba(124,77,255,0.2);text-transform:uppercase;box-sizing:border-box}
 .pv-deploy:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4527a0,0 0 25px rgba(124,77,255,0.3)}
 .pv-deploy:active{transform:translateY(3px);box-shadow:none}
@@ -797,7 +797,7 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-stats-row{display:flex;align-items:center;gap:8px;margin-bottom:2px;transition:all .3s;max-width:100%;overflow:hidden}
 .pv-stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);width:32px;text-align:right}
 .pv-stat-bar{flex:1;min-width:0}
-.pv-stats-legend{font-family:var(--f-m);font-size:9px;color:#8a8aa0;line-height:1.6;margin-bottom:4px;margin-top:2px;padding:4px 6px;background:rgba(255,255,255,0.03);border-radius:4px}
+.pv-stats-legend{font-family:var(--f-m);font-size:9px;color:#b0b0c8;line-height:1.6;margin-bottom:4px;margin-top:2px;padding:6px 8px;background:rgba(255,255,255,0.08);border-radius:4px;border-left:2px solid var(--red)}
 .stat-bar-track{width:100%;height:12px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);max-width:100%;box-sizing:border-box}
 .stat-bar-fill{height:100%;border-radius:1px;transition:width 0.6s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 8px currentColor}
 .pv-stat-bar .bar{color:var(--red)}
@@ -892,7 +892,7 @@ document.addEventListener('DOMContentLoaded',function(){if(typeof emailjs!=='und
     <div class="nav-r">
       <a href="#agents" class="nav-a">Agents</a>
       <!-- <a href="architecture.html" class="nav-a">Architecture</a> -->
-      <a href="how-it-works.html" class="nav-a">Wiki</a>
+      <a href="how-it-works.html" class="nav-a">AI It Works</a>
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" id="themeBtn">☀</button>
       <a href="#" class="btn btn-g" onclick="showComingSoon(this);return false">LOAD GAME</a>
       <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">▶ PLAY NOW</a>
@@ -902,7 +902,7 @@ document.addEventListener('DOMContentLoaded',function(){if(typeof emailjs!=='und
 </nav>
 <div class="mob-menu" onclick="this.classList.remove('open');document.querySelector('.hamburger').classList.remove('open')">
   <a href="#agents">Agents</a>
-  <a href="how-it-works.html">Wiki</a>
+  <a href="how-it-works.html">AI It Works</a>
   <a href="#" onclick="showComingSoon(this);return false">Load Game</a>
 </div>
 
