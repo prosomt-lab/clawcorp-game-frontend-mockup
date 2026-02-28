@@ -142,59 +142,67 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .st-node.t2m .tier-badge{background:rgba(168,85,247,0.12);color:#a855f7;border:1px solid rgba(168,85,247,0.25)}
 
 /* ============================================ */
-/* LEVEL MAP - Section 2                        */
+/* BRANCHING DIAGRAM - Section 2                */
 /* ============================================ */
-.level-map{position:relative;margin-top:48px;padding:20px 0}
-/* Glowing progress rail */
-.level-map::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);background:linear-gradient(to bottom,rgba(0,255,136,0.4),rgba(124,77,255,0.3),rgba(255,215,0,0.3));border-radius:2px;z-index:0;box-shadow:0 0 12px rgba(0,255,136,0.15),0 0 30px rgba(124,77,255,0.08)}
+.level-map{position:relative;margin-top:48px;padding:40px 20px;background:rgba(124,77,255,0.02);border:1px solid var(--border);border-radius:16px}
 
-.lvl{position:relative;z-index:2;display:flex;align-items:flex-start;gap:28px;padding:16px 0;margin-bottom:8px}
-.lvl:nth-child(odd){flex-direction:row}
-.lvl:nth-child(even){flex-direction:row-reverse;text-align:right}
+.branch-diagram{display:flex;flex-direction:column;gap:24px}
 
-/* Level number circle */
-.lvl-num{flex-shrink:0;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:11px;letter-spacing:0.5px;position:relative;z-index:3;transition:transform .3s,box-shadow .3s}
-.lvl-num::before{content:'';position:absolute;inset:-4px;border-radius:50%;z-index:-1;opacity:0.5}
-.lvl:hover .lvl-num{transform:scale(1.1)}
+/* Linear steps (01-02, 04-10) */
+.branch-step{display:flex;align-items:center;gap:20px;justify-content:center;position:relative;z-index:2}
+.branch-step .step-num{flex-shrink:0;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:12px;font-weight:bold;position:relative;z-index:3;transition:transform .3s,box-shadow .3s;border:2px solid}
+.branch-step:hover .step-num{transform:scale(1.15)}
+.branch-step.human .step-num{background:rgba(255,215,0,0.15);border-color:rgba(255,215,0,0.4);color:var(--gold);box-shadow:0 0 30px rgba(255,215,0,0.15)}
+.branch-step.human .step-num::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px dashed rgba(255,215,0,0.2);animation:pulse-ring 2s infinite}
+.branch-step.auto .step-num{background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.35);color:var(--green);box-shadow:0 0 25px rgba(0,255,136,0.12)}
+.branch-step.qa .step-num{background:rgba(124,77,255,0.15);border-color:rgba(124,77,255,0.4);color:var(--purple);box-shadow:0 0 25px rgba(124,77,255,0.12)}
 
-.lvl-num.human{background:rgba(255,215,0,0.2);border:2px solid rgba(255,215,0,0.5);color:var(--gold);box-shadow:0 0 25px rgba(255,215,0,0.15)}
-.lvl-num.human::before{background:conic-gradient(from 0deg,rgba(255,215,0,0.2),transparent,rgba(255,215,0,0.2),transparent);animation:rotate-glow 4s linear infinite}
-.lvl-num.auto{background:rgba(0,255,136,0.12);border:2px solid rgba(0,255,136,0.35);color:var(--green);box-shadow:0 0 20px rgba(0,255,136,0.08)}
-.lvl-num.qa{background:rgba(124,77,255,0.15);border:2px solid rgba(124,77,255,0.4);color:var(--purple);box-shadow:0 0 20px rgba(124,77,255,0.1)}
+.branch-content{flex:1;max-width:540px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:18px 22px;transition:all .3s}
+.branch-step:hover .branch-content{border-color:var(--bh);box-shadow:0 0 28px rgba(124,77,255,0.08)}
+.branch-content .step-type{font-family:var(--f-m);font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.branch-content .step-type.boss{color:var(--gold)}
+.branch-content .step-type.auto{color:var(--green)}
+.branch-content .step-type.qa{color:var(--purple)}
+.branch-content h3{font-family:var(--f-d);font-size:11px;letter-spacing:0.2px;margin-bottom:6px;line-height:1.3}
+.branch-content p{color:var(--t2);font-size:12px;line-height:1.5}
 
-/* Level content card */
-.lvl-card{flex:1;max-width:420px;background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:20px 24px;transition:all .3s}
-.lvl:hover .lvl-card{border-color:var(--bh);box-shadow:0 0 30px rgba(124,77,255,0.06)}
-.lvl-card .lvl-type{font-family:var(--f-m);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
-.lvl-card .lvl-type.boss{color:var(--gold)}
-.lvl-card .lvl-type.auto-type{color:var(--green)}
-.lvl-card .lvl-type.qa-type{color:var(--purple)}
-.lvl-card h3{font-family:var(--f-d);font-size:10px;letter-spacing:0.3px;margin-bottom:8px}
-.lvl-card p{color:var(--t2);font-size:13px;line-height:1.6}
+/* Connecting line before step */
+.branch-step::before{content:'';position:absolute;left:50%;top:-24px;width:2px;height:24px;background:linear-gradient(to bottom,rgba(0,255,136,0.4),rgba(124,77,255,0.3));z-index:0}
+.branch-step:first-child::before{display:none}
 
-/* Level card special elements */
-.lvl-agents{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.lvl:nth-child(even) .lvl-agents{justify-content:flex-end}
-.lvl-agent{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:8px;background:var(--bg4);border:1px solid var(--border);font-family:var(--f-d);font-size:7px;letter-spacing:0.5px}
-.lvl-agent .a-icon{font-size:16px}
-.lvl-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-family:var(--f-c);font-size:11px;margin-top:10px}
-.lvl-badge.pass{background:rgba(0,255,136,0.06);color:var(--green);border:1px solid rgba(0,255,136,0.12)}
-.lvl-badge.fail{background:rgba(255,82,82,0.06);color:var(--red);border:1px solid rgba(255,82,82,0.12)}
-.lvl-split{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
-.lvl:nth-child(even) .lvl-split{justify-content:flex-end}
-.lvl-opt{padding:10px 16px;border-radius:10px;text-align:center;min-width:120px}
-.lvl-opt.ship{background:rgba(0,255,136,0.08);border:1.5px solid rgba(0,255,136,0.2)}
-.lvl-opt.ship .opt-label{color:var(--green);font-family:var(--f-d);font-size:8px;letter-spacing:0.5px}
-.lvl-opt.chain{background:rgba(0,229,255,0.08);border:1.5px solid rgba(0,229,255,0.2)}
-.lvl-opt.chain .opt-label{color:var(--cyan);font-family:var(--f-d);font-size:8px;letter-spacing:0.5px}
-.lvl-opt .opt-desc{font-size:11px;color:var(--t2);margin-top:2px}
-.lvl-or{font-family:var(--f-d);font-size:9px;color:var(--t3);display:flex;align-items:center}
+/* BRANCHING SECTION (step 03) */
+.branch-workers-section{position:relative;z-index:2;margin:16px 0}
+.branch-workers-label{text-align:center;font-family:var(--f-m);font-size:11px;letter-spacing:1px;color:var(--green);margin-bottom:16px;text-transform:uppercase}
 
-/* Connector dot on the rail */
-.lvl .rail-dot{position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:50%;transform:translate(-50%,-50%);z-index:1}
-.lvl .rail-dot.human{background:var(--gold);box-shadow:0 0 12px rgba(255,215,0,0.4)}
-.lvl .rail-dot.auto{background:var(--green);box-shadow:0 0 12px rgba(0,255,136,0.3)}
-.lvl .rail-dot.qa{background:var(--purple);box-shadow:0 0 12px rgba(124,77,255,0.4)}
+/* Worker branches container */
+.branch-workers{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:100%;padding:0 20px;position:relative}
+.branch-workers::before{content:'';position:absolute;left:0;right:0;top:-24px;height:24px;background:linear-gradient(to bottom,rgba(0,255,136,0.3),rgba(0,255,136,0.1));z-index:0;pointer-events:none}
+.branch-workers::after{content:'';position:absolute;left:0;right:0;bottom:-24px;height:24px;background:linear-gradient(to top,rgba(0,255,136,0.3),rgba(0,255,136,0.1));z-index:0;pointer-events:none}
+
+.worker-box{background:var(--bg4);border:2px solid rgba(0,255,136,0.25);border-radius:10px;padding:14px 10px;text-align:center;transition:all .3s;position:relative;z-index:1}
+.worker-box:hover{border-color:rgba(0,255,136,0.5);box-shadow:0 0 20px rgba(0,255,136,0.15);transform:translateY(-3px)}
+.worker-box .worker-icon{font-size:24px;margin-bottom:6px}
+.worker-box .worker-name{font-family:var(--f-d);font-size:8px;letter-spacing:0.5px;color:var(--green);text-transform:uppercase}
+
+/* Special badges and options */
+.branch-badges{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;justify-content:center}
+.branch-badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:6px;font-family:var(--f-c);font-size:10px}
+.badge-pass{background:rgba(0,255,136,0.06);color:var(--green);border:1px solid rgba(0,255,136,0.12)}
+.badge-fail{background:rgba(255,82,82,0.06);color:var(--red);border:1px solid rgba(255,82,82,0.12)}
+
+/* Step 09 decision split */
+.branch-split{display:flex;gap:16px;margin-top:12px;justify-content:center;flex-wrap:wrap}
+.split-option{padding:10px 14px;border-radius:10px;text-align:center;min-width:110px;transition:all .3s}
+.split-option.ship{background:rgba(0,255,136,0.08);border:1.5px solid rgba(0,255,136,0.2)}
+.split-option.ship:hover{background:rgba(0,255,136,0.15);border-color:rgba(0,255,136,0.4)}
+.split-option.ship .opt-label{color:var(--green);font-family:var(--f-d);font-size:8px;letter-spacing:0.5px}
+.split-option.chain{background:rgba(0,229,255,0.08);border:1.5px solid rgba(0,229,255,0.2)}
+.split-option.chain:hover{background:rgba(0,229,255,0.15);border-color:rgba(0,229,255,0.4)}
+.split-option.chain .opt-label{color:var(--cyan);font-family:var(--f-d);font-size:8px;letter-spacing:0.5px}
+.split-option .opt-desc{font-size:10px;color:var(--t2);margin-top:2px}
+.split-or{font-family:var(--f-d);font-size:9px;color:var(--t3);display:flex;align-items:center}
+
+@keyframes pulse-ring{0%{transform:scale(1);opacity:0.8}50%{opacity:0.4}100%{transform:scale(1.2);opacity:0}}
 
 /* GLUE GRID + CARDS (sections 3-6) */
 .glue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:32px}
@@ -240,13 +248,13 @@ footer a{color:var(--purple);text-decoration:none}
   .st-workers{gap:8px}
   .st-sides{gap:10px;flex-wrap:wrap}
   .st-node.t4{min-width:65px;padding:8px 8px}
-  .lvl{gap:16px}
-  .lvl-num{width:44px;height:44px;font-size:9px}
-  .lvl-card{padding:16px}
-  .lvl-card h3{font-size:9px}
-  .lvl-agents{gap:6px}
-  .lvl-agent{padding:3px 6px;font-size:6px}
-  .lvl-split{flex-direction:column;gap:10px}
+  .branch-step{gap:16px}
+  .branch-step .step-num{width:48px;height:48px;font-size:10px}
+  .branch-content{padding:14px 16px}
+  .branch-content h3{font-size:10px}
+  .branch-workers{gap:10px;padding:0 12px}
+  .worker-box{padding:10px 8px}
+  .branch-split{flex-direction:column;gap:8px}
   .flow-step{flex-direction:column;gap:8px}
   .flow-num{font-size:16px}
 }
@@ -255,11 +263,10 @@ footer a{color:var(--purple);text-decoration:none}
   .logo-icon{width:30px;height:30px;font-size:16px;border-radius:8px}
   .logo-txt{font-size:14px}
   nav .c{padding:0 12px}
-  .lvl{flex-direction:column!important;align-items:center;text-align:center!important}
-  .lvl:nth-child(even) .lvl-agents{justify-content:center}
-  .lvl:nth-child(even) .lvl-split{justify-content:center}
-  .lvl-card{max-width:100%}
-  .level-map::before{display:none}
+  .branch-step{flex-direction:column!important;align-items:center;text-align:center!important}
+  .branch-content{max-width:100%}
+  .branch-workers{grid-template-columns:repeat(3,1fr)}
+  .branch-split{justify-content:center}
 }
 </style>
 </head>
@@ -453,129 +460,146 @@ footer a{color:var(--purple);text-decoration:none}
     <p class="sec-s reveal">Every speedrun follows the same staging pipeline. The human starts it. Agents handle everything in between. Workers self-test with Chrome MCP. The Architect does final visual QA. The human approves at the end.</p>
 
     <div class="level-map">
+      <div class="branch-diagram">
 
-      <!-- STEP 01 -->
-      <div class="lvl reveal">
-        <div class="lvl-num human">01</div>
-        <div class="lvl-card">
-          <div class="lvl-type boss">BOSS GATE</div>
-          <h3>&#128081; KEYMASTER SAYS GO</h3>
-          <p>"Add dark mode." One sentence is enough. The Keymaster defines scope and greenlights the speedrun.</p>
-        </div>
-      </div>
-
-      <!-- STEP 02 -->
-      <div class="lvl reveal">
-        <div class="lvl-num auto">02</div>
-        <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO</div>
-          <h3>&#129504; ARCHITECT DECOMPOSES + CREATES STAGING</h3>
-          <p>Splits the request into isolated tasks, POKEs each worker, and creates the staging branch for this speedrun.</p>
-        </div>
-      </div>
-
-      <!-- STEP 03 -->
-      <div class="lvl reveal">
-        <div class="lvl-num auto">03</div>
-        <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO &mdash; PARALLEL</div>
-          <h3>&#9889; WORKERS CODE IN PARALLEL</h3>
-          <p>Each worker on their own branch. Self-testing with Chrome MCP. No conflicts. No waiting.</p>
-          <div class="lvl-agents">
-            <div class="lvl-agent"><span class="a-icon">&#128296;</span> FORGE</div>
-            <div class="lvl-agent"><span class="a-icon">&#9881;</span> BACKBONE</div>
-            <div class="lvl-agent"><span class="a-icon">&#127912;</span> PIXEL</div>
-            <div class="lvl-agent"><span class="a-icon">&#128270;</span> WATCHDOG</div>
-            <div class="lvl-agent"><span class="a-icon">&#129504;</span> ECHO</div>
+        <!-- STEP 01: KEYMASTER SAYS GO -->
+        <div class="branch-step human reveal">
+          <div class="step-num">01</div>
+          <div class="branch-content">
+            <div class="step-type boss">BOSS GATE</div>
+            <h3>KEYMASTER SAYS GO</h3>
+            <p>One sentence defines scope. The human greenlights the speedrun.</p>
           </div>
         </div>
-      </div>
 
-      <!-- STEP 04 -->
-      <div class="lvl reveal">
-        <div class="lvl-num auto">04</div>
-        <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO &mdash; SELF-MERGE</div>
-          <h3>&#128229; WORKER MERGES INTO STAGING</h3>
-          <p>When done, each worker merges their own branch into staging and posts MERGED in #staging. No gatekeeper needed.</p>
-        </div>
-      </div>
-
-      <!-- STEP 05 -->
-      <div class="lvl reveal">
-        <div class="lvl-num qa">05</div>
-        <div class="lvl-card">
-          <div class="lvl-type qa-type">QA CHECKPOINT</div>
-          <h3>&#128270; WATCHDOG TESTS STAGING</h3>
-          <p>Watchdog runs the full test suite on the unified staging branch. All worker code together for the first time.</p>
-          <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-            <span class="lvl-badge pass">&#10003; PASS &rarr; next step</span>
-            <span class="lvl-badge fail">&#8634; FAIL &rarr; worker fixes &rarr; re-merge &rarr; re-test</span>
+        <!-- STEP 02: ARCHITECT DECOMPOSES -->
+        <div class="branch-step auto reveal">
+          <div class="step-num">02</div>
+          <div class="branch-content">
+            <div class="step-type auto">AUTO</div>
+            <h3>ARCHITECT DECOMPOSES + STAGING</h3>
+            <p>Splits request into tasks, POKEs workers, creates staging branch.</p>
           </div>
         </div>
-      </div>
 
-      <!-- STEP 06 -->
-      <div class="lvl reveal">
-        <div class="lvl-num qa">06</div>
-        <div class="lvl-card">
-          <div class="lvl-type qa-type">QA &mdash; VISUAL</div>
-          <h3>&#129504; ARCHITECT REVIEWS STAGING</h3>
-          <p>Architect reviews staging code and runs visual QA via Chrome MCP. Catches what automated tests miss.</p>
+        <!-- STEP 03: WORKERS BRANCH -->
+        <div class="branch-step auto reveal">
+          <div class="step-num">03</div>
+          <div class="branch-content">
+            <div class="step-type auto">AUTO &mdash; PARALLEL</div>
+            <h3>WORKERS CODE IN PARALLEL</h3>
+            <p>5 workers, 5 branches, zero conflicts. Self-test via Chrome MCP.</p>
+          </div>
         </div>
-      </div>
 
-      <!-- STEP 07 -->
-      <div class="lvl reveal">
-        <div class="lvl-num auto">07</div>
-        <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO &mdash; MERGE</div>
-          <h3>&#129504; ARCHITECT MERGES STAGING &rarr; DEV</h3>
-          <p>Staging approved. Architect merges the validated staging branch into dev.</p>
-        </div>
-      </div>
-
-      <!-- STEP 08 -->
-      <div class="lvl reveal">
-        <div class="lvl-num auto">08</div>
-        <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO &mdash; NOTIFY</div>
-          <h3>&#128225; ARCHITECT POKES KEYMASTER</h3>
-          <p>Dev is ready. Architect notifies the Keymaster that staging has been merged and dev is up to date.</p>
-        </div>
-      </div>
-
-      <!-- STEP 09 -->
-      <div class="lvl reveal">
-        <div class="lvl-num human">09</div>
-        <div class="lvl-card">
-          <div class="lvl-type boss">BOSS GATE</div>
-          <h3>&#128081; KEYMASTER REVIEWS</h3>
-          <p>Keymaster checks the live app on dev, reads reports, decides: ship to production or run another speedrun.</p>
-          <div class="lvl-split">
-            <div class="lvl-opt ship">
-              <div class="opt-label">&#128640; GO MAIN</div>
-              <div class="opt-desc">Ship to production</div>
+        <!-- BRANCHING WORKERS -->
+        <div class="branch-workers-section reveal">
+          <div class="branch-workers-label">PARALLEL EXECUTION</div>
+          <div class="branch-workers">
+            <div class="worker-box">
+              <div class="worker-icon">&#128296;</div>
+              <div class="worker-name">Forge</div>
             </div>
-            <div class="lvl-or">or</div>
-            <div class="lvl-opt chain">
-              <div class="opt-label">&#128257; GO NEXT</div>
-              <div class="opt-desc">Another speedrun</div>
+            <div class="worker-box">
+              <div class="worker-icon">&#9881;</div>
+              <div class="worker-name">Backbone</div>
+            </div>
+            <div class="worker-box">
+              <div class="worker-icon">&#127912;</div>
+              <div class="worker-name">Pixel</div>
+            </div>
+            <div class="worker-box">
+              <div class="worker-icon">&#128270;</div>
+              <div class="worker-name">Watchdog</div>
+            </div>
+            <div class="worker-box">
+              <div class="worker-icon">&#129504;</div>
+              <div class="worker-name">Echo</div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- STEP 10 -->
-      <div class="lvl reveal">
-        <div class="lvl-num auto">10</div>
-        <div class="lvl-card">
-          <div class="lvl-type auto-type">AUTO &mdash; RESET</div>
-          <h3>&#128260; RESET STAGING</h3>
-          <p>Staging branch is reset for the next speedrun. Clean slate. Workers pull dev and stand by for the next GO.</p>
+        <!-- STEP 04: WORKER MERGES -->
+        <div class="branch-step auto reveal">
+          <div class="step-num">04</div>
+          <div class="branch-content">
+            <div class="step-type auto">AUTO &mdash; MERGE</div>
+            <h3>WORKERS MERGE INTO STAGING</h3>
+            <p>Each worker merges their branch. No gatekeeper needed. All converge in staging.</p>
+          </div>
         </div>
-      </div>
 
+        <!-- STEP 05: WATCHDOG TESTS -->
+        <div class="branch-step qa reveal">
+          <div class="step-num">05</div>
+          <div class="branch-content">
+            <div class="step-type qa">QA CHECKPOINT</div>
+            <h3>WATCHDOG TESTS STAGING</h3>
+            <p>Full test suite runs. All worker code together for first time.</p>
+            <div class="branch-badges">
+              <span class="branch-badge badge-pass">PASS next</span>
+              <span class="branch-badge badge-fail">FAIL re-test</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 06: ARCHITECT REVIEWS -->
+        <div class="branch-step qa reveal">
+          <div class="step-num">06</div>
+          <div class="branch-content">
+            <div class="step-type qa">QA &mdash; VISUAL</div>
+            <h3>ARCHITECT REVIEWS + VISUAL QA</h3>
+            <p>Code review + Chrome MCP testing. Catches edge cases automated tests miss.</p>
+          </div>
+        </div>
+
+        <!-- STEP 07: ARCHITECT MERGES -->
+        <div class="branch-step auto reveal">
+          <div class="step-num">07</div>
+          <div class="branch-content">
+            <div class="step-type auto">AUTO &mdash; MERGE</div>
+            <h3>ARCHITECT MERGES STAGING → DEV</h3>
+            <p>Validated staging merged into dev. Stable integration branch.</p>
+          </div>
+        </div>
+
+        <!-- STEP 08: NOTIFY KEYMASTER -->
+        <div class="branch-step auto reveal">
+          <div class="step-num">08</div>
+          <div class="branch-content">
+            <div class="step-type auto">AUTO &mdash; NOTIFY</div>
+            <h3>ARCHITECT POKES KEYMASTER</h3>
+            <p>Dev is ready. Human gets notification for final review.</p>
+          </div>
+        </div>
+
+        <!-- STEP 09: KEYMASTER DECISION -->
+        <div class="branch-step human reveal">
+          <div class="step-num">09</div>
+          <div class="branch-content">
+            <div class="step-type boss">BOSS GATE</div>
+            <h3>KEYMASTER REVIEWS + DECIDES</h3>
+            <p>Tests live app on dev. Ship or run another speedrun?</p>
+            <div class="branch-split">
+              <div class="split-option chain">
+                <div class="opt-label">GO NEXT SPEEDRUN</div>
+                <div class="opt-desc">Keep building</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 10: RESET -->
+        <div class="branch-step auto reveal">
+          <div class="step-num">10</div>
+          <div class="branch-content">
+            <div class="step-type auto">AUTO &mdash; RESET</div>
+            <h3>RESET STAGING</h3>
+            <p>Clean slate for next speedrun. Workers pull dev and stand by.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
