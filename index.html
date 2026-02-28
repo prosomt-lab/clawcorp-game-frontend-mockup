@@ -1041,11 +1041,11 @@ document.addEventListener('DOMContentLoaded',function(){if(typeof emailjs!=='und
 
   <div class="tier-bar">
     <button class="tier-btn tier-free" data-tier="free" onclick="setTier('free')">FREE</button>
-    <button class="tier-btn tier-pro" data-tier="pro" onclick="setTier('pro')">PRO $35</button>
-    <button class="tier-btn tier-power" data-tier="power" onclick="setTier('power')">POWER $120</button>
-    <button class="tier-btn tier-max active" data-tier="max" onclick="setTier('max')">MAX $250</button>
+    <button class="tier-btn tier-pro" data-tier="pro" onclick="setTier('pro')">PRO $9</button>
+    <button class="tier-btn tier-power" data-tier="power" onclick="setTier('power')">POWER $29</button>
+    <button class="tier-btn tier-max active" data-tier="max" onclick="setTier('max')">MAX $59</button>
   </div>
-  <div class="tier-info" id="tierInfo">$250/mo &bull; 20 agents &bull; Haiku/Sonnet/Opus</div>
+  <div class="tier-info" id="tierInfo">$59/mo + BYOK &bull; 20 agents &bull; Haiku/Sonnet/Opus</div>
   <div class="cs-main">
     <div class="roster">
       <div class="roster-title">◆ AGENT ROSTER — 20 UNITS AVAILABLE</div>
@@ -2031,16 +2031,16 @@ document.addEventListener('DOMContentLoaded',function(){if(typeof emailjs!=='und
   <div class="c">
     <div class="pr-h">
       <span class="sec-l">Pricing</span>
-      <h2 class="sec-t">Open source. Or <span style="color:var(--red)">powered up</span>.</h2>
-      <p class="sec-s">Self-host for free. Or let Claude Code run the show.</p>
+      <h2 class="sec-t">Bring your keys. <span style="color:var(--red)">We build the army</span>.</h2>
+      <p class="sec-s">BYOK = you control costs. We provide the orchestration layer.</p>
     </div>
     <div class="pr-grid">
       <div class="pr-card">
-        <div class="pr-tier">Open Source</div>
-        <div class="pr-price">Free</div>
-        <p class="pr-desc">Self-hosted. Bring your own API keys. Full agent framework.</p>
+        <div class="pr-tier">Free</div>
+        <div class="pr-price">$0 <span>+ BYOK</span></div>
+        <p class="pr-desc">Full framework. Bring your own API keys. Self-hosted.</p>
         <ul class="pr-feat">
-          <li>20 agents — full roster</li>
+          <li>3 agents (Forge, Backbone, Pixel)</li>
           <li>Slack coordination</li>
           <li>VSCode integration</li>
           <li>Task board + Sprint pipeline</li>
@@ -2049,16 +2049,40 @@ document.addEventListener('DOMContentLoaded',function(){if(typeof emailjs!=='und
         </ul>
         <a href="#" class="btn btn-g" onclick="showComingSoon(this);return false">Star on GitHub</a>
       </div>
-      <div class="pr-card feat">
+      <div class="pr-card">
         <div class="pr-tier">Pro</div>
-        <div class="pr-price">$299 <span>/month</span></div>
-        <p class="pr-desc">Powered by Claude Code. Opus leadership + Haiku workers.</p>
+        <div class="pr-price">$9 <span>/mo + BYOK</span></div>
+        <p class="pr-desc">7 agents. Slack + pipeline orchestration. You bring the API keys.</p>
         <ul class="pr-feat">
-          <li>Tour + Architecte on <strong>Opus 4.6</strong></li>
-          <li>Manager + Forge on <strong>Sonnet 4.5</strong></li>
-          <li>Workers on <strong>Haiku 4.5</strong></li>
+          <li>7 agents unlocked</li>
+          <li>Tour + Architecte orchestration</li>
+          <li>Sprint pipeline automation</li>
+          <li>Multi-model support</li>
+          <li>Community support</li>
+        </ul>
+        <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">Join Waitlist</a>
+      </div>
+      <div class="pr-card feat">
+        <div class="pr-tier">Power</div>
+        <div class="pr-price">$29 <span>/mo + BYOK</span></div>
+        <p class="pr-desc">14 agents. Full pipeline with MotherClaw nightshift + visual QA.</p>
+        <ul class="pr-feat">
+          <li>14 agents unlocked</li>
           <li>MotherClaw nightshift (autonomous)</li>
+          <li>Eye visual QA (Chrome MCP)</li>
           <li>Cross-machine sync (OpenClaw)</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">Join Waitlist</a>
+      </div>
+      <div class="pr-card">
+        <div class="pr-tier">Max</div>
+        <div class="pr-price">$59 <span>/mo + BYOK</span></div>
+        <p class="pr-desc">All 20 agents. Opus leadership. Antigravity mode. Everything unlocked.</p>
+        <ul class="pr-feat">
+          <li>20 agents — full roster</li>
+          <li>Opus 4.6 leadership tier</li>
+          <li>Antigravity experimental mode</li>
           <li>Priority support + onboarding</li>
         </ul>
         <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">Join Waitlist</a>
@@ -2109,9 +2133,9 @@ document.addEventListener('DOMContentLoaded',function(){if(typeof emailjs!=='und
         <input type="text" name="name" id="wlName" placeholder="Your name (optional)">
         <select name="interest" class="pv-select" style="width:100%;padding:13px 16px;border-radius:10px;font-size:14px">
           <option value="free">FREE - Self-host (3 agents)</option>
-          <option value="pro" selected>PRO - $35/mo (7 agents)</option>
-          <option value="power">POWER - $120/mo (14 agents)</option>
-          <option value="max">MAX - $250/mo (20 agents)</option>
+          <option value="pro" selected>PRO - $9/mo + BYOK (7 agents)</option>
+          <option value="power">POWER - $29/mo + BYOK (14 agents)</option>
+          <option value="max">MAX - $59/mo + BYOK (20 agents)</option>
         </select>
         <button type="submit" class="btn btn-r" id="wlSubmitBtn">Join the Waitlist &#x2192;</button>
 
@@ -2476,16 +2500,16 @@ function getXPProgress(xp) {
 
 // --- Tiers (from GAME PLAN) ---
 const TIERS = {
-  free:  {label:"FREE",  budget:"$0/mo",   maxAgents:3,  models:["Mistral"],
+  free:  {label:"FREE",  budget:"$0/mo + BYOK",   maxAgents:3,  models:["Mistral"],
           active:["Forge","Backbone","Pixel"],
           recommended:{"Forge":"Mistral","Backbone":"Mistral","Pixel":"Mistral"}},
-  pro:   {label:"PRO",   budget:"$35/mo",  maxAgents:7,  models:["Haiku","Sonnet","Gemini","Mistral"],
+  pro:   {label:"PRO",   budget:"$9/mo + BYOK",  maxAgents:7,  models:["Haiku","Sonnet","Gemini","Mistral"],
           active:["Tour","Architecte","Forge","Backbone","Pixel","Watchdog","Echo"],
           recommended:{"Tour":"Sonnet","Architecte":"Sonnet","Forge":"Haiku","Backbone":"Haiku","Pixel":"Gemini","Watchdog":"Haiku","Echo":"Mistral"}},
-  power: {label:"POWER", budget:"$120/mo", maxAgents:14, models:["Haiku","Sonnet","Opus","Gemini","Mistral","Claude Chrome"],
+  power: {label:"POWER", budget:"$29/mo + BYOK", maxAgents:14, models:["Haiku","Sonnet","Opus","Gemini","Mistral","Claude Chrome"],
           active:["Tour","Architecte","Forge","Backbone","Pixel","Watchdog","Echo","Manager","MotherClaw","Outpost","Eye","Avocat","Grok","Sentinel"],
           recommended:{"Tour":"Sonnet","Architecte":"Sonnet","Forge":"Sonnet","Backbone":"Haiku","Pixel":"Gemini","Watchdog":"Haiku","Echo":"Mistral","Manager":"Haiku","MotherClaw":"Mistral","Outpost":"Mistral","Eye":"Claude Chrome","Avocat":"Haiku","Grok":"Sonnet","Sentinel":"Mistral"}},
-  max:   {label:"MAX",   budget:"$250/mo", maxAgents:20, models:["Haiku","Sonnet","Opus","Gemini","Mistral","Claude Chrome","Antigravity"],
+  max:   {label:"MAX",   budget:"$59/mo + BYOK", maxAgents:20, models:["Haiku","Sonnet","Opus","Gemini","Mistral","Claude Chrome","Antigravity"],
           active:null,
           recommended:{"Tour":"Opus","Architecte":"Opus","Forge":"Sonnet","Backbone":"Sonnet","Pixel":"Gemini","Watchdog":"Sonnet","MotherClaw":"Sonnet","Eye":"Antigravity","Echo":"Mistral","Manager":"Haiku","Outpost":"Mistral","Avocat":"Sonnet","Grok":"Opus","Sentinel":"Mistral","NightOwl":"Mistral","Opportunist":"Gemini","Marketer":"Haiku","BO$$":"Opus","Analyst":"Sonnet","Librarian":"Claude Chrome"}}
 };
