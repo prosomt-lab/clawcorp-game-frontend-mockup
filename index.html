@@ -2803,8 +2803,8 @@ function toggleCruise() { setMode(currentMode === "cruise" ? "hitl" : "cruise");
 function toggleHITL() { setMode(currentMode === "hitl" ? "cruise" : "hitl"); }
 function toggleCustomMode() { setMode(currentMode === "custom" ? "hitl" : "custom"); }
 
-// Auto-select first agent
-csSelectAgent(0, csGrid.children[0]);
+// Auto-select first agent - DISABLED: let user click to open roster card
+// csSelectAgent(0, csGrid.children[0]);
 
 // Conveyor: double items so belt is wide enough for seamless infinite loop on any screen
 (function(){
