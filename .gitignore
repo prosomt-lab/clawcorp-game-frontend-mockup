@@ -4,3 +4,4 @@ screenshots/
 __pycache__/
 .claude/
 package-lock.json
+config.js

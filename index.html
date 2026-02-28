@@ -851,6 +851,17 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
 .pv-select:focus{border-color:var(--red)}
 .pv-select option{background:var(--bg2);color:var(--t1)}
 </style>
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- Config (contains API keys) -->
+<script src="config.js" onload="initEmailJS()"></script>
+<script>
+function initEmailJS(){
+  if(window.CLAWCORP_CONFIG && window.CLAWCORP_CONFIG.emailjs){
+    emailjs.init(window.CLAWCORP_CONFIG.emailjs.publicKey);
+  }
+}
+</script>
 </head>
 <body>
 
@@ -2147,17 +2158,18 @@ function submitWaitlistModal(e){
   e.preventDefault();
   var email=document.getElementById('wlEmail').value;
   var name=document.getElementById('wlName').value;
+  var interest=document.querySelector('.wl-form select').value;
   var btn=document.getElementById('wlSubmitBtn');
   btn.textContent='Joining...';btn.disabled=true;
 
-  /* POST to Formspree (replace YOUR_FORM_ID with real ID from formspree.io) */
+  /* POST to Formspree */
   var formId=window.FORMSPREE_ID||'xdaljqgz';
   fetch('https://formspree.io/f/'+formId,{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({email:email,name:name||'(not provided)',source:'clawcorp-waitlist',timestamp:new Date().toISOString(),_subject:'New ClawCorp Waitlist Signup',_replyto:email})
+    body:JSON.stringify({email:email,name:name||'(not provided)',interest:interest,source:'clawcorp-waitlist',timestamp:new Date().toISOString(),_subject:'New ClawCorp Waitlist Signup',_replyto:email})
   }).then(function(r){ return r.json(); }).then(function(data){
-    if(data.ok || data.next) { showSuccess(); }
+    if(data.ok || data.next) { sendConfirmationEmail(email,name,interest); }
     else { btn.textContent='Error - try again'; btn.disabled=false; console.error('Form error:',data); }
   }).catch(function(err){
     btn.textContent='Error - try again'; btn.disabled=false;
@@ -2167,6 +2179,23 @@ function submitWaitlistModal(e){
   function showSuccess(){
     document.getElementById('wlFormView').style.display='none';
     document.getElementById('wlSuccess').classList.add('show');
+  }
+
+  function sendConfirmationEmail(userEmail,userName,userInterest){
+    if(!window.CLAWCORP_CONFIG||!window.CLAWCORP_CONFIG.emailjs){
+      showSuccess();return;
+    }
+    emailjs.send(window.CLAWCORP_CONFIG.emailjs.serviceId,window.CLAWCORP_CONFIG.emailjs.templateId,{
+      to_email:userEmail,
+      reply_to:userEmail,
+      user_name:userName||'Claw Friend',
+      user_plan:userInterest
+    }).then(function(response){
+      showSuccess();
+    }).catch(function(error){
+      console.error('Email send failed:',error);
+      showSuccess();
+    });
   }
 }
 
@@ -2186,12 +2215,31 @@ function submitWaitlist(e){
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({email:email,source:'clawcorp-bottom-cta',timestamp:new Date().toISOString()})
   }).then(function(r){ return r.json(); }).then(function(data){
-    if(data.ok || data.next) { btn.innerHTML='You are on the list! &#x2713;'; btn.style.background='#22c55e'; }
+    if(data.ok || data.next) {
+      sendConfirmationEmail(email);
+    }
     else { btn.innerHTML='Error - try again &#x2192;'; btn.disabled=false; console.error('Form error:',data); }
   }).catch(function(err){
     btn.innerHTML='Error - try again &#x2192;'; btn.disabled=false;
     console.error('Waitlist error:',err);
   });
+
+  function sendConfirmationEmail(userEmail){
+    if(!window.CLAWCORP_CONFIG||!window.CLAWCORP_CONFIG.emailjs){
+      btn.innerHTML='You are on the list! &#x2713;'; btn.style.background='#22c55e';return;
+    }
+    emailjs.send(window.CLAWCORP_CONFIG.emailjs.serviceId,window.CLAWCORP_CONFIG.emailjs.templateId,{
+      to_email:userEmail,
+      reply_to:userEmail,
+      user_name:'Claw Friend',
+      user_plan:'pro'
+    }).then(function(response){
+      btn.innerHTML='You are on the list! &#x2713;'; btn.style.background='#22c55e';
+    }).catch(function(error){
+      console.error('Email send failed:',error);
+      btn.innerHTML='You are on the list! &#x2713;'; btn.style.background='#22c55e';
+    });
+  }
 }
 
 /* Kanban auto-scroll */
