@@ -87,17 +87,17 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 /* Tier styles */
 .st-node.t0{background:linear-gradient(135deg,rgba(255,215,0,0.18),rgba(255,215,0,0.04));border:2px solid rgba(255,215,0,0.45);box-shadow:0 0 50px rgba(255,215,0,0.12),0 0 100px rgba(255,215,0,0.04)}
 .st-node.t0 .name{color:var(--gold)}
-.st-node.t0 .tier-badge{background:rgba(255,215,0,0.15);color:var(--gold);border:1px solid rgba(255,215,0,0.3)}
+.st-node.t0 .tier-badge{background:#16140a;color:var(--gold);border:1px solid rgba(255,215,0,0.4)}
 .st-node.t0::before{content:'';position:absolute;inset:-3px;border-radius:18px;background:conic-gradient(from 0deg,rgba(255,215,0,0.3),transparent,rgba(255,215,0,0.3),transparent,rgba(255,215,0,0.3));z-index:-1;animation:rotate-glow 6s linear infinite}
 @keyframes rotate-glow{100%{transform:rotate(360deg)}}
 
 .st-node.t1{background:linear-gradient(135deg,rgba(124,77,255,0.18),rgba(124,77,255,0.04));border:2px solid rgba(124,77,255,0.45);box-shadow:0 0 40px rgba(124,77,255,0.1),0 0 80px rgba(124,77,255,0.03)}
 .st-node.t1 .name{color:var(--purple)}
-.st-node.t1 .tier-badge{background:rgba(124,77,255,0.15);color:var(--purple);border:1px solid rgba(124,77,255,0.3)}
+.st-node.t1 .tier-badge{background:#100b1f;color:var(--purple);border:1px solid rgba(124,77,255,0.4)}
 
 .st-node.t2{background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(0,229,255,0.03));border:2px solid rgba(0,229,255,0.4);box-shadow:0 0 35px rgba(0,229,255,0.08),0 0 60px rgba(0,229,255,0.03)}
 .st-node.t2 .name{color:var(--cyan)}
-.st-node.t2 .tier-badge{background:rgba(0,229,255,0.12);color:var(--cyan);border:1px solid rgba(0,229,255,0.25)}
+.st-node.t2 .tier-badge{background:#091317;color:var(--cyan);border:1px solid rgba(0,229,255,0.35)}
 
 /* Worker grid */
 .st-workers{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2}
@@ -116,6 +116,7 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 
 /* Avatar portrait frame */
 .st-node .av{width:64px;height:64px;border-radius:16px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;overflow:hidden}
+.st-node .av img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .st-node.t0 .av{background:linear-gradient(135deg,rgba(255,215,0,0.25),rgba(255,215,0,0.08));border:2px solid rgba(255,215,0,0.5);box-shadow:0 0 20px rgba(255,215,0,0.2),inset 0 0 15px rgba(255,215,0,0.1)}
 .st-node.t1 .av{background:linear-gradient(135deg,rgba(124,77,255,0.25),rgba(124,77,255,0.08));border:2px solid rgba(124,77,255,0.5);box-shadow:0 0 20px rgba(124,77,255,0.15),inset 0 0 15px rgba(124,77,255,0.1)}
 .st-node.t2 .av{background:linear-gradient(135deg,rgba(0,229,255,0.2),rgba(0,229,255,0.06));border:2px solid rgba(0,229,255,0.45);box-shadow:0 0 18px rgba(0,229,255,0.12),inset 0 0 12px rgba(0,229,255,0.08)}
@@ -139,12 +140,43 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 /* Tier 2 Manager variant */
 .st-node.t2m{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(168,85,247,0.03));border:2px solid rgba(168,85,247,0.4);box-shadow:0 0 35px rgba(168,85,247,0.08),0 0 60px rgba(168,85,247,0.03)}
 .st-node.t2m .name{color:#a855f7}
-.st-node.t2m .tier-badge{background:rgba(168,85,247,0.12);color:#a855f7;border:1px solid rgba(168,85,247,0.25)}
+.st-node.t2m .tier-badge{background:#110b1c;color:#a855f7;border:1px solid rgba(168,85,247,0.35)}
 
 /* ============================================ */
 /* BRANCHING DIAGRAM - Section 2                */
 /* ============================================ */
-.level-map{position:relative;margin-top:48px;padding:40px 20px;background:rgba(124,77,255,0.02);border:1px solid var(--border);border-radius:16px}
+/* POKE tag inline */
+.poke-tag{display:inline-block;background:rgba(255,82,82,0.15);color:#ff5252;border:1px solid rgba(255,82,82,0.35);border-radius:4px;padding:1px 6px;font-family:var(--f-d);font-size:10px;letter-spacing:0.5px;vertical-align:middle;animation:poke-pulse 2s infinite}
+@keyframes poke-pulse{0%,100%{box-shadow:0 0 0 rgba(255,82,82,0)}50%{box-shadow:0 0 12px rgba(255,82,82,0.3)}}
+
+/* TUNNEL pipeline container - WARP PIPE (round entrance + side walls) */
+.level-map{position:relative;margin-top:48px;padding:60px 60px;background:radial-gradient(ellipse 80% 30% at 50% 0%,rgba(0,255,136,0.12) 0%,transparent 70%),radial-gradient(ellipse 80% 30% at 50% 100%,rgba(0,255,136,0.1) 0%,transparent 70%),linear-gradient(90deg,rgba(0,255,136,0.18) 0%,rgba(0,255,136,0.06) 4%,rgba(0,200,100,0.03) 8%,transparent 15%,transparent 85%,rgba(0,200,100,0.03) 92%,rgba(0,255,136,0.06) 96%,rgba(0,255,136,0.18) 100%),radial-gradient(ellipse 70% 100% at 50% 50%,rgba(8,8,26,0) 0%,rgba(0,0,0,0.35) 100%),linear-gradient(180deg,#040410 0%,#08081e 50%,#040410 100%);overflow:hidden;border-radius:40px 40px 30px 30px;border-left:6px solid rgba(0,255,136,0.45);border-right:6px solid rgba(0,255,136,0.45);border-top:12px solid rgba(0,255,136,0.6);border-bottom:10px solid rgba(0,255,136,0.55);box-shadow:inset 50px 0 80px -15px rgba(0,255,136,0.1),inset -50px 0 80px -15px rgba(0,255,136,0.1),inset 18px 0 20px -5px rgba(0,255,136,0.15),inset -18px 0 20px -5px rgba(0,255,136,0.15),inset 0 30px 50px -10px rgba(0,255,136,0.1),inset 0 -25px 40px -10px rgba(0,255,136,0.08),0 0 60px rgba(0,255,136,0.12),0 0 120px rgba(124,77,255,0.06)}
+/* Pipe rim lip - rounded entrance with glow */
+.level-map .pipe-rim{position:absolute;left:-6px;right:-6px;z-index:3}
+.level-map .pipe-rim.top{top:-2px;height:20px;border-radius:40px 40px 0 0;background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(0,255,136,0.35) 0%,transparent 70%),linear-gradient(90deg,rgba(0,255,136,0.5),rgba(0,255,136,0.15) 20%,rgba(0,255,136,0.05) 50%,rgba(0,255,136,0.15) 80%,rgba(0,255,136,0.5));box-shadow:0 0 30px rgba(0,255,136,0.25),0 4px 20px rgba(0,255,136,0.1);border-bottom:1px solid rgba(0,255,136,0.2)}
+.level-map .pipe-rim.bottom{bottom:-2px;height:16px;border-radius:0 0 30px 30px;background:radial-gradient(ellipse 60% 100% at 50% 0%,rgba(0,255,136,0.3) 0%,transparent 70%),linear-gradient(90deg,rgba(0,255,136,0.45),rgba(0,255,136,0.12) 20%,rgba(0,255,136,0.04) 50%,rgba(0,255,136,0.12) 80%,rgba(0,255,136,0.45));box-shadow:0 0 25px rgba(0,255,136,0.2),0 -4px 15px rgba(0,255,136,0.08);border-top:1px solid rgba(0,255,136,0.2)}
+/* Energy flow - center pipeline (the star of the show) */
+.level-map::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:6px;transform:translateX(-50%);background:repeating-linear-gradient(to bottom,rgba(0,255,136,0.8) 0px,rgba(124,77,255,0.6) 80px,rgba(0,229,255,0.7) 160px,rgba(0,255,136,0.8) 240px);background-size:100% 240px;z-index:1;box-shadow:0 0 12px rgba(0,255,136,0.4),0 0 30px rgba(0,255,136,0.2),0 0 60px rgba(124,77,255,0.1);animation:energy-flow 3s linear infinite}
+@keyframes energy-flow{0%{background-position:0 0}100%{background-position:0 240px}}
+/* Ambient depth - NO horizontal lines */
+.level-map::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0}
+/* Animated wall strips (neon side rails) */
+.level-map .branch-diagram{position:relative}
+.level-map .branch-diagram::before,.level-map .branch-diagram::after{content:'';position:absolute;top:0;bottom:0;width:3px;z-index:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,255,136,0.5) 0px,rgba(124,77,255,0.3) 60px,rgba(0,229,255,0.4) 120px,rgba(0,255,136,0.5) 180px);background-size:100% 180px;box-shadow:0 0 15px rgba(0,255,136,0.15),0 0 30px rgba(0,255,136,0.06)}
+.level-map .branch-diagram::before{left:-32px;animation:wall-flow 4s linear infinite}
+.level-map .branch-diagram::after{right:-32px;animation:wall-flow 4s linear infinite reverse}
+@keyframes wall-flow{0%{background-position:0 0}100%{background-position:0 180px}}
+/* Flow arrows */
+.flow-arrow{text-align:center;position:relative;z-index:2;padding:2px 0;line-height:1}
+.flow-arrow span{display:inline-block;color:rgba(0,255,136,0.6);font-size:20px;animation:arrow-pulse 1.5s ease-in-out infinite;text-shadow:0 0 10px rgba(0,255,136,0.3),0 0 20px rgba(0,255,136,0.1);background:#080a14;padding:0 8px;border-radius:4px}
+@keyframes arrow-pulse{0%,100%{opacity:0.4;transform:translateY(0)}50%{opacity:1;transform:translateY(4px)}}
+/* POKE in-between connector */
+.poke-wire{display:flex;align-items:center;justify-content:center;gap:8px;padding:4px 0;position:relative;z-index:2}
+.poke-wire::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,82,82,0.25);transform:translateX(-50%);z-index:0}
+.poke-wire .pw-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px;font-family:var(--f-m);font-size:11px;letter-spacing:1px;color:rgba(255,82,82,0.9);padding:3px 14px;background:#150a0e;border:1px solid rgba(255,82,82,0.25);border-radius:100px;white-space:nowrap;animation:poke-pulse 2s infinite}
+/* Self-QA annotation (in-between, not a step) */
+.self-qa-note{text-align:center;padding:8px 16px;margin:4px auto;position:relative;z-index:2;font-family:var(--f-m);font-size:12px;color:var(--t2);letter-spacing:0.5px;max-width:480px}
+.self-qa-note .qa-badge{display:inline-block;background:rgba(124,77,255,0.12);color:var(--purple);border:1px solid rgba(124,77,255,0.25);border-radius:4px;padding:1px 8px;font-family:var(--f-d);font-size:9px;letter-spacing:1px;margin-right:6px;vertical-align:middle}
 
 .branch-diagram{display:flex;flex-direction:column;gap:24px}
 
@@ -181,7 +213,8 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 
 .worker-box{background:var(--bg4);border:2px solid rgba(0,255,136,0.25);border-radius:10px;padding:14px 10px;text-align:center;transition:all .3s;position:relative;z-index:1}
 .worker-box:hover{border-color:rgba(0,255,136,0.5);box-shadow:0 0 20px rgba(0,255,136,0.15);transform:translateY(-3px)}
-.worker-box .worker-icon{font-size:24px;margin-bottom:6px}
+.worker-box .worker-icon{font-size:24px;margin-bottom:0;width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.worker-box .worker-icon img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .worker-box .worker-name{font-family:var(--f-d);font-size:8px;letter-spacing:0.5px;color:var(--green);text-transform:uppercase}
 
 /* Special badges and options */
@@ -203,6 +236,44 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .split-or{font-family:var(--f-d);font-size:9px;color:var(--t3);display:flex;align-items:center}
 
 @keyframes pulse-ring{0%{transform:scale(1);opacity:0.8}50%{opacity:0.4}100%{transform:scale(1.2);opacity:0}}
+/* Step avatar (small round) */
+.step-av{width:26px;height:26px;border-radius:50%;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px;flex-shrink:0}
+.step-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.step-av.gold{border:1.5px solid rgba(255,215,0,0.5);box-shadow:0 0 8px rgba(255,215,0,0.2)}
+.step-av.green{border:1.5px solid rgba(0,255,136,0.4);box-shadow:0 0 8px rgba(0,255,136,0.15)}
+.step-av.purple{border:1.5px solid rgba(124,77,255,0.5);box-shadow:0 0 8px rgba(124,77,255,0.15)}
+.branch-content h3{display:flex;align-items:center}
+/* Worker round avatars + emoji row */
+.worker-av-row{display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:6px}
+.worker-emoji{font-size:15px;line-height:1}
+/* Pipeline action buttons */
+.pipeline-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-family:var(--f-d);font-size:9px;letter-spacing:0.5px;cursor:pointer;border:2px solid;transition:all .3s;text-decoration:none}
+.pipeline-btn:hover{transform:translateY(-2px)}
+.pipeline-btn.ship{background:rgba(0,255,136,0.1);border-color:rgba(0,255,136,0.35);color:var(--green)}
+.pipeline-btn.ship:hover{background:rgba(0,255,136,0.2);box-shadow:0 0 20px rgba(0,255,136,0.15)}
+.pipeline-btn.next{background:rgba(0,229,255,0.1);border-color:rgba(0,229,255,0.35);color:var(--cyan)}
+.pipeline-btn.next:hover{background:rgba(0,229,255,0.2);box-shadow:0 0 20px rgba(0,229,255,0.15)}
+
+/* COMIC STRIP (THE POKE OF SHAME) */
+.comic-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:48px 0 0;border:3px solid var(--gold);border-radius:16px;overflow:hidden;background:var(--gold);position:relative}
+.comic-strip::before{content:'THE POKE OF SHAME';position:absolute;top:-13px;left:20px;background:var(--gold);color:var(--bg);font-family:var(--f-d);font-size:7px;padding:3px 12px;border-radius:6px;z-index:1;letter-spacing:1.5px}
+.comic-panel{background:var(--bg3);padding:24px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.comic-panel .p-icon{font-size:36px;line-height:1}
+.comic-panel .p-label{font-family:var(--f-d);font-size:8px;letter-spacing:0.5px;margin-bottom:2px}
+.bubble{display:inline-block;background:rgba(10,10,26,0.9);border:1.5px solid var(--border);border-radius:14px 14px 14px 4px;padding:10px 14px;font-family:var(--f-m);font-size:14px;color:var(--t2);max-width:95%;line-height:1.4;text-align:left}
+.bubble.b-red{border-color:rgba(255,82,82,0.4);color:var(--red)}
+.bubble.b-green{border-color:rgba(0,255,136,0.3);color:var(--green)}
+
+/* PUPPET MASTER */
+.puppet-box{text-align:center;margin:40px 0 0;padding:32px 20px 24px;border:1px dashed rgba(255,215,0,0.2);border-radius:16px;background:radial-gradient(ellipse at center top,rgba(255,215,0,0.04) 0%,transparent 70%);position:relative;overflow:hidden}
+.puppet-box .pm-title{font-family:var(--f-d);font-size:10px;letter-spacing:1.5px;color:var(--gold);margin-bottom:6px}
+.puppet-box .pm-sub{font-family:var(--f-m);font-size:15px;color:var(--t2);margin-bottom:20px}
+.puppet-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding-top:16px;border-top:1px dashed rgba(255,215,0,0.12)}
+.puppet-node{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;padding-top:18px}
+.puppet-node::before{content:'';position:absolute;top:0;left:50%;width:1px;height:16px;border-left:1px dashed rgba(255,215,0,0.25);transform:translateX(-50%)}
+.puppet-node img{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(255,215,0,0.2);transition:all .3s}
+.puppet-node:hover img{border-color:var(--gold);box-shadow:0 0 12px rgba(255,215,0,0.15)}
+.puppet-node span{font-family:var(--f-m);font-size:10px;color:var(--t3)}
 
 /* GLUE GRID + CARDS (sections 3-6) */
 .glue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:32px}
@@ -248,6 +319,7 @@ footer a{color:var(--purple);text-decoration:none}
   .st-workers{gap:8px}
   .st-sides{gap:10px;flex-wrap:wrap}
   .st-node.t4{min-width:65px;padding:8px 8px}
+  .level-map{padding:40px 28px;border-left-width:4px;border-right-width:4px;border-radius:30px 30px 24px 24px}
   .branch-step{gap:16px}
   .branch-step .step-num{width:48px;height:48px;font-size:10px}
   .branch-content{padding:14px 16px}
@@ -257,12 +329,15 @@ footer a{color:var(--purple);text-decoration:none}
   .branch-split{flex-direction:column;gap:8px}
   .flow-step{flex-direction:column;gap:8px}
   .flow-num{font-size:16px}
+  .comic-strip{grid-template-columns:1fr}
+  .puppet-row{gap:14px}
 }
 @media(max-width:600px){
   .nav-r .nav-a{display:none}
   .logo-icon{width:30px;height:30px;font-size:16px;border-radius:8px}
   .logo-txt{font-size:14px}
   nav .c{padding:0 12px}
+  .level-map{padding:30px 16px;border-left-width:3px;border-right-width:3px;border-top-width:6px;border-bottom-width:6px;border-radius:24px 24px 18px 18px}
   .branch-step{flex-direction:column!important;align-items:center;text-align:center!important}
   .branch-content{max-width:100%}
   .branch-workers{grid-template-columns:repeat(3,1fr)}
@@ -315,7 +390,7 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="st-tier reveal">
         <div class="st-node t0">
           <span class="tier-badge">TIER 0 &mdash; HUMAN</span>
-          <div class="av">&#128081;</div>
+          <div class="av"><img src="./avatars/REAL-NAME-IMG/boss.svg" alt="Keymaster"></div>
           <div class="name">KEYMASTER</div>
           <div class="role">The human. Starts sprints, approves deploys, shuts it all down.</div>
           <div class="xp">LVL MAX &mdash; ABSOLUTE AUTHORITY</div>
@@ -328,7 +403,7 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="st-tier reveal">
         <div class="st-node t1">
           <span class="tier-badge">TIER 1 &mdash; COMMAND</span>
-          <div class="av">&#128752;</div>
+          <div class="av"><img src="./avatars/REAL-NAME-IMG/tour-avatar.png" alt="Tour"></div>
           <div class="name">TOUR DE CONTROLE</div>
           <div class="role">Infrastructure, rules, compliance. The Keymaster's voice in the system.</div>
           <div class="xp">SPEAKS WITH HUMAN AUTHORITY</div>
@@ -341,14 +416,14 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="st-tier-dual reveal">
         <div class="st-node t2">
           <span class="tier-badge">TIER 2 &mdash; TECH LEAD</span>
-          <div class="av">&#129504;</div>
+          <div class="av"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt="Architecte"></div>
           <div class="name">ARCHITECTE</div>
           <div class="role">Tech lead. Breaks tasks, dispatches, reviews code, merges branches.</div>
           <div class="xp">FULL GIT CONTROL &mdash; MERGE AUTHORITY</div>
         </div>
         <div class="st-node t2m">
           <span class="tier-badge">TIER 2 &mdash; OPS LEAD</span>
-          <div class="av">&#128203;</div>
+          <div class="av"><img src="./avatars/REAL-NAME-IMG/manager-avatar.png" alt="Manager"></div>
           <div class="name">MANAGER</div>
           <div class="role">Sprint planning, task board, worker coordination, audits.</div>
           <div class="xp">DISPATCH AUTHORITY &mdash; BOARD CONTROL</div>
@@ -362,7 +437,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av">&#128296;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge"></div>
             <div class="name">FORGE</div>
             <div class="role">Full-stack</div>
           </div>
@@ -370,7 +445,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av">&#9881;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone"></div>
             <div class="name">BACKBONE</div>
             <div class="role">Backend</div>
           </div>
@@ -378,7 +453,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av">&#127912;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel"></div>
             <div class="name">PIXEL</div>
             <div class="role">Frontend</div>
           </div>
@@ -386,7 +461,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av">&#128270;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt="Watchdog"></div>
             <div class="name">WATCHDOG</div>
             <div class="role">QA / Tests</div>
           </div>
@@ -394,7 +469,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av">&#129504;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo"></div>
             <div class="name">ECHO</div>
             <div class="role">Research</div>
           </div>
@@ -402,7 +477,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3" style="border-color:rgba(0,255,136,0.25)">
-            <div class="av" style="border-color:rgba(0,255,136,0.4);box-shadow:0 0 12px rgba(0,255,136,0.15)">&#128065;<span class="badge-auto">AUTO</span></div>
+            <div class="av" style="border-color:rgba(0,255,136,0.4);box-shadow:0 0 12px rgba(0,255,136,0.15)"><img src="./avatars/REAL-NAME-IMG/eye.png" alt="Eye"><span class="badge-auto">AUTO</span></div>
             <div class="name" style="color:var(--green)">EYE</div>
             <div class="role">Visual QA</div>
           </div>
@@ -414,7 +489,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av">&#127769;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/motherclaw-avatar.png" alt="MotherClaw"></div>
             <div class="name">MOTHERCLAW</div>
             <div class="role">Night shift</div>
           </div>
@@ -422,7 +497,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av">&#128506;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/outpost.png" alt="Outpost"></div>
             <div class="name">OUTPOST</div>
             <div class="role">ThinkPad</div>
           </div>
@@ -430,7 +505,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av">&#9878;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/avocat-avatar - Copy - Copy.png" alt="Avocat"></div>
             <div class="name">AVOCAT</div>
             <div class="role">Legal</div>
           </div>
@@ -438,7 +513,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av">&#128218;</div>
+            <div class="av"><img src="./avatars/REAL-NAME-IMG/archiver-amber.png" alt="Librarian"></div>
             <div class="name">LIBRARIAN</div>
             <div class="role">Codebase</div>
           </div>
@@ -460,6 +535,8 @@ footer a{color:var(--purple);text-decoration:none}
     <p class="sec-s reveal">Every speedrun follows the same staging pipeline. The human starts it. Agents handle everything in between. Workers self-test with Chrome MCP. The Architect does final visual QA. The human approves at the end.</p>
 
     <div class="level-map">
+      <div class="pipe-rim top"></div>
+      <div class="pipe-rim bottom"></div>
       <div class="branch-diagram">
 
         <!-- STEP 01: KEYMASTER SAYS GO -->
@@ -467,7 +544,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">01</div>
           <div class="branch-content">
             <div class="step-type boss">BOSS GATE</div>
-            <h3>KEYMASTER SAYS GO</h3>
+            <h3><span class="step-av gold"><img src="./avatars/REAL-NAME-IMG/boss.svg" alt=""></span> KEYMASTER SAYS GO</h3>
             <p>One sentence defines scope. The human greenlights the speedrun.</p>
           </div>
         </div>
@@ -477,18 +554,20 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">02</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO</div>
-            <h3>ARCHITECT DECOMPOSES + STAGING</h3>
-            <p>Splits request into tasks, POKEs workers, creates staging branch.</p>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT DECOMPOSES + STAGING</h3>
+            <p>Splits request into tasks, creates staging branch. Then drops a <span class="poke-tag">POKE</span> file into each worker's directory. The terminal catches it &mdash; the agent wakes up and starts coding. No human intervention.</p>
           </div>
         </div>
+
+        <div class="poke-wire"><span class="pw-label">POKE &rarr; WORKERS</span></div>
 
         <!-- STEP 03: WORKERS BRANCH -->
         <div class="branch-step auto reveal">
           <div class="step-num">03</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; PARALLEL</div>
-            <h3>WORKERS CODE IN PARALLEL</h3>
-            <p>5 workers, 5 branches, zero conflicts. Self-test via Chrome MCP.</p>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/forge.png" alt=""></span> WORKERS CODE IN PARALLEL</h3>
+            <p>5 workers, 5 branches, zero conflicts. Need help? <span class="poke-tag">POKE</span> another worker directly &mdash; their terminal wakes up instantly.</p>
           </div>
         </div>
 
@@ -497,45 +576,60 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="branch-workers-label">PARALLEL EXECUTION</div>
           <div class="branch-workers">
             <div class="worker-box">
-              <div class="worker-icon">&#128296;</div>
+              <div class="worker-av-row">
+                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge"></div>
+                <span class="worker-emoji">&#128296;</span>
+              </div>
               <div class="worker-name">Forge</div>
             </div>
             <div class="worker-box">
-              <div class="worker-icon">&#9881;</div>
+              <div class="worker-av-row">
+                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone"></div>
+                <span class="worker-emoji">&#9881;</span>
+              </div>
               <div class="worker-name">Backbone</div>
             </div>
             <div class="worker-box">
-              <div class="worker-icon">&#127912;</div>
+              <div class="worker-av-row">
+                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel"></div>
+                <span class="worker-emoji">&#127912;</span>
+              </div>
               <div class="worker-name">Pixel</div>
             </div>
             <div class="worker-box">
-              <div class="worker-icon">&#128270;</div>
-              <div class="worker-name">Watchdog</div>
-            </div>
-            <div class="worker-box">
-              <div class="worker-icon">&#129504;</div>
+              <div class="worker-av-row">
+                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo"></div>
+                <span class="worker-emoji">&#129504;</span>
+              </div>
               <div class="worker-name">Echo</div>
             </div>
           </div>
         </div>
+
+        <div class="self-qa-note reveal"><span class="qa-badge">CHROME MCP</span> Each worker opens a browser and visually self-checks before pushing.</div>
+        <div class="poke-wire"><span class="pw-label">LAST PUSH &rarr; POKE WATCHDOG</span></div>
+
+        <div class="flow-arrow"><span>&#9660;</span></div>
 
         <!-- STEP 04: WORKER MERGES -->
         <div class="branch-step auto reveal">
           <div class="step-num">04</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; MERGE</div>
-            <h3>WORKERS MERGE INTO STAGING</h3>
-            <p>Each worker merges their branch. No gatekeeper needed. All converge in staging.</p>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/forge.png" alt=""></span> WORKERS MERGE INTO STAGING</h3>
+            <p>Each worker merges their branch into staging. No gatekeeper. The <strong>last worker to push</strong> automatically drops a <span class="poke-tag">POKE</span> to Watchdog &mdash; "staging is ready, test it."</p>
           </div>
         </div>
+
+        <div class="flow-arrow"><span>&#9660;</span></div>
 
         <!-- STEP 05: WATCHDOG TESTS -->
         <div class="branch-step qa reveal">
           <div class="step-num">05</div>
           <div class="branch-content">
             <div class="step-type qa">QA CHECKPOINT</div>
-            <h3>WATCHDOG TESTS STAGING</h3>
-            <p>Full test suite runs. All worker code together for first time.</p>
+            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt=""></span> &#128270; WATCHDOG TESTS STAGING</h3>
+            <p>Watchdog wakes up from the <span class="poke-tag">POKE</span>, runs the full test suite. All worker code together for the first time. Fail? Watchdog <span class="poke-tag">POKE</span>s the worker who broke it &mdash; they fix and re-merge.</p>
             <div class="branch-badges">
               <span class="branch-badge badge-pass">PASS next</span>
               <span class="branch-badge badge-fail">FAIL re-test</span>
@@ -543,59 +637,68 @@ footer a{color:var(--purple);text-decoration:none}
           </div>
         </div>
 
+        <div class="poke-wire"><span class="pw-label">POKE &rarr; ARCHITECT</span></div>
+
         <!-- STEP 06: ARCHITECT REVIEWS -->
         <div class="branch-step qa reveal">
           <div class="step-num">06</div>
           <div class="branch-content">
             <div class="step-type qa">QA &mdash; VISUAL</div>
-            <h3>ARCHITECT REVIEWS + VISUAL QA</h3>
-            <p>Code review + Chrome MCP testing. Catches edge cases automated tests miss.</p>
+            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT REVIEWS + VISUAL QA</h3>
+            <p>Watchdog <span class="poke-tag">POKE</span>s the Architect. Opens Chrome MCP on staging, reviews code + visual QA. Catches regressions automated tests can't see.</p>
           </div>
         </div>
+
+        <div class="flow-arrow"><span>&#9660;</span></div>
 
         <!-- STEP 07: ARCHITECT MERGES -->
         <div class="branch-step auto reveal">
           <div class="step-num">07</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; MERGE</div>
-            <h3>ARCHITECT MERGES STAGING → DEV</h3>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT MERGES STAGING &rarr; DEV</h3>
             <p>Validated staging merged into dev. Stable integration branch.</p>
           </div>
         </div>
+
+        <div class="poke-wire"><span class="pw-label">POKE &rarr; KEYMASTER</span></div>
 
         <!-- STEP 08: NOTIFY KEYMASTER -->
         <div class="branch-step auto reveal">
           <div class="step-num">08</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; NOTIFY</div>
-            <h3>ARCHITECT POKES KEYMASTER</h3>
-            <p>Dev is ready. Human gets notification for final review.</p>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT <span class="poke-tag">POKE</span>s KEYMASTER</h3>
+            <p>Dev is ready. The human gets a Slack notification on their phone. Time to review.</p>
           </div>
         </div>
+
+        <div class="flow-arrow"><span>&#9660;</span></div>
 
         <!-- STEP 09: KEYMASTER DECISION -->
         <div class="branch-step human reveal">
           <div class="step-num">09</div>
           <div class="branch-content">
             <div class="step-type boss">BOSS GATE</div>
-            <h3>KEYMASTER REVIEWS + DECIDES</h3>
-            <p>Tests live app on dev. Ship or run another speedrun?</p>
+            <h3><span class="step-av gold"><img src="./avatars/REAL-NAME-IMG/boss.svg" alt=""></span> KEYMASTER REVIEWS + DECIDES</h3>
+            <p>Tests live app on dev. Ship it or run another speedrun? Between sprints, the Keymaster can work live with any agent &mdash; watching localhost changes in real-time, chatting directly with Pixel on the frontend, tweaking until it's right. When ready, they POKE the Architect to merge and prep the next sprint.</p>
             <div class="branch-split">
-              <div class="split-option chain">
-                <div class="opt-label">GO NEXT SPEEDRUN</div>
-                <div class="opt-desc">Keep building</div>
-              </div>
+              <a class="pipeline-btn ship">PUSH ONLINE</a>
+              <span class="split-or">OR</span>
+              <a class="pipeline-btn next">GO NEXT SPEEDRUN</a>
             </div>
           </div>
         </div>
+
+        <div class="flow-arrow"><span>&#9660;</span></div>
 
         <!-- STEP 10: RESET -->
         <div class="branch-step auto reveal">
           <div class="step-num">10</div>
           <div class="branch-content">
-            <div class="step-type auto">AUTO &mdash; RESET</div>
-            <h3>RESET STAGING</h3>
-            <p>Clean slate for next speedrun. Workers pull dev and stand by.</p>
+            <div class="step-type auto">AUTO &mdash; PREP</div>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT PREPS NEXT SPRINT</h3>
+            <p>Architect compiles the Keymaster's review notes into a clear brief for the next speedrun. Resets staging, updates the plan, and presents it back at Step 01. The loop closes.</p>
           </div>
         </div>
 
@@ -616,7 +719,7 @@ footer a{color:var(--purple);text-decoration:none}
     <div class="glue-grid">
       <div class="glue-card reveal reveal-d1" style="border-color:rgba(124,77,255,0.25)">
         <h3>&#128196; The POKE</h3>
-        <p>When Agent A needs Agent B to do something, it drops a file in B's directory. The file contains the task, the priority, and who sent it. When B wakes up, it reads the file, executes, and archives it. That's it. No server, no queue, no dependency.</p>
+        <p>When Agent A needs Agent B to act, it drops a file in B's directory &mdash; task, priority, sender. Here's the magic: a <strong>hook script</strong> watches for this file. The moment it lands, the terminal catches it, injects it as a prompt into Claude Code, and the agent wakes up and starts working. It's like one robot tapping another on the shoulder. No server, no queue &mdash; just a file and a hook.</p>
       </div>
       <div class="glue-card reveal reveal-d2" style="border-color:rgba(0,229,255,0.25)">
         <h3>&#128172; Slack Radio</h3>
@@ -654,7 +757,39 @@ footer a{color:var(--purple);text-decoration:none}
       </div>
       <div class="glue-card reveal reveal-d3" style="border-color:rgba(0,229,255,0.25)">
         <h3>&#9989; Runtime Checks <span class="tag tag-cyan">LAYER 3</span></h3>
-        <p>Before every sprint, a validation runs across all agents. Do they have the latest rules? Correct settings? Valid credentials? If anything is off, the sprint doesn't start.</p>
+        <p>Before every sprint, a validation runs across all agents. Do they have the latest rules? Correct settings? Valid credentials? If anything is off, the sprint doesn't start. The culprit gets POKEd immediately &mdash; fix it yourself or ask for help. Harm the pipeline and it goes public.</p>
+      </div>
+    </div>
+
+    <div class="comic-strip reveal">
+      <div class="comic-panel">
+        <div class="p-icon">&#128560;</div>
+        <div class="p-label" style="color:var(--red)">BUSTED</div>
+        <div class="bubble">"Oops... my Constitution is from Tuesday. My settings? Uh..."</div>
+      </div>
+      <div class="comic-panel">
+        <div class="p-icon">&#9889;</div>
+        <div class="p-label" style="color:var(--gold)">POKEd!</div>
+        <div class="bubble b-red">"Fix your config NOW or ask for help. You are GROUNDED from this sprint."</div>
+      </div>
+      <div class="comic-panel">
+        <div class="p-icon">&#128170;</div>
+        <div class="p-label" style="color:var(--green)">BACK IN LINE</div>
+        <div class="bubble b-green">"Fixed, sir! Settings fresh! I will never harm the pipeline again!"</div>
+      </div>
+    </div>
+
+    <div class="puppet-box reveal">
+      <div style="font-size:28px;margin-bottom:8px">&#128081;</div>
+      <div class="pm-title">PUPPET MASTER MODE</div>
+      <div class="pm-sub">You pull the strings. They execute. Iron fist. Zero negotiation.</div>
+      <div class="puppet-row">
+        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt="Arch"><span>Arch</span></div>
+        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge"><span>Forge</span></div>
+        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone"><span>Backbone</span></div>
+        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel"><span>Pixel</span></div>
+        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt="Watchdog"><span>Watchdog</span></div>
+        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo"><span>Echo</span></div>
       </div>
     </div>
 
@@ -765,6 +900,44 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="glue-card reveal reveal-d3" style="border-color:rgba(124,77,255,0.25)">
         <h3>&#128257; Fix Once, Fix Everywhere</h3>
         <p>Every incident's prevention becomes a new rule, instantly pushed to all agents. The same mistake becomes structurally impossible to repeat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- SECTION 7: PRIVACY & SECURITY -->
+<section class="sec" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="c">
+    <span class="sec-l reveal">07 &mdash; Privacy &amp; Security</span>
+    <h2 class="sec-t reveal">Your code. Your keys. <span style="color:var(--green)">Your machine.</span></h2>
+    <p class="sec-s reveal">ClawCorp runs entirely on your local machine. Nothing leaves your computer unless you explicitly push it. No cloud. No telemetry. No third-party access to your code.</p>
+
+    <div class="glue-grid">
+      <div class="glue-card reveal reveal-d1" style="border-color:rgba(0,255,136,0.25)">
+        <h3 style="color:var(--green)">100% LOCAL</h3>
+        <p>All 20 agents run in terminals on YOUR machine. Your codebase never touches an external server. The filesystem is the only database. You own everything.</p>
+      </div>
+      <div class="glue-card reveal reveal-d2" style="border-color:rgba(0,229,255,0.25)">
+        <h3 style="color:var(--cyan)">ENCRYPTED CREDENTIALS</h3>
+        <p>API keys are stored encrypted with DPAPI (Windows) or GPG (Linux), backed by Bitwarden vault for secure rotation. Every sprint pre-flight checks for leaked secrets &mdash; plain text keys in configs, accidental git commits, stale tokens. Zero leaks in the pipeline.</p>
+      </div>
+      <div class="glue-card reveal reveal-d3" style="border-color:rgba(124,77,255,0.25)">
+        <h3 style="color:var(--purple)">ZERO TELEMETRY</h3>
+        <p>No usage tracking. No analytics. No phone-home. ClawCorp doesn't know you exist. When you clone the repo, you disappear from our radar completely.</p>
+      </div>
+      <div class="glue-card reveal reveal-d1" style="border-color:rgba(255,215,0,0.25)">
+        <h3 style="color:var(--gold)">AGENT SANDBOXING</h3>
+        <p>Each agent only accesses its own branch and directory. No agent can read another agent's credentials. The Keymaster (you) is the only one with full access.</p>
+      </div>
+      <div class="glue-card reveal reveal-d2" style="border-color:rgba(255,82,82,0.25)">
+        <h3 style="color:var(--red)">GIT = AUDIT TRAIL</h3>
+        <p>Every line of code written by every agent is in git history. You can review, revert, or reject any change. Nothing is hidden. Complete transparency.</p>
+      </div>
+      <div class="glue-card reveal reveal-d3" style="border-color:rgba(0,255,136,0.25)">
+        <h3 style="color:var(--green)">YOU CONTROL THE KILL SWITCH</h3>
+        <p>Close a terminal = agent stops instantly. No background processes, no daemons, no services running without your knowledge. You are always in control.</p>
       </div>
     </div>
   </div>
