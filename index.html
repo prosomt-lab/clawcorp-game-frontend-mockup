@@ -649,34 +649,41 @@ footer .c{display:flex;justify-content:space-between;align-items:center}
   .cell img{width:32px;height:32px;border-radius:6px;border-width:1.5px}
   .cell .cname{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60px}
   .cell-lv{font-size:6px}
-  .preview{display:none;position:fixed;inset:0;z-index:9998;margin:0;width:100%;height:100%;background:rgba(0,0,0,0.92);backdrop-filter:blur(6px);overflow-y:auto;border-radius:0;padding:10px}
+  .preview{display:none;position:fixed;inset:0;z-index:9998;margin:0;width:100%;height:100%;background:rgba(0,0,0,0.92);backdrop-filter:blur(6px);overflow-y:auto;border-radius:0;padding:8px}
   .preview.mobile-open{display:block}
-  .preview-box{border-width:2px;border-radius:10px;max-height:100%;overflow-y:auto}
-  .preview .pv-header{padding:10px 10px 6px}
-  .preview .pv-header img{width:64px;height:64px;border-radius:14px;border-width:2px}
-  .preview .pv-name{font-size:12px}
-  .preview .pv-role{font-size:9px}
-  .preview .pv-bubble{font-size:11px;padding:6px 12px;max-width:200px;margin:-8px auto 6px}
-  .preview .pv-body{padding:10px;padding-bottom:60px}
+  .preview-box{border-width:1px;border-radius:8px;overflow:visible}
+  .preview .pv-header{padding:8px 8px 4px}
+  .preview .pv-header img{width:48px;height:48px;border-radius:10px;border-width:2px}
+  .preview .pv-header .pv-icon{font-size:16px}
+  .preview .pv-name{font-size:11px;letter-spacing:1px;margin-top:4px}
+  .preview .pv-role{font-size:8px;letter-spacing:1px}
+  .preview .pv-status{font-size:6px;padding:2px 6px}
+  .preview .pv-bubble{font-size:10px;padding:5px 10px;max-width:180px;margin:-6px auto 4px;border-radius:12px;border-width:1px}
+  .preview .pv-body{padding:8px;padding-bottom:20px}
   .preview .pv-select-row{margin:2px 0}
-  .preview .pv-select{font-size:8px;padding:3px 4px}
+  .preview .pv-select{font-size:8px;padding:2px 4px}
   .preview .pv-select-label{font-size:6px}
-  .preview .pv-desc{font-size:10px;padding:6px 8px;margin:4px 0}
-  .preview .pv-info{font-size:9px;margin-bottom:6px}
-  .preview .pv-stats-title{font-size:7px;margin-bottom:4px}
-  .preview .pv-stat-label{font-size:9px;width:28px}
-  .preview .pv-stats-row{margin-bottom:2px;gap:4px}
-  .preview .pv-stats-legend{font-size:7px;margin-bottom:6px}
-  .preview .pv-xp-wrap{margin-bottom:6px}
-  .preview .pv-xp-bar{height:8px}
-  .preview .pv-xp-fill{height:8px}
-  .preview .pv-meta{gap:6px;margin-bottom:8px}
-  .preview .pv-meta-item{padding:4px 6px}
+  .preview .pv-desc{font-size:10px;padding:4px 6px;margin:4px 0;border-left-width:2px}
+  .preview .pv-info{font-size:9px;margin-bottom:4px;padding:0 6px}
+  .preview .pv-stats-title{font-size:6px;margin-bottom:2px}
+  .preview .pv-stat-label{font-size:8px;width:24px}
+  .preview .pv-stat-num{font-size:10px}
+  .preview .pv-stats-row{margin-bottom:1px;gap:4px}
+  .preview .pv-stats-legend{font-size:7px;margin-bottom:4px}
+  .preview .pv-xp-wrap{margin-bottom:4px}
+  .preview .pv-xp-bar{height:6px}
+  .preview .pv-xp-fill{height:6px}
+  .preview .pv-xp-text{font-size:6px}
+  .preview .pv-meta{gap:4px;margin-bottom:6px}
+  .preview .pv-meta-item{padding:3px 4px}
   .preview .pv-meta-label{font-size:5px}
-  .preview .pv-meta-val{font-size:12px}
-  .preview .pv-budget-wrap{margin-bottom:6px}
-  .preview .pv-agent-mode{font-size:9px}
-  .preview .pv-deploy{font-size:9px}
+  .preview .pv-meta-val{font-size:11px}
+  .preview .pv-budget-wrap{margin:4px 0}
+  .preview .pv-budget-slider{height:4px}
+  .preview .pv-budget-val{font-size:9px}
+  .preview .pv-agent-mode{font-size:8px}
+  .preview .mode-agent-btn{padding:4px 8px;font-size:8px}
+  .preview .pv-deploy{font-size:8px;padding:8px;letter-spacing:1px;border-width:2px;border-radius:6px;margin-top:6px;margin-bottom:8px;box-shadow:none}
   .mobile-close-btn{display:block !important;position:fixed;top:8px;right:8px;z-index:9999;background:var(--red);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;box-shadow:0 0 20px rgba(124,77,255,0.4)}
   .tier-bar{gap:4px}
   .tier-btn{padding:6px 10px;font-size:7px;letter-spacing:1px}
