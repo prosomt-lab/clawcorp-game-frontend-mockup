@@ -630,20 +630,20 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">02</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT DECOMPOSES + STAGING</h3>
-            <p>Splits request into tasks, creates staging branch. Then drops a <span class="poke-tag">POKE</span> file into each worker's directory. The terminal catches it &mdash; the agent wakes up and starts coding. No human intervention.</p>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT DECOMPOSES + POKEs WORKERS</h3>
+            <p>Breaks down the scope into concrete tasks and assigns them to workers via <span class="poke-tag">POKE</span> files. Each worker wakes up with their specific assignment. Creates staging branch for the merge zone.</p>
           </div>
         </div>
 
         <div class="poke-wire"><span class="pw-label">POKE &rarr; WORKERS</span></div>
 
-        <!-- STEP 03: WORKERS BRANCH -->
+        <!-- STEP 03: WORKERS CODE -->
         <div class="branch-step auto reveal">
           <div class="step-num">03</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; PARALLEL</div>
             <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/forge.png" alt=""></span> WORKERS CODE IN PARALLEL</h3>
-            <p>5 workers, 5 branches, zero conflicts. Need help? <span class="poke-tag">POKE</span> another worker directly &mdash; their terminal wakes up instantly.</p>
+            <p>Each worker codes on their own branch independently. If a worker needs help, they <span class="poke-tag">POKE</span> another worker directly. They self-test via Chrome MCP before pushing.</p>
           </div>
         </div>
 
@@ -687,13 +687,13 @@ footer a{color:var(--purple);text-decoration:none}
 
         <div class="flow-arrow"><span>&#9660;</span></div>
 
-        <!-- STEP 04: WORKER MERGES -->
+        <!-- STEP 04: WORKER MERGE -->
         <div class="branch-step auto reveal">
           <div class="step-num">04</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; MERGE</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/forge.png" alt=""></span> WORKERS MERGE INTO STAGING</h3>
-            <p>Each worker merges their branch into staging. No gatekeeper. The <strong>last worker to push</strong> automatically drops a <span class="poke-tag">POKE</span> to Watchdog &mdash; "staging is ready, test it."</p>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/forge.png" alt=""></span> WORKER DONE &rarr; MERGES INTO STAGING</h3>
+            <p>When a worker finishes, they merge their own branch into staging. No gatekeeper needed. If conflicts arise with another worker, they resolve together via <span class="poke-tag">POKE</span>.</p>
           </div>
         </div>
 
@@ -704,8 +704,8 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">05</div>
           <div class="branch-content">
             <div class="step-type qa">QA CHECKPOINT</div>
-            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt=""></span> &#128270; &#128269; WATCHDOG TESTS STAGING</h3>
-            <p>Watchdog wakes up from the <span class="poke-tag">POKE</span>, runs the full test suite. All worker code together for the first time. Fail? Watchdog <span class="poke-tag">POKE</span>s the worker who broke it &mdash; they fix and re-merge.</p>
+            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt=""></span> WATCHDOG TESTS STAGING</h3>
+            <p>Once all workers have merged, Watchdog runs the full test suite. First time all code runs together. If tests fail, Watchdog <span class="poke-tag">POKE</span>s the offending worker to fix. They re-merge and Watchdog retests.</p>
             <div class="branch-badges">
               <span class="branch-badge badge-pass">PASS next</span>
               <span class="branch-badge badge-fail">FAIL re-test</span>
@@ -721,7 +721,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="branch-content">
             <div class="step-type qa">QA &mdash; VISUAL</div>
             <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT REVIEWS + VISUAL QA</h3>
-            <p>Watchdog <span class="poke-tag">POKE</span>s the Architect. Opens Chrome MCP on staging, reviews code + visual QA. Catches regressions automated tests can't see.</p>
+            <p>Architect launches localhost on staging and performs visual QA via Chrome MCP. Reviews code for quality and catches regressions automated tests miss. Verifies the integration is stable and ready.</p>
           </div>
         </div>
 
@@ -733,7 +733,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; MERGE</div>
             <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT MERGES STAGING &rarr; DEV</h3>
-            <p>Validated staging merged into dev. Stable integration branch.</p>
+            <p>After QA passes, Architect merges validated staging into dev. Dev is now stable and ready for final review.</p>
           </div>
         </div>
 
@@ -745,7 +745,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; NOTIFY</div>
             <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT <span class="poke-tag">POKE</span>s KEYMASTER</h3>
-            <p>Dev is ready. The human gets a Slack notification on their phone. Time to review.</p>
+            <p>Architect sends a <span class="poke-tag">POKE</span> to the Keymaster via Slack. Dev branch is ready for final review.</p>
           </div>
         </div>
 
@@ -757,11 +757,11 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="branch-content">
             <div class="step-type boss">BOSS GATE</div>
             <h3><span class="step-av gold"><img src="./avatars/REAL-NAME-IMG/boss.svg" alt=""></span> KEYMASTER REVIEWS + DECIDES</h3>
-            <p>Tests live app on dev. Ship it or run another speedrun? Between sprints, the Keymaster can work live with any agent &mdash; watching localhost changes in real-time, chatting directly with Pixel on the frontend, tweaking until it's right. When ready, they POKE the Architect to merge and prep the next sprint.</p>
+            <p>Reviews dev branch. Three choices: Ship to production (dev &rarr; main), run another speedrun (loop back to step 02), or ask for fixes.</p>
             <div class="branch-split">
-              <a class="pipeline-btn ship">PUSH ONLINE</a>
+              <a class="pipeline-btn ship">SHIP</a>
               <span class="split-or">OR</span>
-              <a class="pipeline-btn next">GO NEXT SPEEDRUN</a>
+              <a class="pipeline-btn next">NEXT SPEEDRUN</a>
             </div>
           </div>
         </div>
@@ -773,8 +773,8 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">10</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; PREP</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT PREPS NEXT SPRINT</h3>
-            <p>Architect compiles the Keymaster's review notes into a clear brief for the next speedrun. Resets staging, updates the plan, and presents it back at Step 01. The loop closes.</p>
+            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> RESET: ARCHITECT RECREATES STAGING</h3>
+            <p>Architect deletes the old staging branch and recreates it from dev for the next speedrun. The pipeline is ready to loop.</p>
           </div>
         </div>
 
