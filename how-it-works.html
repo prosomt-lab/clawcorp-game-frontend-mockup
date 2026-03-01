@@ -418,17 +418,26 @@ footer a{color:var(--purple);text-decoration:none}
 <!-- NAV -->
 <nav>
   <div class="c">
-    <a href="index.html" class="logo">
-      <div class="logo-icon">&#x1F980;</div>
-      <span class="logo-txt">CLAW<span>CORP</span></span>
+    <a href="#" class="logo">
+      <div class="logo-icon">🦀</div>
+      <span class="logo-txt">CLAW<span>CORP</span></span><span class="nav-demo">DEMO</span>
     </a>
     <div class="nav-r">
-      <a href="index.html" class="nav-a">Home</a>
+      <a href="#agents" class="nav-a">Agents</a>
+      <!-- <a href="architecture.html" class="nav-a">Architecture</a> -->
       <a href="how-it-works.html" class="nav-a active">Wiki</a>
-      <a href="index.html#agents" class="nav-a">Agents</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" id="themeBtn">☀</button>
+      <a href="#" class="btn btn-g" onclick="showComingSoon(this);return false">LOAD DEMO</a>
+      <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">▶ PLAY NOW</a>
+      <button class="hamburger" onclick="document.querySelector('.hamburger').classList.toggle('open');document.querySelector('.mob-menu').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
+<div class="mob-menu" onclick="this.classList.remove('open');document.querySelector('.hamburger').classList.remove('open')">
+  <a href="#agents">Agents</a>
+  <a href="how-it-works.html">Wiki</a>
+  <a href="#" onclick="showComingSoon(this);return false">Load Demo</a>
+</div>
 
 <!-- HERO -->
 <div class="page-hero">
@@ -695,7 +704,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">05</div>
           <div class="branch-content">
             <div class="step-type qa">QA CHECKPOINT</div>
-            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt=""></span> &#128270; WATCHDOG TESTS STAGING</h3>
+            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt=""></span> &#128270; &#128269; WATCHDOG TESTS STAGING</h3>
             <p>Watchdog wakes up from the <span class="poke-tag">POKE</span>, runs the full test suite. All worker code together for the first time. Fail? Watchdog <span class="poke-tag">POKE</span>s the worker who broke it &mdash; they fix and re-merge.</p>
             <div class="branch-badges">
               <span class="branch-badge badge-pass">PASS next</span>
@@ -877,7 +886,7 @@ footer a{color:var(--purple);text-decoration:none}
       </div>
       <div class="glue-card reveal reveal-d3" style="border-color:rgba(0,229,255,0.25)">
         <h3>&#9989; Runtime Checks <span class="tag tag-cyan">LAYER 3</span></h3>
-        <p>An audit script runs continuously, detecting AI behavior drift &mdash; context degradation, rule violations, hallucinated decisions. When drift is detected, the Keymaster gets an instant alert to reload the unit. The agent is grounded until it reboots clean.</p>
+        <p>An audit script runs continuously, detecting AI behavior drift &mdash; context degradation, rule violations, hallucinated decisions. When drift is detected, the culprit gets POKEd with an instant alert to reload the unit. The agent is grounded until it reboots clean.</p>
       </div>
     </div>
 
@@ -958,106 +967,6 @@ footer a{color:var(--purple);text-decoration:none}
   </div>
 </section>
 
-<div class="sec-divider"></div>
-
-<!-- SECTION 4B: ORCHESTRATION - PUPPET MASTER -->
-<section class="sec" style="background:linear-gradient(180deg,var(--bg) 0%,rgba(124,77,255,0.03) 50%,var(--bg) 100%)">
-  <div class="c">
-    <span class="sec-l reveal">ORCHESTRATION</span>
-    <h2 class="sec-t reveal">Iron fist. <span style="color:var(--gold)">Puppet strings.</span><br>Total control.</h2>
-    <p class="sec-s reveal">You don't manage agents. You <strong>command</strong> them. The hierarchy is absolute. Orders flow down, results flow up. No democracy. No negotiation. Just execution.</p>
-
-    <div class="orch-hierarchy reveal" style="margin-top:48px">
-      <!-- KEYMASTER (top) -->
-      <div class="orch-tier orch-keymaster" style="position:relative">
-        <div class="km-sparkles" id="kmSparkles2" style="inset:-40px;border-radius:50%"></div>
-        <div class="orch-crown">&#128081;</div>
-        <div class="orch-avatar-big"><img src="./avatars/REAL-NAME-IMG/D-coder-nightowl.png" alt="Keymaster"></div>
-        <div class="orch-label-big">THE KEYMASTER</div>
-        <div class="orch-sublabel">Says GO. Everything moves.</div>
-      </div>
-
-      <div class="orch-strings">
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-      </div>
-
-      <!-- COMMAND LAYER -->
-      <div class="orch-tier orch-command">
-        <div class="orch-node">
-          <img src="./avatars/REAL-NAME-IMG/tour-avatar.png" alt="Tour">
-          <span>Tour</span>
-          <div class="orch-role-tag">Dispatcher</div>
-        </div>
-        <div class="orch-node">
-          <img src="./avatars/REAL-NAME-IMG/architecte.png" alt="Architecte">
-          <span>Architecte</span>
-          <div class="orch-role-tag">Planner</div>
-        </div>
-        <div class="orch-node">
-          <img src="./avatars/REAL-NAME-IMG/manager-avatar.png" alt="Manager">
-          <span>Manager</span>
-          <div class="orch-role-tag">Tracker</div>
-        </div>
-      </div>
-
-      <div class="orch-strings orch-strings-wide">
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-      </div>
-
-      <!-- EXECUTION LAYER -->
-      <div class="orch-tier orch-execution">
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge">
-          <span>Forge</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone">
-          <span>Backbone</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel">
-          <span>Pixel</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/watchdog.png" alt="Watchdog">
-          <span>Watchdog</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo">
-          <span>Echo</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rules of engagement -->
-    <div class="glue-grid" style="margin-top:48px">
-      <div class="glue-card reveal reveal-d1" style="border-color:rgba(255,215,0,0.25)">
-        <h3>&#128075; One word: GO</h3>
-        <p>Nothing moves until you say GO. No agent self-starts a sprint. No agent decomposes tasks on its own. Your word is law. Period.</p>
-      </div>
-      <div class="glue-card reveal reveal-d2" style="border-color:rgba(239,68,68,0.25)">
-        <h3>&#9940; Zero Autonomy</h3>
-        <p>Agents execute exactly what they're told. No creative interpretation. No "I thought you meant..." No improvisation. The POKE file is the contract. Follow it or get called out publicly.</p>
-      </div>
-      <div class="glue-card reveal reveal-d3" style="border-color:rgba(124,77,255,0.25)">
-        <h3>&#128200; Full Visibility</h3>
-        <p>Every action logged. Every decision traceable. Every agent's status visible from your phone via Slack. You see everything. They hide nothing.</p>
-      </div>
-      <div class="glue-card reveal reveal-d4" style="border-color:rgba(0,229,255,0.25)">
-        <h3>&#128274; The Kill Switch</h3>
-        <p>At any moment, you can kill an agent's Ghost, block a sprint, or lock down the entire system. One command. Instant. No agent can override it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="sec-divider"></div>
 
 <!-- SECTION 5: ZERO COST -->
 <section class="sec" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
