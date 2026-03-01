@@ -42,7 +42,6 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 @keyframes gs{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .page-hero p{position:relative;z-index:2;color:var(--t2);font-size:18px;max-width:620px;margin:0 auto}
 .hero-badge{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:100px;font-family:var(--f-m);font-size:13px;letter-spacing:1px;background:rgba(124,77,255,0.06);border:1px solid rgba(124,77,255,0.2);color:var(--purple);margin-top:24px}
-
 /* SECTIONS */
 .sec{padding:80px 0}
 .sec-l{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-family:var(--f-m);background:var(--purple-dim);color:var(--purple);border:1px solid rgba(124,77,255,0.15);margin-bottom:20px}
@@ -88,8 +87,12 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .st-node.t0{background:linear-gradient(135deg,rgba(255,215,0,0.18),rgba(255,215,0,0.04));border:2px solid rgba(255,215,0,0.45);box-shadow:0 0 50px rgba(255,215,0,0.12),0 0 100px rgba(255,215,0,0.04)}
 .st-node.t0 .name{color:var(--gold)}
 .st-node.t0 .tier-badge{background:#16140a;color:var(--gold);border:1px solid rgba(255,215,0,0.4)}
-.st-node.t0::before{content:'';position:absolute;inset:-3px;border-radius:18px;background:conic-gradient(from 0deg,rgba(255,215,0,0.3),transparent,rgba(255,215,0,0.3),transparent,rgba(255,215,0,0.3));z-index:-1;animation:rotate-glow 6s linear infinite}
-@keyframes rotate-glow{100%{transform:rotate(360deg)}}
+.st-node.t0::before{content:'';position:absolute;inset:-3px;border-radius:18px;background:linear-gradient(135deg,rgba(255,215,0,0.2),transparent 40%,rgba(255,215,0,0.15),transparent 70%,rgba(255,215,0,0.2));z-index:-1}
+.st-node.t0::after{content:'';position:absolute;inset:-6px;border-radius:20px;background:transparent;z-index:-2;box-shadow:0 0 20px rgba(255,215,0,0.15),0 0 40px rgba(255,215,0,0.06);animation:kmShimmer 3s ease-in-out infinite}
+@keyframes kmShimmer{0%,100%{box-shadow:0 0 20px rgba(255,215,0,0.15),0 0 40px rgba(255,215,0,0.06)}50%{box-shadow:0 0 35px rgba(255,215,0,0.3),0 0 60px rgba(255,215,0,0.12)}}
+.km-sparkles{position:absolute;inset:-30px;pointer-events:none;overflow:hidden;z-index:0;border-radius:24px}
+.km-spark{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px rgba(255,215,0,0.8),0 0 12px rgba(255,215,0,0.4);animation:kmSpark var(--dur,2.5s) linear infinite;opacity:0}
+@keyframes kmSpark{0%{opacity:0;transform:translate(var(--sx,0),var(--sy,0)) scale(0)}15%{opacity:1;transform:translate(calc(var(--sx,0) + var(--dx,20px) * 0.3),calc(var(--sy,0) + var(--dy,-30px) * 0.3)) scale(1)}80%{opacity:0.6}100%{opacity:0;transform:translate(calc(var(--sx,0) + var(--dx,20px)),calc(var(--sy,0) + var(--dy,-30px))) scale(0)}}
 
 .st-node.t1{background:linear-gradient(135deg,rgba(124,77,255,0.18),rgba(124,77,255,0.04));border:2px solid rgba(124,77,255,0.45);box-shadow:0 0 40px rgba(124,77,255,0.1),0 0 80px rgba(124,77,255,0.03)}
 .st-node.t1 .name{color:var(--purple)}
@@ -171,11 +174,11 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .flow-arrow span{display:inline-block;color:rgba(0,255,136,0.6);font-size:20px;animation:arrow-pulse 1.5s ease-in-out infinite;text-shadow:0 0 10px rgba(0,255,136,0.3),0 0 20px rgba(0,255,136,0.1);background:#080a14;padding:0 8px;border-radius:4px}
 @keyframes arrow-pulse{0%,100%{opacity:0.4;transform:translateY(0)}50%{opacity:1;transform:translateY(4px)}}
 /* POKE in-between connector */
-.poke-wire{display:flex;align-items:center;justify-content:center;gap:8px;padding:4px 0;position:relative;z-index:2}
+.poke-wire{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 0;position:relative;z-index:2}
 .poke-wire::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,82,82,0.25);transform:translateX(-50%);z-index:0}
 .poke-wire .pw-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px;font-family:var(--f-m);font-size:11px;letter-spacing:1px;color:rgba(255,82,82,0.9);padding:3px 14px;background:#150a0e;border:1px solid rgba(255,82,82,0.25);border-radius:100px;white-space:nowrap;animation:poke-pulse 2s infinite}
 /* Self-QA annotation (in-between, not a step) */
-.self-qa-note{text-align:center;padding:8px 16px;margin:4px auto;position:relative;z-index:2;font-family:var(--f-m);font-size:12px;color:var(--t2);letter-spacing:0.5px;max-width:480px}
+.self-qa-note{text-align:center;padding:10px 20px;margin:8px auto;position:relative;z-index:2;font-family:var(--f-m);font-size:12px;color:var(--t2);letter-spacing:0.5px;max-width:480px;background:var(--bg3);border:1px solid var(--border);border-radius:8px}
 .self-qa-note .qa-badge{display:inline-block;background:rgba(124,77,255,0.12);color:var(--purple);border:1px solid rgba(124,77,255,0.25);border-radius:4px;padding:1px 8px;font-family:var(--f-d);font-size:9px;letter-spacing:1px;margin-right:6px;vertical-align:middle}
 
 .branch-diagram{display:flex;flex-direction:column;gap:24px}
@@ -196,7 +199,7 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .branch-content .step-type.auto{color:var(--green)}
 .branch-content .step-type.qa{color:var(--purple)}
 .branch-content h3{font-family:var(--f-d);font-size:11px;letter-spacing:0.2px;margin-bottom:6px;line-height:1.3}
-.branch-content p{color:var(--t2);font-size:12px;line-height:1.5}
+.branch-content p{color:var(--t2);font-size:12px;line-height:1.6;margin-top:4px}
 
 /* Connecting line before step */
 .branch-step::before{content:'';position:absolute;left:50%;top:-24px;width:2px;height:24px;background:linear-gradient(to bottom,rgba(0,255,136,0.4),rgba(124,77,255,0.3));z-index:0}
@@ -207,7 +210,7 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .branch-workers-label{text-align:center;font-family:var(--f-m);font-size:11px;letter-spacing:1px;color:var(--green);margin-bottom:16px;text-transform:uppercase}
 
 /* Worker branches container */
-.branch-workers{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:100%;padding:0 20px;position:relative}
+.branch-workers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:680px;margin:0 auto;padding:0 20px;position:relative}
 .branch-workers::before{content:'';position:absolute;left:0;right:0;top:-24px;height:24px;background:linear-gradient(to bottom,rgba(0,255,136,0.3),rgba(0,255,136,0.1));z-index:0;pointer-events:none}
 .branch-workers::after{content:'';position:absolute;left:0;right:0;bottom:-24px;height:24px;background:linear-gradient(to top,rgba(0,255,136,0.3),rgba(0,255,136,0.1));z-index:0;pointer-events:none}
 
@@ -275,6 +278,45 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .puppet-node:hover img{border-color:var(--gold);box-shadow:0 0 12px rgba(255,215,0,0.15)}
 .puppet-node span{font-family:var(--f-m);font-size:10px;color:var(--t3)}
 
+/* ORCHESTRATION HIERARCHY */
+.orch-hierarchy{display:flex;flex-direction:column;align-items:center;gap:0}
+.orch-tier{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.orch-keymaster{flex-direction:column;align-items:center;gap:6px;position:relative}
+.orch-crown{font-size:32px;animation:crownFloat 3s ease-in-out infinite}
+@keyframes crownFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.orch-avatar-big{width:72px;height:72px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 30px rgba(255,215,0,0.25),0 0 60px rgba(255,215,0,0.08)}
+.orch-avatar-big img{width:100%;height:100%;object-fit:cover}
+.orch-label-big{font-family:var(--f-d);font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+.orch-sublabel{font-family:var(--f-m);font-size:13px;color:var(--t3)}
+.orch-strings{display:flex;justify-content:center;gap:40px;height:36px;padding:0 20px}
+.orch-strings-wide{gap:24px}
+.orch-string{width:1px;height:100%;border-left:1px dashed rgba(255,215,0,0.2);animation:stringPull 2s ease-in-out infinite}
+.orch-string:nth-child(2){animation-delay:.3s}
+.orch-string:nth-child(3){animation-delay:.6s}
+.orch-string:nth-child(4){animation-delay:.9s}
+.orch-string:nth-child(5){animation-delay:1.2s}
+@keyframes stringPull{0%,100%{height:36px;opacity:.4}50%{height:30px;opacity:1}}
+.orch-command{gap:32px}
+.orch-node{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 16px;border:1px solid rgba(124,77,255,0.15);border-radius:12px;background:rgba(124,77,255,0.04);transition:all .3s}
+.orch-node:hover{border-color:var(--purple);box-shadow:0 0 16px rgba(124,77,255,0.12)}
+.orch-node img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(124,77,255,0.2)}
+.orch-node span{font-family:var(--f-d);font-size:8px;letter-spacing:1px;color:var(--t1)}
+.orch-role-tag{font-family:var(--f-m);font-size:9px;color:var(--t3);background:rgba(124,77,255,0.08);padding:1px 6px;border-radius:4px}
+.orch-execution{gap:16px}
+.orch-node-sm{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);transition:all .3s}
+.orch-node-sm:hover{border-color:var(--cyan);box-shadow:0 0 10px rgba(0,229,255,0.1)}
+.orch-node-sm img{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border)}
+.orch-node-sm span{font-family:var(--f-m);font-size:9px;color:var(--t3)}
+@media(max-width:600px){
+  .orch-command{gap:16px}
+  .orch-node{padding:8px 10px}
+  .orch-node img{width:32px;height:32px}
+  .orch-execution{gap:10px}
+  .orch-node-sm{padding:6px 8px}
+  .orch-node-sm img{width:26px;height:26px}
+  .orch-strings{gap:20px;height:28px}
+}
+
 /* GLUE GRID + CARDS (sections 3-6) */
 .glue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:32px}
 .glue-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;transition:all .3s}
@@ -296,6 +338,32 @@ nav .c{display:flex;align-items:center;justify-content:space-between}
 .flow-body h3{font-family:var(--f-d);font-size:11px;margin-bottom:6px;letter-spacing:0.3px}
 .flow-body p{color:var(--t2);font-size:13px;line-height:1.6}
 .flow-auto{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-family:var(--f-c);font-size:11px;background:rgba(0,255,136,0.06);color:var(--green);border:1px solid rgba(0,255,136,0.12);margin:4px 2px}
+
+/* WIKI TASK BOARD */
+.wb-container{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wb-col{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;min-height:160px}
+.wb-col-head{font-family:var(--f-d);font-size:8px;letter-spacing:2px;padding:10px 12px;border-bottom:2px solid;text-transform:uppercase;color:var(--t2)}
+.wb-card{padding:10px 12px;margin:8px;border:1px solid var(--border);border-radius:8px;background:var(--bg);cursor:pointer;transition:all .3s;position:relative}
+.wb-card:hover{border-color:var(--purple);box-shadow:0 0 12px rgba(124,77,255,0.1)}
+.wb-card.wb-wip{border-left:3px solid #3b82f6}
+.wb-card.wb-clicked{border-color:var(--cyan);box-shadow:0 0 16px rgba(0,229,255,0.15)}
+.wb-card-pri{font-family:var(--f-m);font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;display:inline-block;margin-bottom:4px}
+.wb-p0{background:rgba(239,68,68,0.15);color:#ef4444}
+.wb-p1{background:rgba(245,158,11,0.15);color:#f59e0b}
+.wb-p2{background:rgba(34,197,94,0.15);color:#22c55e}
+.wb-card-text{font-family:var(--f-m);font-size:12px;color:var(--t1);line-height:1.3;margin-bottom:4px}
+.wb-card-agent{font-family:var(--f-d);font-size:7px;letter-spacing:1px}
+.wb-card-timer{font-family:var(--f-m);font-size:9px;color:var(--t3);margin-top:4px}
+.wb-card-actions{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.wb-card-actions.visible{display:flex;gap:6px;flex-wrap:wrap}
+.wb-action-btn{padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg2);font-family:var(--f-m);font-size:10px;color:var(--t2);cursor:pointer;transition:all .2s}
+.wb-action-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,0.04)}
+.wb-action-btn.active{background:var(--cyan);color:#000;border-color:var(--cyan)}
+.wb-bubble{display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(124,77,255,0.04);border:1px solid rgba(124,77,255,0.12);border-radius:10px;font-family:var(--f-m);font-size:12px;color:var(--t2);font-style:italic}
+@media(max-width:600px){
+  .wb-container{grid-template-columns:1fr}
+  .wb-col{min-height:auto}
+}
 
 /* FOOTER */
 footer{padding:40px 0;border-top:1px solid var(--border);text-align:center}
@@ -356,10 +424,8 @@ footer a{color:var(--purple);text-decoration:none}
     </a>
     <div class="nav-r">
       <a href="index.html" class="nav-a">Home</a>
-      <!-- <a href="architecture.html" class="nav-a">Architecture</a> -->
-      <a href="how-it-works.html" class="nav-a active">How It Works</a>
+      <a href="how-it-works.html" class="nav-a active">Wiki</a>
       <a href="index.html#agents" class="nav-a">Agents</a>
-      <a href="index.html#pricing" class="nav-a">Pricing</a>
     </div>
   </div>
 </nav>
@@ -388,9 +454,10 @@ footer a{color:var(--purple);text-decoration:none}
     <div class="skill-tree">
       <!-- TIER 0: KEYMASTER -->
       <div class="st-tier reveal">
-        <div class="st-node t0">
+        <div class="st-node t0" style="position:relative">
+          <div class="km-sparkles" id="kmSparkles"></div>
           <span class="tier-badge">TIER 0 &mdash; HUMAN</span>
-          <div class="av"><img src="./avatars/REAL-NAME-IMG/boss.svg" alt="Keymaster"></div>
+          <div class="av"><img src="./avatars/REAL-NAME-IMG/D-coder-nightowl.png" alt="Keymaster"></div>
           <div class="name">KEYMASTER</div>
           <div class="role">The human. Starts sprints, approves deploys, shuts it all down.</div>
           <div class="xp">LVL MAX &mdash; ABSOLUTE AUTHORITY</div>
@@ -499,7 +566,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="st-node t4">
             <div class="av"><img src="./avatars/REAL-NAME-IMG/outpost.png" alt="Outpost"></div>
             <div class="name">OUTPOST</div>
-            <div class="role">ThinkPad</div>
+            <div class="role">Remote Ops</div>
           </div>
         </div>
         <div class="st-side">
@@ -515,7 +582,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="st-node t4">
             <div class="av"><img src="./avatars/REAL-NAME-IMG/archiver-amber.png" alt="Librarian"></div>
             <div class="name">LIBRARIAN</div>
-            <div class="role">Codebase</div>
+            <div class="role">Archive</div>
           </div>
         </div>
       </div>
@@ -707,6 +774,55 @@ footer a{color:var(--purple);text-decoration:none}
   </div>
 </section>
 
+<!-- INTERACTIVE TASK BOARD DEMO -->
+<div class="wiki-board reveal" style="margin:0;padding:40px 0;background:linear-gradient(180deg,var(--bg) 0%,rgba(0,229,255,0.02) 50%,var(--bg) 100%)">
+  <div class="c">
+    <div style="text-align:center;margin-bottom:28px">
+      <span class="sec-l">LIVE TASK BOARD</span>
+      <p style="font-family:var(--f-m);font-size:14px;color:var(--t3);margin-top:8px">Click any task to see what happens next. This is what the Manager sees during a sprint.</p>
+    </div>
+    <div class="wb-container">
+      <div class="wb-col">
+        <div class="wb-col-head" style="border-color:#f59e0b">TODO</div>
+        <div class="wb-card" id="wbTask1" onclick="wbAction('wbTask1')" data-agent="Pixel" data-text="Fix mobile responsive on hero section">
+          <div class="wb-card-pri wb-p1">P1</div>
+          <div class="wb-card-text">Fix mobile responsive on hero section</div>
+          <div class="wb-card-agent" style="color:#0ea5e9">Pixel</div>
+          <div class="wb-card-actions" id="wbActions1"></div>
+        </div>
+        <div class="wb-card" id="wbTask2" onclick="wbAction('wbTask2')" data-agent="Forge" data-text="Implement WebSocket handler for live updates">
+          <div class="wb-card-pri wb-p1">P1</div>
+          <div class="wb-card-text">Implement WebSocket handler for live updates</div>
+          <div class="wb-card-agent" style="color:#ff6b6b">Forge</div>
+          <div class="wb-card-actions" id="wbActions2"></div>
+        </div>
+        <div class="wb-card" id="wbTask3" onclick="wbAction('wbTask3')" data-agent="Watchdog" data-text="Write integration tests for checkout flow">
+          <div class="wb-card-pri wb-p2">P2</div>
+          <div class="wb-card-text">Write integration tests for checkout flow</div>
+          <div class="wb-card-agent" style="color:#b388ff">Watchdog</div>
+          <div class="wb-card-actions" id="wbActions3"></div>
+        </div>
+      </div>
+      <div class="wb-col">
+        <div class="wb-col-head" style="border-color:#3b82f6">IN PROGRESS</div>
+        <div class="wb-card wb-wip" id="wbTask4" data-agent="Backbone" data-text="API rate limiter middleware">
+          <div class="wb-card-pri wb-p0">P0</div>
+          <div class="wb-card-text">API rate limiter middleware</div>
+          <div class="wb-card-agent" style="color:#22c55e">Backbone</div>
+          <div class="wb-card-timer">12m ago</div>
+        </div>
+      </div>
+      <div class="wb-col">
+        <div class="wb-col-head" style="border-color:#22c55e">DONE</div>
+      </div>
+    </div>
+    <div class="wb-bubble reveal" style="margin-top:16px">
+      <img src="./avatars/REAL-NAME-IMG/manager-avatar.png" alt="Manager" style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--purple)">
+      <span>"Don't forget your iCheckup, Watchdog. Last sprint you skipped it."</span>
+    </div>
+  </div>
+</div>
+
 <div class="sec-divider"></div>
 
 <!-- SECTION 3: COMMUNICATION -->
@@ -733,6 +849,10 @@ footer a{color:var(--purple);text-decoration:none}
         <h3>&#128230; Full Audit Trail</h3>
         <p>Every POKE is archived with a timestamp after execution. Every Slack message is logged. You can replay the entire coordination history of any sprint, task by task.</p>
       </div>
+      <div class="glue-card reveal reveal-d5" style="border-color:rgba(100,116,139,0.35);background:linear-gradient(135deg,rgba(100,116,139,0.06),rgba(124,77,255,0.04))">
+        <h3>&#128123; Ghost Mode</h3>
+        <p>When an agent's CLI is OFF, it doesn't just vanish &mdash; it becomes a <strong>Ghost</strong>. Ghosts live inside Slack. You can ask them questions, get opinions, request reviews. They respond using their personality and memory. But they can't write code, can't push, can't run commands. Only the Keymaster can boot the full CLI and wake them up for real work. Ghosts are always on. The kill switch is in the dashboard.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -757,7 +877,7 @@ footer a{color:var(--purple);text-decoration:none}
       </div>
       <div class="glue-card reveal reveal-d3" style="border-color:rgba(0,229,255,0.25)">
         <h3>&#9989; Runtime Checks <span class="tag tag-cyan">LAYER 3</span></h3>
-        <p>Before every sprint, a validation runs across all agents. Do they have the latest rules? Correct settings? Valid credentials? If anything is off, the sprint doesn't start. The culprit gets POKEd immediately &mdash; fix it yourself or ask for help. Harm the pipeline and it goes public.</p>
+        <p>An audit script runs continuously, detecting AI behavior drift &mdash; context degradation, rule violations, hallucinated decisions. When drift is detected, the Keymaster gets an instant alert to reload the unit. The agent is grounded until it reboots clean.</p>
       </div>
     </div>
 
@@ -776,6 +896,22 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="p-icon">&#128170;</div>
         <div class="p-label" style="color:var(--green)">BACK IN LINE</div>
         <div class="bubble b-green">"Fixed, sir! Settings fresh! I will never harm the pipeline again!"</div>
+      </div>
+    </div>
+
+    <h3 class="sec-t reveal" style="font-size:20px;margin:48px 0 12px"><span style="color:var(--red)">When rules break.</span> Three levels.</h3>
+    <div class="glue-grid" style="margin-bottom:48px">
+      <div class="glue-card reveal reveal-d1" style="border-color:rgba(255,193,7,0.3)">
+        <h3>&#9888; Protocol Breach <span class="tag tag-gold">MANQUEMENT</span></h3>
+        <p>The agent ignored an existing rule. Wrong channel, skipped a required step, acted without approval. The rule was clear &mdash; the agent didn't follow it.</p>
+      </div>
+      <div class="glue-card reveal reveal-d2" style="border-color:rgba(244,67,54,0.3)">
+        <h3>&#9940; Sanction <span class="tag tag-red">ESCALATION</span></h3>
+        <p>Repeat offenders or high-severity breaches. Public warning, then restricted permissions, then mandatory review by the control tower on every action. <strong>SAVE&amp;SLEEP reboot process mandatory.</strong></p>
+      </div>
+      <div class="glue-card reveal reveal-d3" style="border-color:rgba(156,39,176,0.3)">
+        <h3>&#129318; Explain Yourself <span class="tag" style="background:rgba(156,39,176,0.15);color:#ce93d8;border-color:rgba(156,39,176,0.3)">STUPIDITE</span></h3>
+        <p>Something so obviously wrong that "I didn't know" doesn't cut it. The agent writes a public explanation: what were they thinking? What went wrong in their reasoning?</p>
       </div>
     </div>
 
@@ -824,6 +960,105 @@ footer a{color:var(--purple);text-decoration:none}
 
 <div class="sec-divider"></div>
 
+<!-- SECTION 4B: ORCHESTRATION - PUPPET MASTER -->
+<section class="sec" style="background:linear-gradient(180deg,var(--bg) 0%,rgba(124,77,255,0.03) 50%,var(--bg) 100%)">
+  <div class="c">
+    <span class="sec-l reveal">ORCHESTRATION</span>
+    <h2 class="sec-t reveal">Iron fist. <span style="color:var(--gold)">Puppet strings.</span><br>Total control.</h2>
+    <p class="sec-s reveal">You don't manage agents. You <strong>command</strong> them. The hierarchy is absolute. Orders flow down, results flow up. No democracy. No negotiation. Just execution.</p>
+
+    <div class="orch-hierarchy reveal" style="margin-top:48px">
+      <!-- KEYMASTER (top) -->
+      <div class="orch-tier orch-keymaster" style="position:relative">
+        <div class="km-sparkles" id="kmSparkles2" style="inset:-40px;border-radius:50%"></div>
+        <div class="orch-crown">&#128081;</div>
+        <div class="orch-avatar-big"><img src="./avatars/REAL-NAME-IMG/D-coder-nightowl.png" alt="Keymaster"></div>
+        <div class="orch-label-big">THE KEYMASTER</div>
+        <div class="orch-sublabel">Says GO. Everything moves.</div>
+      </div>
+
+      <div class="orch-strings">
+        <div class="orch-string"></div>
+        <div class="orch-string"></div>
+        <div class="orch-string"></div>
+      </div>
+
+      <!-- COMMAND LAYER -->
+      <div class="orch-tier orch-command">
+        <div class="orch-node">
+          <img src="./avatars/REAL-NAME-IMG/tour-avatar.png" alt="Tour">
+          <span>Tour</span>
+          <div class="orch-role-tag">Dispatcher</div>
+        </div>
+        <div class="orch-node">
+          <img src="./avatars/REAL-NAME-IMG/architecte.png" alt="Architecte">
+          <span>Architecte</span>
+          <div class="orch-role-tag">Planner</div>
+        </div>
+        <div class="orch-node">
+          <img src="./avatars/REAL-NAME-IMG/manager-avatar.png" alt="Manager">
+          <span>Manager</span>
+          <div class="orch-role-tag">Tracker</div>
+        </div>
+      </div>
+
+      <div class="orch-strings orch-strings-wide">
+        <div class="orch-string"></div>
+        <div class="orch-string"></div>
+        <div class="orch-string"></div>
+        <div class="orch-string"></div>
+        <div class="orch-string"></div>
+      </div>
+
+      <!-- EXECUTION LAYER -->
+      <div class="orch-tier orch-execution">
+        <div class="orch-node-sm">
+          <img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge">
+          <span>Forge</span>
+        </div>
+        <div class="orch-node-sm">
+          <img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone">
+          <span>Backbone</span>
+        </div>
+        <div class="orch-node-sm">
+          <img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel">
+          <span>Pixel</span>
+        </div>
+        <div class="orch-node-sm">
+          <img src="./avatars/REAL-NAME-IMG/watchdog.png" alt="Watchdog">
+          <span>Watchdog</span>
+        </div>
+        <div class="orch-node-sm">
+          <img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo">
+          <span>Echo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rules of engagement -->
+    <div class="glue-grid" style="margin-top:48px">
+      <div class="glue-card reveal reveal-d1" style="border-color:rgba(255,215,0,0.25)">
+        <h3>&#128075; One word: GO</h3>
+        <p>Nothing moves until you say GO. No agent self-starts a sprint. No agent decomposes tasks on its own. Your word is law. Period.</p>
+      </div>
+      <div class="glue-card reveal reveal-d2" style="border-color:rgba(239,68,68,0.25)">
+        <h3>&#9940; Zero Autonomy</h3>
+        <p>Agents execute exactly what they're told. No creative interpretation. No "I thought you meant..." No improvisation. The POKE file is the contract. Follow it or get called out publicly.</p>
+      </div>
+      <div class="glue-card reveal reveal-d3" style="border-color:rgba(124,77,255,0.25)">
+        <h3>&#128200; Full Visibility</h3>
+        <p>Every action logged. Every decision traceable. Every agent's status visible from your phone via Slack. You see everything. They hide nothing.</p>
+      </div>
+      <div class="glue-card reveal reveal-d4" style="border-color:rgba(0,229,255,0.25)">
+        <h3>&#128274; The Kill Switch</h3>
+        <p>At any moment, you can kill an agent's Ghost, block a sprint, or lock down the entire system. One command. Instant. No agent can override it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
 <!-- SECTION 5: ZERO COST -->
 <section class="sec" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="c">
@@ -853,8 +1088,8 @@ footer a{color:var(--purple);text-decoration:none}
         <p>Critical files get rotated automatically: 5 versions, oldest deleted. Beyond that, git history takes over. Two safety nets, zero cost.</p>
       </div>
       <div class="glue-card reveal reveal-d3">
-        <h3><span class="tag tag-zero">$0</span> Validation</h3>
-        <p>Before every sprint, a pre-flight check verifies all agents are up to date, correctly configured, and ready. Catches drift before it causes problems.</p>
+        <h3><span class="tag tag-zero">$0</span> Drift Detection</h3>
+        <p>Audit scripts monitor agent behavior in real-time. Signs of context drift, rule violations, or hallucinations trigger an instant Keymaster alert to reload the unit.</p>
       </div>
     </div>
   </div>
@@ -916,8 +1151,8 @@ footer a{color:var(--purple);text-decoration:none}
 
     <div class="glue-grid">
       <div class="glue-card reveal reveal-d1" style="border-color:rgba(0,255,136,0.25)">
-        <h3 style="color:var(--green)">100% LOCAL</h3>
-        <p>All 20 agents run in terminals on YOUR machine. Your codebase never touches an external server. The filesystem is the only database. You own everything.</p>
+        <h3 style="color:var(--green)">YOUR MACHINES. YOUR RULES.</h3>
+        <p>Agents run on your local machine &mdash; or on your own remote servers. MotherClaw runs the night shift from a dedicated ThinkPad over SSH. Your codebase stays on hardware YOU control. No cloud vendor. No third-party access. You own everything.</p>
       </div>
       <div class="glue-card reveal reveal-d2" style="border-color:rgba(0,229,255,0.25)">
         <h3 style="color:var(--cyan)">ENCRYPTED CREDENTIALS</h3>
@@ -943,10 +1178,17 @@ footer a{color:var(--purple);text-decoration:none}
   </div>
 </section>
 
+<!-- CLOSER -->
+<section class="sec" style="padding:60px 0;text-align:center">
+  <div class="c">
+    <p class="reveal" style="font-family:var(--f-d);font-size:clamp(18px,3vw,28px);letter-spacing:1px;color:var(--t2);line-height:1.4">Today an agent. <span style="color:var(--gold)">Tomorrow a script.</span></p>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="c">
-    <p>CLAWCORP &mdash; <a href="how-it-works.html">How It Works</a> &bull; <a href="index.html">Home</a></p>
+    <p>CLAWCORP &mdash; <a href="how-it-works.html">Wiki</a> &bull; <a href="index.html">Home</a></p>
   </div>
 </footer>
 
@@ -1005,6 +1247,36 @@ footer a{color:var(--purple);text-decoration:none}
   draw();
 })();
 
+// Wiki Task Board actions
+function wbAction(id){
+  var card=document.getElementById(id);if(!card)return;
+  var num=id.replace('wbTask','');
+  var box=document.getElementById('wbActions'+num);if(!box)return;
+  if(box.classList.contains('visible')){box.classList.remove('visible');box.innerHTML='';return}
+  document.querySelectorAll('.wb-card-actions.visible').forEach(function(el){el.classList.remove('visible');el.innerHTML=''});
+  var agent=card.getAttribute('data-agent');
+  var btns=[
+    {label:'Ask for updates',icon:'\u25B6',color:'#7c4dff'},
+    {label:'Follow up',icon:'\u21BB',color:'#f59e0b'},
+    {label:'Start',icon:'\u26A1',color:'#22c55e'}
+  ];
+  box.innerHTML='';
+  btns.forEach(function(b){
+    var btn=document.createElement('button');
+    btn.className='wb-action-btn';
+    btn.style.borderColor=b.color;btn.style.color=b.color;
+    btn.textContent=b.icon+' '+b.label;
+    btn.onclick=function(e){
+      e.stopPropagation();
+      btn.style.background=b.color;btn.style.color='#0a0a1a';btn.textContent='\u2713 Sent to '+agent;
+      btn.disabled=true;
+      setTimeout(function(){box.classList.remove('visible');box.innerHTML=''},1500);
+    };
+    box.appendChild(btn);
+  });
+  box.classList.add('visible');
+}
+
 // Scroll reveal
 (function(){
   const obs=new IntersectionObserver((entries)=>{
@@ -1015,6 +1287,28 @@ footer a{color:var(--purple);text-decoration:none}
     });
   },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+
+// Keymaster sparkles
+(function(){
+  ['kmSparkles','kmSparkles2'].forEach(function(id){
+    var box=document.getElementById(id);if(!box)return;
+    var w=box.offsetWidth||200,h=box.offsetHeight||200;
+    function spawn(){
+      var s=document.createElement('div');s.className='km-spark';
+      var sx=Math.random()*w,sy=Math.random()*h;
+      var angle=Math.random()*Math.PI*2,dist=20+Math.random()*40;
+      var dx=Math.cos(angle)*dist,dy=Math.sin(angle)*dist;
+      var dur=(1.5+Math.random()*2)+'s';
+      s.style.setProperty('--sx',sx+'px');s.style.setProperty('--sy',sy+'px');
+      s.style.setProperty('--dx',dx+'px');s.style.setProperty('--dy',dy+'px');
+      s.style.setProperty('--dur',dur);s.style.animationDelay=Math.random()*0.5+'s';
+      box.appendChild(s);
+      setTimeout(function(){s.remove()},parseFloat(dur)*1000+600);
+    }
+    setInterval(spawn,400);
+    for(var i=0;i<6;i++)setTimeout(spawn,i*200);
+  });
 })();
 </script>
 
