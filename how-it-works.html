@@ -418,17 +418,26 @@ footer a{color:var(--purple);text-decoration:none}
 <!-- NAV -->
 <nav>
   <div class="c">
-    <a href="index.html" class="logo">
-      <div class="logo-icon">&#x1F980;</div>
-      <span class="logo-txt">CLAW<span>CORP</span></span>
+    <a href="#" class="logo">
+      <div class="logo-icon">🦀</div>
+      <span class="logo-txt">CLAW<span>CORP</span></span><span class="nav-demo">DEMO</span>
     </a>
     <div class="nav-r">
-      <a href="index.html" class="nav-a">Home</a>
+      <a href="#agents" class="nav-a">Agents</a>
+      <!-- <a href="architecture.html" class="nav-a">Architecture</a> -->
       <a href="how-it-works.html" class="nav-a active">Wiki</a>
-      <a href="index.html#agents" class="nav-a">Agents</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" id="themeBtn">☀</button>
+      <a href="#" class="btn btn-g" onclick="showComingSoon(this);return false">LOAD DEMO</a>
+      <a href="#" class="btn btn-r" onclick="showComingSoon(this);return false">▶ PLAY NOW</a>
+      <button class="hamburger" onclick="document.querySelector('.hamburger').classList.toggle('open');document.querySelector('.mob-menu').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
+<div class="mob-menu" onclick="this.classList.remove('open');document.querySelector('.hamburger').classList.remove('open')">
+  <a href="#agents">Agents</a>
+  <a href="how-it-works.html">Wiki</a>
+  <a href="#" onclick="showComingSoon(this);return false">Load Demo</a>
+</div>
 
 <!-- HERO -->
 <div class="page-hero">
@@ -457,7 +466,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-node t0" style="position:relative">
           <div class="km-sparkles" id="kmSparkles"></div>
           <span class="tier-badge">TIER 0 &mdash; HUMAN</span>
-          <div class="av"><img src="./avatars/REAL-NAME-IMG/D-coder-nightowl.png" alt="Keymaster"></div>
+          <div class="av"><img src="./avatars/keymaster.png" alt="Keymaster"></div>
           <div class="name">KEYMASTER</div>
           <div class="role">The human. Starts sprints, approves deploys, shuts it all down.</div>
           <div class="xp">LVL MAX &mdash; ABSOLUTE AUTHORITY</div>
@@ -470,7 +479,7 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="st-tier reveal">
         <div class="st-node t1">
           <span class="tier-badge">TIER 1 &mdash; COMMAND</span>
-          <div class="av"><img src="./avatars/REAL-NAME-IMG/tour-avatar.png" alt="Tour"></div>
+          <div class="av"><img src="./avatars/tour.png" alt="Tour"></div>
           <div class="name">TOUR DE CONTROLE</div>
           <div class="role">Infrastructure, rules, compliance. The Keymaster's voice in the system.</div>
           <div class="xp">SPEAKS WITH HUMAN AUTHORITY</div>
@@ -483,14 +492,14 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="st-tier-dual reveal">
         <div class="st-node t2">
           <span class="tier-badge">TIER 2 &mdash; TECH LEAD</span>
-          <div class="av"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt="Architecte"></div>
+          <div class="av"><img src="./avatars/architecte.png" alt="Architecte"></div>
           <div class="name">ARCHITECTE</div>
           <div class="role">Tech lead. Breaks tasks, dispatches, reviews code, merges branches.</div>
           <div class="xp">FULL GIT CONTROL &mdash; MERGE AUTHORITY</div>
         </div>
         <div class="st-node t2m">
           <span class="tier-badge">TIER 2 &mdash; OPS LEAD</span>
-          <div class="av"><img src="./avatars/REAL-NAME-IMG/manager-avatar.png" alt="Manager"></div>
+          <div class="av"><img src="./avatars/manager.png" alt="Manager"></div>
           <div class="name">MANAGER</div>
           <div class="role">Sprint planning, task board, worker coordination, audits.</div>
           <div class="xp">DISPATCH AUTHORITY &mdash; BOARD CONTROL</div>
@@ -504,7 +513,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge"></div>
+            <div class="av"><img src="./avatars/grok.png" alt="Forge"></div>
             <div class="name">FORGE</div>
             <div class="role">Full-stack</div>
           </div>
@@ -512,7 +521,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone"></div>
+            <div class="av"><img src="./avatars/backbone.png" alt="Backbone"></div>
             <div class="name">BACKBONE</div>
             <div class="role">Backend</div>
           </div>
@@ -520,7 +529,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel"></div>
+            <div class="av"><img src="./avatars/pixel.png" alt="Pixel"></div>
             <div class="name">PIXEL</div>
             <div class="role">Frontend</div>
           </div>
@@ -528,7 +537,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt="Watchdog"></div>
+            <div class="av"><img src="./avatars/watchdog.png" alt="Watchdog"></div>
             <div class="name">WATCHDOG</div>
             <div class="role">QA / Tests</div>
           </div>
@@ -536,7 +545,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo"></div>
+            <div class="av"><img src="./avatars/echo.png" alt="Echo"></div>
             <div class="name">ECHO</div>
             <div class="role">Research</div>
           </div>
@@ -544,7 +553,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-wk">
           <div class="drop"></div>
           <div class="st-node t3" style="border-color:rgba(0,255,136,0.25)">
-            <div class="av" style="border-color:rgba(0,255,136,0.4);box-shadow:0 0 12px rgba(0,255,136,0.15)"><img src="./avatars/REAL-NAME-IMG/eye.png" alt="Eye"><span class="badge-auto">AUTO</span></div>
+            <div class="av" style="border-color:rgba(0,255,136,0.4);box-shadow:0 0 12px rgba(0,255,136,0.15)"><img src="./avatars/tour.png" alt="Eye"><span class="badge-auto">AUTO</span></div>
             <div class="name" style="color:var(--green)">EYE</div>
             <div class="role">Visual QA</div>
           </div>
@@ -556,7 +565,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/motherclaw-avatar.png" alt="MotherClaw"></div>
+            <div class="av"><img src="./avatars/motherclaw.png" alt="MotherClaw"></div>
             <div class="name">MOTHERCLAW</div>
             <div class="role">Night shift</div>
           </div>
@@ -564,7 +573,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/outpost.png" alt="Outpost"></div>
+            <div class="av"><img src="./avatars/sentinel.png" alt="Outpost"></div>
             <div class="name">OUTPOST</div>
             <div class="role">Remote Ops</div>
           </div>
@@ -572,7 +581,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/avocat-avatar - Copy - Copy.png" alt="Avocat"></div>
+            <div class="av"><img src="./avatars/avocat.png" alt="Avocat"></div>
             <div class="name">AVOCAT</div>
             <div class="role">Legal</div>
           </div>
@@ -580,7 +589,7 @@ footer a{color:var(--purple);text-decoration:none}
         <div class="st-side">
           <div class="drop"></div>
           <div class="st-node t4">
-            <div class="av"><img src="./avatars/REAL-NAME-IMG/archiver-amber.png" alt="Librarian"></div>
+            <div class="av"><img src="./avatars/tour.png" alt="Librarian"></div>
             <div class="name">LIBRARIAN</div>
             <div class="role">Archive</div>
           </div>
@@ -611,7 +620,7 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">01</div>
           <div class="branch-content">
             <div class="step-type boss">BOSS GATE</div>
-            <h3><span class="step-av gold"><img src="./avatars/REAL-NAME-IMG/boss.svg" alt=""></span> KEYMASTER SAYS GO</h3>
+            <h3><span class="step-av gold"><img src="./avatars/boss.svg" alt=""></span> KEYMASTER SAYS GO</h3>
             <p>One sentence defines scope. The human greenlights the speedrun.</p>
           </div>
         </div>
@@ -621,20 +630,20 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">02</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT DECOMPOSES + STAGING</h3>
-            <p>Splits request into tasks, creates staging branch. Then drops a <span class="poke-tag">POKE</span> file into each worker's directory. The terminal catches it &mdash; the agent wakes up and starts coding. No human intervention.</p>
+            <h3><span class="step-av green"><img src="./avatars/architecte.png" alt=""></span> ARCHITECT DECOMPOSES + POKEs WORKERS</h3>
+            <p>Breaks down the scope into concrete tasks and assigns them to workers via <span class="poke-tag">POKE</span> files. Each worker wakes up with their specific assignment. Creates staging branch for the merge zone.</p>
           </div>
         </div>
 
         <div class="poke-wire"><span class="pw-label">POKE &rarr; WORKERS</span></div>
 
-        <!-- STEP 03: WORKERS BRANCH -->
+        <!-- STEP 03: WORKERS CODE -->
         <div class="branch-step auto reveal">
           <div class="step-num">03</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; PARALLEL</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/forge.png" alt=""></span> WORKERS CODE IN PARALLEL</h3>
-            <p>5 workers, 5 branches, zero conflicts. Need help? <span class="poke-tag">POKE</span> another worker directly &mdash; their terminal wakes up instantly.</p>
+            <h3><span class="step-av green"><img src="./avatars/grok.png" alt=""></span> WORKERS CODE IN PARALLEL</h3>
+            <p>Each worker codes on their own branch independently. If a worker needs help, they <span class="poke-tag">POKE</span> another worker directly. They self-test via Chrome MCP before pushing.</p>
           </div>
         </div>
 
@@ -644,28 +653,28 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="branch-workers">
             <div class="worker-box">
               <div class="worker-av-row">
-                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge"></div>
+                <div class="worker-icon"><img src="./avatars/grok.png" alt="Forge"></div>
                 <span class="worker-emoji">&#128296;</span>
               </div>
               <div class="worker-name">Forge</div>
             </div>
             <div class="worker-box">
               <div class="worker-av-row">
-                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone"></div>
+                <div class="worker-icon"><img src="./avatars/backbone.png" alt="Backbone"></div>
                 <span class="worker-emoji">&#9881;</span>
               </div>
               <div class="worker-name">Backbone</div>
             </div>
             <div class="worker-box">
               <div class="worker-av-row">
-                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel"></div>
+                <div class="worker-icon"><img src="./avatars/pixel.png" alt="Pixel"></div>
                 <span class="worker-emoji">&#127912;</span>
               </div>
               <div class="worker-name">Pixel</div>
             </div>
             <div class="worker-box">
               <div class="worker-av-row">
-                <div class="worker-icon"><img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo"></div>
+                <div class="worker-icon"><img src="./avatars/echo.png" alt="Echo"></div>
                 <span class="worker-emoji">&#129504;</span>
               </div>
               <div class="worker-name">Echo</div>
@@ -678,13 +687,13 @@ footer a{color:var(--purple);text-decoration:none}
 
         <div class="flow-arrow"><span>&#9660;</span></div>
 
-        <!-- STEP 04: WORKER MERGES -->
+        <!-- STEP 04: WORKER MERGE -->
         <div class="branch-step auto reveal">
           <div class="step-num">04</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; MERGE</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/forge.png" alt=""></span> WORKERS MERGE INTO STAGING</h3>
-            <p>Each worker merges their branch into staging. No gatekeeper. The <strong>last worker to push</strong> automatically drops a <span class="poke-tag">POKE</span> to Watchdog &mdash; "staging is ready, test it."</p>
+            <h3><span class="step-av green"><img src="./avatars/grok.png" alt=""></span> WORKER DONE &rarr; MERGES INTO STAGING</h3>
+            <p>When a worker finishes, they merge their own branch into staging. No gatekeeper needed. If conflicts arise with another worker, they resolve together via <span class="poke-tag">POKE</span>.</p>
           </div>
         </div>
 
@@ -695,8 +704,8 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">05</div>
           <div class="branch-content">
             <div class="step-type qa">QA CHECKPOINT</div>
-            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt=""></span> &#128270; WATCHDOG TESTS STAGING</h3>
-            <p>Watchdog wakes up from the <span class="poke-tag">POKE</span>, runs the full test suite. All worker code together for the first time. Fail? Watchdog <span class="poke-tag">POKE</span>s the worker who broke it &mdash; they fix and re-merge.</p>
+            <h3><span class="step-av purple"><img src="./avatars/watchdog.png" alt=""></span> WATCHDOG TESTS STAGING</h3>
+            <p>Once all workers have merged, Watchdog runs the full test suite. First time all code runs together. If tests fail, Watchdog <span class="poke-tag">POKE</span>s the offending worker to fix. They re-merge and Watchdog retests.</p>
             <div class="branch-badges">
               <span class="branch-badge badge-pass">PASS next</span>
               <span class="branch-badge badge-fail">FAIL re-test</span>
@@ -711,8 +720,8 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">06</div>
           <div class="branch-content">
             <div class="step-type qa">QA &mdash; VISUAL</div>
-            <h3><span class="step-av purple"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT REVIEWS + VISUAL QA</h3>
-            <p>Watchdog <span class="poke-tag">POKE</span>s the Architect. Opens Chrome MCP on staging, reviews code + visual QA. Catches regressions automated tests can't see.</p>
+            <h3><span class="step-av purple"><img src="./avatars/architecte.png" alt=""></span> ARCHITECT REVIEWS + VISUAL QA</h3>
+            <p>Architect launches localhost on staging and performs visual QA via Chrome MCP. Reviews code for quality and catches regressions automated tests miss. Verifies the integration is stable and ready.</p>
           </div>
         </div>
 
@@ -723,8 +732,8 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">07</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; MERGE</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT MERGES STAGING &rarr; DEV</h3>
-            <p>Validated staging merged into dev. Stable integration branch.</p>
+            <h3><span class="step-av green"><img src="./avatars/architecte.png" alt=""></span> ARCHITECT MERGES STAGING &rarr; DEV</h3>
+            <p>After QA passes, Architect merges validated staging into dev. Dev is now stable and ready for final review.</p>
           </div>
         </div>
 
@@ -735,8 +744,8 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">08</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; NOTIFY</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT <span class="poke-tag">POKE</span>s KEYMASTER</h3>
-            <p>Dev is ready. The human gets a Slack notification on their phone. Time to review.</p>
+            <h3><span class="step-av green"><img src="./avatars/architecte.png" alt=""></span> ARCHITECT <span class="poke-tag">POKE</span>s KEYMASTER</h3>
+            <p>Architect sends a <span class="poke-tag">POKE</span> to the Keymaster via Slack. Dev branch is ready for final review.</p>
           </div>
         </div>
 
@@ -747,12 +756,12 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">09</div>
           <div class="branch-content">
             <div class="step-type boss">BOSS GATE</div>
-            <h3><span class="step-av gold"><img src="./avatars/REAL-NAME-IMG/boss.svg" alt=""></span> KEYMASTER REVIEWS + DECIDES</h3>
-            <p>Tests live app on dev. Ship it or run another speedrun? Between sprints, the Keymaster can work live with any agent &mdash; watching localhost changes in real-time, chatting directly with Pixel on the frontend, tweaking until it's right. When ready, they POKE the Architect to merge and prep the next sprint.</p>
+            <h3><span class="step-av gold"><img src="./avatars/boss.svg" alt=""></span> KEYMASTER REVIEWS + DECIDES</h3>
+            <p>Reviews dev branch. Three choices: Ship to production (dev &rarr; main), run another speedrun (loop back to step 02), or ask for fixes.</p>
             <div class="branch-split">
-              <a class="pipeline-btn ship">PUSH ONLINE</a>
+              <a class="pipeline-btn ship">SHIP</a>
               <span class="split-or">OR</span>
-              <a class="pipeline-btn next">GO NEXT SPEEDRUN</a>
+              <a class="pipeline-btn next">NEXT SPEEDRUN</a>
             </div>
           </div>
         </div>
@@ -764,8 +773,8 @@ footer a{color:var(--purple);text-decoration:none}
           <div class="step-num">10</div>
           <div class="branch-content">
             <div class="step-type auto">AUTO &mdash; PREP</div>
-            <h3><span class="step-av green"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt=""></span> ARCHITECT PREPS NEXT SPRINT</h3>
-            <p>Architect compiles the Keymaster's review notes into a clear brief for the next speedrun. Resets staging, updates the plan, and presents it back at Step 01. The loop closes.</p>
+            <h3><span class="step-av green"><img src="./avatars/architecte.png" alt=""></span> RESET: ARCHITECT RECREATES STAGING</h3>
+            <p>Architect deletes the old staging branch and recreates it from dev for the next speedrun. The pipeline is ready to loop.</p>
           </div>
         </div>
 
@@ -817,7 +826,7 @@ footer a{color:var(--purple);text-decoration:none}
       </div>
     </div>
     <div class="wb-bubble reveal" style="margin-top:16px">
-      <img src="./avatars/REAL-NAME-IMG/manager-avatar.png" alt="Manager" style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--purple)">
+      <img src="./avatars/manager.png" alt="Manager" style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--purple)">
       <span>"Don't forget your iCheckup, Watchdog. Last sprint you skipped it."</span>
     </div>
   </div>
@@ -877,7 +886,7 @@ footer a{color:var(--purple);text-decoration:none}
       </div>
       <div class="glue-card reveal reveal-d3" style="border-color:rgba(0,229,255,0.25)">
         <h3>&#9989; Runtime Checks <span class="tag tag-cyan">LAYER 3</span></h3>
-        <p>An audit script runs continuously, detecting AI behavior drift &mdash; context degradation, rule violations, hallucinated decisions. When drift is detected, the Keymaster gets an instant alert to reload the unit. The agent is grounded until it reboots clean.</p>
+        <p>An audit script runs continuously, detecting AI behavior drift &mdash; context degradation, rule violations, hallucinated decisions. When drift is detected, the culprit gets POKEd with an instant alert to reload the unit. The agent is grounded until it reboots clean.</p>
       </div>
     </div>
 
@@ -920,12 +929,12 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="pm-title">PUPPET MASTER MODE</div>
       <div class="pm-sub">You pull the strings. They execute. Iron fist. Zero negotiation.</div>
       <div class="puppet-row">
-        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/architecte.png" alt="Arch"><span>Arch</span></div>
-        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge"><span>Forge</span></div>
-        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone"><span>Backbone</span></div>
-        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel"><span>Pixel</span></div>
-        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/watchdog.png" alt="Watchdog"><span>Watchdog</span></div>
-        <div class="puppet-node"><img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo"><span>Echo</span></div>
+        <div class="puppet-node"><img src="./avatars/architecte.png" alt="Arch"><span>Arch</span></div>
+        <div class="puppet-node"><img src="./avatars/grok.png" alt="Forge"><span>Forge</span></div>
+        <div class="puppet-node"><img src="./avatars/backbone.png" alt="Backbone"><span>Backbone</span></div>
+        <div class="puppet-node"><img src="./avatars/pixel.png" alt="Pixel"><span>Pixel</span></div>
+        <div class="puppet-node"><img src="./avatars/watchdog.png" alt="Watchdog"><span>Watchdog</span></div>
+        <div class="puppet-node"><img src="./avatars/echo.png" alt="Echo"><span>Echo</span></div>
       </div>
     </div>
 
@@ -958,106 +967,6 @@ footer a{color:var(--purple);text-decoration:none}
   </div>
 </section>
 
-<div class="sec-divider"></div>
-
-<!-- SECTION 4B: ORCHESTRATION - PUPPET MASTER -->
-<section class="sec" style="background:linear-gradient(180deg,var(--bg) 0%,rgba(124,77,255,0.03) 50%,var(--bg) 100%)">
-  <div class="c">
-    <span class="sec-l reveal">ORCHESTRATION</span>
-    <h2 class="sec-t reveal">Iron fist. <span style="color:var(--gold)">Puppet strings.</span><br>Total control.</h2>
-    <p class="sec-s reveal">You don't manage agents. You <strong>command</strong> them. The hierarchy is absolute. Orders flow down, results flow up. No democracy. No negotiation. Just execution.</p>
-
-    <div class="orch-hierarchy reveal" style="margin-top:48px">
-      <!-- KEYMASTER (top) -->
-      <div class="orch-tier orch-keymaster" style="position:relative">
-        <div class="km-sparkles" id="kmSparkles2" style="inset:-40px;border-radius:50%"></div>
-        <div class="orch-crown">&#128081;</div>
-        <div class="orch-avatar-big"><img src="./avatars/REAL-NAME-IMG/D-coder-nightowl.png" alt="Keymaster"></div>
-        <div class="orch-label-big">THE KEYMASTER</div>
-        <div class="orch-sublabel">Says GO. Everything moves.</div>
-      </div>
-
-      <div class="orch-strings">
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-      </div>
-
-      <!-- COMMAND LAYER -->
-      <div class="orch-tier orch-command">
-        <div class="orch-node">
-          <img src="./avatars/REAL-NAME-IMG/tour-avatar.png" alt="Tour">
-          <span>Tour</span>
-          <div class="orch-role-tag">Dispatcher</div>
-        </div>
-        <div class="orch-node">
-          <img src="./avatars/REAL-NAME-IMG/architecte.png" alt="Architecte">
-          <span>Architecte</span>
-          <div class="orch-role-tag">Planner</div>
-        </div>
-        <div class="orch-node">
-          <img src="./avatars/REAL-NAME-IMG/manager-avatar.png" alt="Manager">
-          <span>Manager</span>
-          <div class="orch-role-tag">Tracker</div>
-        </div>
-      </div>
-
-      <div class="orch-strings orch-strings-wide">
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-        <div class="orch-string"></div>
-      </div>
-
-      <!-- EXECUTION LAYER -->
-      <div class="orch-tier orch-execution">
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/forge.png" alt="Forge">
-          <span>Forge</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/backbone.png" alt="Backbone">
-          <span>Backbone</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/pixel.png" alt="Pixel">
-          <span>Pixel</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/watchdog.png" alt="Watchdog">
-          <span>Watchdog</span>
-        </div>
-        <div class="orch-node-sm">
-          <img src="./avatars/REAL-NAME-IMG/echo.png" alt="Echo">
-          <span>Echo</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rules of engagement -->
-    <div class="glue-grid" style="margin-top:48px">
-      <div class="glue-card reveal reveal-d1" style="border-color:rgba(255,215,0,0.25)">
-        <h3>&#128075; One word: GO</h3>
-        <p>Nothing moves until you say GO. No agent self-starts a sprint. No agent decomposes tasks on its own. Your word is law. Period.</p>
-      </div>
-      <div class="glue-card reveal reveal-d2" style="border-color:rgba(239,68,68,0.25)">
-        <h3>&#9940; Zero Autonomy</h3>
-        <p>Agents execute exactly what they're told. No creative interpretation. No "I thought you meant..." No improvisation. The POKE file is the contract. Follow it or get called out publicly.</p>
-      </div>
-      <div class="glue-card reveal reveal-d3" style="border-color:rgba(124,77,255,0.25)">
-        <h3>&#128200; Full Visibility</h3>
-        <p>Every action logged. Every decision traceable. Every agent's status visible from your phone via Slack. You see everything. They hide nothing.</p>
-      </div>
-      <div class="glue-card reveal reveal-d4" style="border-color:rgba(0,229,255,0.25)">
-        <h3>&#128274; The Kill Switch</h3>
-        <p>At any moment, you can kill an agent's Ghost, block a sprint, or lock down the entire system. One command. Instant. No agent can override it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="sec-divider"></div>
 
 <!-- SECTION 5: ZERO COST -->
 <section class="sec" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
