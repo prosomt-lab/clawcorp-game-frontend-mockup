@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="60" fill="#e65100"/>
+  
+  <!-- Beret: chunky blob -->
+  <ellipse cx="270" cy="100" rx="140" ry="28" fill="#7f2800"/>
+  <path d="M160,102 Q210,30 380,78" fill="#7f2800"/>
+  <circle cx="235" cy="48" r="14" fill="#ffab40"/>
+  
+  <!-- Left eye: small, normal, on the background (like Grok) -->
+  <circle cx="155" cy="235" r="38" fill="#fff"/>
+  <circle cx="160" cy="230" r="18" fill="#7f2800"/>
+  <circle cx="166" cy="224" r="6" fill="#fff"/>
+  <!-- Eyebrow -->
+  <path d="M118,185 Q155,170 192,188" stroke="#7f2800" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Right eye: GIANT COLOR WHEEL (the whole right side!) -->
+  <circle cx="345" cy="230" r="100" fill="#fff"/>
+  <path d="M345,130 A100,100 0 0,1 445,230 L345,230Z" fill="#e53935"/>
+  <path d="M445,230 A100,100 0 0,1 345,330 L345,230Z" fill="#2196f3"/>
+  <path d="M345,330 A100,100 0 0,1 245,230 L345,230Z" fill="#fdd835"/>
+  <path d="M245,230 A100,100 0 0,1 345,130 L345,230Z" fill="#4caf50"/>
+  <circle cx="345" cy="230" r="28" fill="#fff"/>
+  <circle cx="345" cy="230" r="14" fill="#7f2800"/>
+  <circle cx="351" cy="224" r="5" fill="#fff"/>
+  <!-- Raised eyebrow over color wheel -->
+  <path d="M268,138 Q345,105 430,148" stroke="#7f2800" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Mouth: big goofy grin -->
+  <path d="M140,365 Q256,425 372,365" stroke="#7f2800" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Beauty mark / paint splat -->
+  <circle cx="180" cy="375" r="7" fill="#7f2800"/>
+  
+  <!-- Rainbow color dots at bottom -->
+  <circle cx="146" cy="460" r="8" fill="#e53935"/>
+  <circle cx="186" cy="460" r="8" fill="#ff9800"/>
+  <circle cx="226" cy="460" r="8" fill="#fdd835"/>
+  <circle cx="266" cy="460" r="8" fill="#4caf50"/>
+  <circle cx="306" cy="460" r="8" fill="#2196f3"/>
+  <circle cx="346" cy="460" r="8" fill="#9c27b0"/>
+</svg>

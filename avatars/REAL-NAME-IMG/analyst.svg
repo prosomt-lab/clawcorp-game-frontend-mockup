@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="60" fill="#4a148c"/>
+  
+  <!-- Antenna: radar blip -->
+  <rect x="244" y="18" width="24" height="38" rx="6" fill="#2a0050"/>
+  <circle cx="256" cy="12" r="10" fill="#00e5ff"/>
+  
+  <!-- ENORMOUS ROUND GLASSES — they dominate the WHOLE face -->
+  <!-- Left lens: huge circle -->
+  <circle cx="170" cy="240" r="110" fill="#1a0030"/>
+  <circle cx="170" cy="240" r="90" fill="#2a0050"/>
+  <!-- Right lens: huge circle -->
+  <circle cx="342" cy="240" r="110" fill="#1a0030"/>
+  <circle cx="342" cy="240" r="90" fill="#2a0050"/>
+  <!-- Bridge: thick -->
+  <rect x="238" y="218" width="36" height="28" rx="10" fill="#1a0030"/>
+  <!-- Temples going to ears -->
+  <rect x="10" y="228" width="56" height="16" rx="6" fill="#1a0030"/>
+  <rect x="446" y="228" width="56" height="16" rx="6" fill="#1a0030"/>
+  
+  <!-- Eyes inside glasses: small, focused -->
+  <circle cx="170" cy="235" r="30" fill="#fff"/>
+  <circle cx="342" cy="235" r="30" fill="#fff"/>
+  <circle cx="175" cy="230" r="12" fill="#1a0030"/>
+  <circle cx="347" cy="230" r="12" fill="#1a0030"/>
+  <circle cx="179" cy="226" r="4" fill="#fff"/>
+  <circle cx="351" cy="226" r="4" fill="#fff"/>
+  
+  <!-- Lens reflection (diagonal shine) -->
+  <ellipse cx="130" cy="195" rx="20" ry="8" fill="#fff" opacity="0.08" transform="rotate(-30,130,195)"/>
+  <ellipse cx="302" cy="195" rx="20" ry="8" fill="#fff" opacity="0.08" transform="rotate(-30,302,195)"/>
+  
+  <!-- Mouth: tiny concerned/thinking line below the giant glasses -->
+  <path d="M220,400 Q256,410 292,400" stroke="#2a0050" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Thinking dots -->
+  <circle cx="320" cy="405" r="5" fill="#ce93d8" opacity="0.5"/>
+  <circle cx="345" cy="398" r="7" fill="#ce93d8" opacity="0.35"/>
+  <circle cx="374" cy="388" r="9" fill="#ce93d8" opacity="0.2"/>
+  
+  <!-- Bottom dots: alternating cyan -->
+  <circle cx="180" cy="468" r="6" fill="#2a0050"/>
+  <circle cx="218" cy="468" r="6" fill="#00e5ff" opacity="0.5"/>
+  <circle cx="256" cy="468" r="6" fill="#2a0050"/>
+  <circle cx="294" cy="468" r="6" fill="#00e5ff" opacity="0.5"/>
+  <circle cx="332" cy="468" r="6" fill="#2a0050"/>
+</svg>
