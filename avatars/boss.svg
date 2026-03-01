@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="60" fill="#1a237e"/>
+  
+  <!-- TOP HAT (big, imposing) -->
+  <rect x="150" y="5" width="212" height="90" rx="12" fill="#080820"/>
+  <rect x="110" y="85" width="292" height="32" rx="10" fill="#080820"/>
+  <rect x="110" y="95" width="292" height="12" rx="4" fill="#ffd54f"/>
+  
+  <!-- Left eye: normal, smaller, confident -->
+  <circle cx="175" cy="230" r="42" fill="#fff"/>
+  <circle cx="180" cy="226" r="20" fill="#080820"/>
+  <circle cx="186" cy="220" r="7" fill="#fff"/>
+  <!-- Eyebrow: flat, unimpressed -->
+  <rect x="133" y="175" width="85" height="10" rx="5" fill="#283593"/>
+  
+  <!-- Right eye: GIANT MONOCLE (like Grok's magnifying glass!) -->
+  <circle cx="340" cy="240" r="80" fill="#ffd54f" opacity="0.15"/>
+  <circle cx="340" cy="240" r="80" fill="none" stroke="#ffd54f" stroke-width="8"/>
+  <circle cx="340" cy="240" r="38" fill="#fff"/>
+  <circle cx="346" cy="234" r="18" fill="#080820"/>
+  <circle cx="352" cy="228" r="6" fill="#fff"/>
+  <!-- Monocle handle -->
+  <rect x="410" y="296" width="60" height="16" rx="6" fill="#ffd54f" transform="rotate(40,410,304)"/>
+  <!-- Eyebrow: raised (one up = smirk attitude) -->
+  <rect x="280" y="148" width="110" height="10" rx="5" fill="#283593" transform="rotate(-8,335,153)"/>
+  
+  <!-- Mouth: confident smirk like Grok -->
+  <path d="M160,360 Q250,370 340,350" stroke="#080820" stroke-width="7" fill="none" stroke-linecap="round"/>
+  
+  <!-- Beauty mark (like Grok!) -->
+  <circle cx="280" cy="375" r="6" fill="#283593"/>
+  
+  <!-- Gold chain dangling from monocle -->
+  <path d="M395,315 Q410,380 380,430" stroke="#ffd54f" stroke-width="4" fill="none"/>
+  <circle cx="378" cy="435" r="8" fill="#ffd54f"/>
+  
+  <!-- Bottom dots -->
+  <circle cx="180" cy="475" r="6" fill="#283593"/>
+  <circle cx="218" cy="475" r="6" fill="#283593"/>
+  <circle cx="256" cy="475" r="8" fill="#ffd54f"/>
+  <circle cx="294" cy="475" r="6" fill="#283593"/>
+  <circle cx="332" cy="475" r="6" fill="#283593"/>
+</svg>

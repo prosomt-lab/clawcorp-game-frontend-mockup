@@ -203,17 +203,17 @@ function submitWaitlist(e){
   var dismissTimer=null;
 
   var popups=[
-    {section:"conveyor",agent:"Pixel",color:"#06b6d4",img:"./avatars/REAL-NAME-IMG/pixel.png",msg:"I aligned every pixel on that conveyor. Forge broke it in 5 minutes."},
-    {section:"agents",agent:"Watchdog",color:"#ff6b6b",img:"./avatars/REAL-NAME-IMG/watchdog.png",msg:"I tested all 20 agents. 3 lied about their stats."},
-    {section:"pipeline",agent:"Manager",color:"#ffd700",img:"./avatars/REAL-NAME-IMG/manager-avatar.png",msg:"Don\u2019t forget your iCheckup, Watchdog. Last sprint you skipped it."},
-    {section:"liveSession",agent:"Echo",color:"#a78bfa",img:"./avatars/REAL-NAME-IMG/echo.png",msg:"I trained Forge to say \u2018on it\u2019 faster. You\u2019re welcome."},
-    {section:"workflow",agent:"Backbone",color:"#22c55e",img:"./avatars/REAL-NAME-IMG/backbone.png",msg:"AUTONOMOUS mode? Bold. I like it."},
-    {section:"commshub",agent:"Tour",color:"#3b82f6",img:"./avatars/REAL-NAME-IMG/tour-avatar.png",msg:"I see 47 unread messages. 46 are from Manager."},
-    {section:"communication",agent:"Forge",color:"#b388ff",img:"./avatars/REAL-NAME-IMG/forge.png",msg:"You just dumped 8 tasks. I\u2019m already done with 3."},
-    {section:"superpowers",agent:"Avocat",color:"#ec4899",img:"./avatars/REAL-NAME-IMG/avocat-avatar.png",msg:"I found a GPL dependency in your code. We need to talk."},
-    {section:"features",agent:"Sentinel",color:"#f97316",img:"./avatars/REAL-NAME-IMG/sentinel-avatar.png",msg:"All 20 agents. Zero breaches. You\u2019re safe."},
-    {section:"pricing",agent:"Boss",color:"#eab308",img:"./avatars/REAL-NAME-IMG/boss.svg",msg:"Every dollar you save is a dollar I reinvest. Automatically."},
-    {section:"cta",agent:"Marketer",color:"#f43f5e",img:"./avatars/REAL-NAME-IMG/marketer.svg",msg:"That signup button? I A/B tested 14 shades of purple."}
+    {section:"conveyor",agent:"Pixel",color:"#06b6d4",img:"./avatars/pixel.png",msg:"I aligned every pixel on that conveyor. Forge broke it in 5 minutes."},
+    {section:"agents",agent:"Watchdog",color:"#ff6b6b",img:"./avatars/watchdog.png",msg:"I tested all 20 agents. 3 lied about their stats."},
+    {section:"pipeline",agent:"Manager",color:"#ffd700",img:"./avatars/manager.png",msg:"Don\u2019t forget your iCheckup, Watchdog. Last sprint you skipped it."},
+    {section:"liveSession",agent:"Echo",color:"#a78bfa",img:"./avatars/echo.png",msg:"I trained Forge to say \u2018on it\u2019 faster. You\u2019re welcome."},
+    {section:"workflow",agent:"Backbone",color:"#22c55e",img:"./avatars/backbone.png",msg:"AUTONOMOUS mode? Bold. I like it."},
+    {section:"commshub",agent:"Tour",color:"#3b82f6",img:"./avatars/tour.png",msg:"I see 47 unread messages. 46 are from Manager."},
+    {section:"communication",agent:"Forge",color:"#b388ff",img:"./avatars/forge.png",msg:"You just dumped 8 tasks. I\u2019m already done with 3."},
+    {section:"superpowers",agent:"Avocat",color:"#ec4899",img:"./avatars/avocat.png",msg:"I found a GPL dependency in your code. We need to talk."},
+    {section:"features",agent:"Sentinel",color:"#f97316",img:"./avatars/sentinel.png",msg:"All 20 agents. Zero breaches. You\u2019re safe."},
+    {section:"pricing",agent:"Boss",color:"#eab308",img:"./avatars/boss.svg",msg:"Every dollar you save is a dollar I reinvest. Automatically."},
+    {section:"cta",agent:"Marketer",color:"#f43f5e",img:"./avatars/marketer.svg",msg:"That signup button? I A/B tested 14 shades of purple."}
   ];
 
   function createPopup(){
