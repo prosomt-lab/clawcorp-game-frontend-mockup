@@ -303,3 +303,36 @@ function submitWaitlist(e){
   document.addEventListener('click',hide);
   window.addEventListener('scroll',hide,{passive:true});
 })();
+
+/* Before/After site preview transition in Live Session */
+(function(){
+  var ugly=document.getElementById('ooSiteUgly');
+  var beautiful=document.getElementById('ooSiteBeautiful');
+  var label=document.getElementById('ooBeforeAfterLabel');
+  if(!ugly||!beautiful)return;
+  var switched=false;
+  /* Switch to AFTER when chat simulation starts (after ~6s of viewing) */
+  var section=document.getElementById('liveSession');
+  if(!section)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting&&!switched){
+        switched=true;
+        obs.disconnect();
+        setTimeout(function(){
+          ugly.style.transition='opacity 0.6s';
+          ugly.style.opacity='0';
+          setTimeout(function(){
+            ugly.style.display='none';
+            beautiful.style.display='';
+            beautiful.style.opacity='0';
+            beautiful.style.transition='opacity 0.6s';
+            requestAnimationFrame(function(){beautiful.style.opacity='1';});
+            if(label){label.textContent='AFTER';label.style.color='var(--green)';}
+          },600);
+        },4000);
+      }
+    });
+  },{threshold:0.4});
+  obs.observe(section);
+})();
